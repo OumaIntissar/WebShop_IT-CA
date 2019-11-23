@@ -1,0 +1,15 @@
+.footer {
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #eff6fa;
+  color: white;
+  text-align: center;
+}
+
+.peopleCarouselImg img {
+  width: auto;
+  height: 600px;
+  max-height: 425px;
+}
