@@ -1,0 +1,70 @@
+////////// SIDEBAR ////////
+$sidebar-width-lg: 210px;
+$sidebar-width-mini: 185px;
+$sidebar-width-icon: 70px;
+
+
+$sidebar-bg: #222437;
+$sidebar-menu-color: #8c909a;
+$sidebar-menu-active-bg: #282c44;
+$sidebar-menu-active-color: #bdc2cc;
+$sidebar-menu-hover-bg: #282c44;
+$sidebar-menu-hover-color: #d0cfcf;
+$sidebar-submenu-color: $sidebar-menu-color;
+$sidebar-submenu-hover-bg: initial;
+$sidebar-submenu-bg: $sidebar-menu-hover-bg;
+$sidebar-submenu-hover-color: #bebdc2;
+$sidebar-submenu-active-color: #ffffff;
+$sidebar-menu-icon-color: theme-color(secondary);
+$sidebar-menu-arrow-color: $sidebar-menu-color;
+
+$sidebar-menu-font-size: .75rem;
+$sidebar-menu-padding-left: 1.25rem;
+$sidebar-menu-padding-right: 1.25rem;
+$sidebar-menu-padding-top: 0.625rem;
+$sidebar-menu-padding-bottom: 0.625rem;
+
+$sidebar-submenu-padding: 0.25rem 0 0 2.8rem;
+$sidebar-submenu-font-size: .75rem;
+$sidebar-submenu-item-padding: 0.625rem 0.825rem;
+
+$sidebar-icon-font-size:  1.125rem;
+$sidebar-arrow-font-size: .625rem;
+
+$sidebar-profile-bg: transparent;
+$sidebar-profile-padding: 0 1.625rem 2.25rem 1.188rem;
+
+$sidebar-mini-menu-padding: .8125rem 1rem .8125rem 1rem;
+
+$sidebar-icon-only-menu-padding: .5rem 1.625rem .5rem 1.188rem;
+$sidebar-icon-only-submenu-padding: 0 0 0 1.5rem;
+
+$sidebar-box-shadow: 6px 16px 31px -18px #b7bcd1;
+
+$rtl-sidebar-submenu-padding: 0 4.5rem 0 0;
+
+$icon-only-collapse-width: 190px;
+$icon-only-menu-bg: #3a3f51;
+
+///////// SIDEBAR ////////
+
+///////// BOXED LAYOUT ///////
+$boxed-container-width: 1200px;
+$boxed-layout-bg: #c6c8ca;
+///////// BOXED LAYOUT ///////
+
+///////// SETTINGS PANEL ////////
+
+$settings-panel-width: 300px;
+
+///////// NAVBAR ////////
+
+$navbar-default-bg: #222437;
+$navbar-height: 63px;
+$navbar-menu-color: #b1b1b5;
+$navbar-font-size: 1rem;
+$navbar-icon-font-size: .9375rem;
+$navbar-toggler-color:$body-color;
+$navbar-search-placeholder-color: #b1b1b5;
+
+///////// NAVBAR ////////

@@ -1,0 +1,102 @@
+/* Buttons */
+
+.btn {
+  font-size: $btn-font-size;
+  line-height: 1rem;
+  font-weight: 400;
+  i {
+    font-size: $btn-font-size-icon;
+  }
+  &.btn-rounded {
+    @include border-radius(50px);
+  }
+  &.btn-sm {
+    font-size: $btn-font-size-sm;
+    i{
+      font-size: 0.875rem;
+    }
+  }
+  &.btn-lg {
+    font-size: $btn-font-size-lg;
+    i{
+      font-size: 0.937rem;
+    }
+  }
+  &.btn-xs {
+    padding: $btn-padding-y-xs $btn-padding-x-xs;
+    font-size: $btn-font-size-xs;
+    i{
+      font-size: 0.75rem;
+    }
+  }
+  /* Buttons with only icons */
+  &.btn-icon {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+  }
+  /* Buttons with icon and text */
+  &.btn-icon-text {
+    .btn-icon-prepend {
+      margin-right: .5rem;
+    }
+    .btn-icon-append {
+      margin-left: .5rem;
+    }
+  }
+  &.btn-social-icon {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+  &.btn-outline-secondary {
+    border: 1px solid $border-color;
+    &:hover {
+      background: transparent;
+      border: 1px solid darken($border-color, 20%);
+      color: theme-color(secondary);
+    }
+    &.dropdown-toggle:focus{
+      box-shadow: 0 0 0 0.2rem rgba(112, 120, 137, 0);
+    }
+  }
+}
+
+.btn-group {
+  .btn {
+    +.btn {
+      border-left: 0;
+    }
+  }
+}
+
+.btn-toolbar {
+  .btn-group {
+    +.btn-group {
+      @extend .ml-2;
+    }
+  }
+}
+
+
+/*social buttons*/
+
+@each $color,
+$value in $social-colors {
+  .btn-#{$color} {
+    @include social-button(social-color($color));
+  }
+  .btn-outline-#{$color} {
+    @include social-outline-button(social-color($color));
+  }
+}
+
+
+/* inverse buttons */
+
+@each $color,
+$value in $theme-colors {
+  .btn-inverse-#{$color} {
+    @include button-inverse-variant($value);
+  }
+}

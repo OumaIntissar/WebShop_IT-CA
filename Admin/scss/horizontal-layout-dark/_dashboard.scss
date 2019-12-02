@@ -1,0 +1,240 @@
+.page-header-tab {
+  border: 1px solid $border-dark;
+  border-left: none;
+  border-right: none;
+  .btn {
+    padding: .5225rem .75rem .3125rem .75rem;
+  }
+}
+.chartjs-legend {
+  text-align: left;
+  ul {
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 0;
+    @include display-flex;
+    @include align-items(center);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(start);
+    li {
+      margin-right: 8%;
+      @include display-flex;
+      @include align-items(center);
+      span {
+        height: 1rem;
+        width: 1rem;
+        margin-right: 0;
+        display: inline-block;
+        font-size: $default-font-size;
+        border-radius: 100%;
+      }
+      h2 {
+        margin-bottom: 0;
+        color: theme-color(primary);
+      }
+    }
+  }
+  .legend-label {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0rem;
+    display: inline-block;
+    font-size: $default-font-size;
+    border-radius: 3px;
+  }
+  h2 {
+    margin-bottom: 0;
+  }
+  .rtl & {
+    ul {
+      padding-right: 0;
+      li {
+        margin-right: 0;
+        margin-left: 8%;
+        span {
+          margin-right: 0;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+.sales-legend {
+  li {
+    padding: .5rem 2rem;
+  }
+}
+#circleProgress1 ,
+#circleProgress2 {
+  width: 65px;
+  min-width: 65px;
+
+}
+@media screen and (max-width: 767px) {
+  .chartjs-legend {
+    text-align: center;
+    h3{
+      font-size: .9rem;
+    }
+  }
+  .sales-legend {
+    li{
+      width: 50%;
+      float: left;
+      padding: .5rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+    &:after{
+      content: '';
+      display: block;
+      width:100%;
+      clear: both;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .chartjs-legend{
+    h3{
+      font-size: .9rem;
+    }
+  .legend-label {
+    margin-right: 0;
+  }
+  }
+  .sales-legend {
+    li{
+      width: 50%;
+      float: left;
+      padding: .5rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+      &:nth-child(2) {
+        border-right: none;
+      }
+    }
+  }
+}
+.dashboard-widget-carousel {
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 1.3rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    background: transparent;
+    border-radius: 100%;
+    border: 1px solid $border-color;
+    opacity: 1;
+    &:hover {
+      opacity: .7;
+    }
+  }
+  .carousel-control-prev {
+    left: auto;
+    right: 4rem;
+    top: auto;
+    bottom: 1.875rem;
+    .carousel-control-prev-icon {
+      background-image: none;
+    }
+    &:after {
+      font-family: "Material Design Icons";
+      content: '\f141';
+      font-size: .875rem;
+      color: $text-muted;
+      line-height: 1.875rem;
+      margin-right: 0.45rem;
+    }
+  }
+  .carousel-control-next {
+    left: auto;
+    right: 1.875rem;
+    top: auto;
+    bottom: 1.875rem;
+    .carousel-control-next-icon {
+      background-image: none;
+    }
+    &:after {
+      font-family: "Material Design Icons";
+      content: '\f142';
+      font-size: .875rem;
+      color: $text-muted;
+      line-height: 1.875rem;
+      margin-right: 0.35rem;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .carousel-control-prev {
+      bottom: 1rem;
+    }
+    .carousel-control-next {
+      bottom: 1rem;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .carousel-control-prev {
+      bottom: 1rem;
+    }
+    .carousel-control-next {
+      bottom: 1rem;
+    }
+  }
+}
+
+.legendContainer {
+  overflow-x: auto;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+  table {
+    tr {
+      .legendColorBox {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+        padding: 0 10px 0 22px;
+        border-radius: 3px;
+        overflow: hidden;
+        &:first-child {
+          padding-left: 0;
+        }
+        >div {
+          @extend .border-0;
+          div {
+            border-radius: 3px;
+            border-width: 10px;
+          }
+        }
+      }
+      .legendLabel {
+        padding: 0 5px 0 0;
+        font-weight: 500;
+        color: theme-color(dark);
+        h2 {
+          color: theme-color(primary)
+        }
+        div {
+          color: $text-muted;
+          font-size: 11px;
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+.border-right-dark {
+  border-right: 1px solid $border-dark;
+}
+@media screen and (max-width: 767px) {
+  .sales-top-chart-legend{
+      margin:10px auto;
+  }
+  .purchase-detail-legend {
+    margin:10px auto;
+  }
+}

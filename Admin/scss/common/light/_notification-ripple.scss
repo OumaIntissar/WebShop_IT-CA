@@ -1,0 +1,59 @@
+.notification-ripple-bg {
+    background-color: theme-color(danger);
+    &.notification-ripple {
+        height: 7px;
+        width: 7px;
+        position: absolute;
+        right: 0px;
+        top: 4px;
+        border-radius: 100px;
+        z-index: 1;
+        i {
+            line-height: 56px;
+        }
+        .ripple {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            z-index: -1;
+            right: -6px;
+            top: -6px;
+            opacity: 0;
+            border-radius: 100px;
+            -webkit-animation: ripple 1.8s infinite;
+            animation: ripple 1.8s infinite;
+            &:nth-child(2) {
+                animation-delay: .3s;
+                -webkit-animation-delay: .3s;
+            }
+            &:nth-child(3) {
+                animation-delay: .6s;
+                -webkit-animation-delay: .6s;
+            }
+        }
+    }
+    @-webkit-keyframes ripple {
+        0% {
+            opacity: 1;
+            -webkit-transform: scale(0);
+            transform: scale(0)
+        }
+        100% {
+            opacity: 0;
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+    @keyframes ripple {
+        0% {
+            opacity: 1;
+            -webkit-transform: scale(0);
+            transform: scale(0)
+        }
+        100% {
+            opacity: 0;
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+}
