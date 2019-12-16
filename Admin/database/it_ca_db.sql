@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2019 at 07:44 PM
+-- Generation Time: Dec 16, 2019 at 08:31 PM
 -- Server version: 5.7.26
 -- PHP Version: 5.6.40
 
@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id_cat` int(11) NOT NULL AUTO_INCREMENT,
   `label_cat` varchar(20) NOT NULL,
   `desc_cat` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'ACTIVE',
   PRIMARY KEY (`id_cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
