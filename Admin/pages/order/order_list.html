@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>HiliteUI Admin</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
 
 <body>
@@ -96,20 +96,20 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="" href="#icons" aria-expanded="true" aria-controls="icons">
+                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
                             <i class="mdi mdi-database menu-icon"></i>
                             <span class="menu-title">Manage products</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="" id="icons">
+                        <div class="collapse" id="icons">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="product_list.html">Product List</a></li>
-                                <li class="nav-item"> <a class="nav-link active" href="new_product.html">New Product</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/product_list.html">Product List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/new_product.html">New Product</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../order/order_list.html">
+                        <a class="nav-link active" href="order_list.html">
                             <i class="mdi mdi-cart-outline menu-icon"></i>
                             <span class="menu-title">Manage Orders</span>
                         </a>
@@ -140,62 +140,85 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
+
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">New Product</h4>
-                            <form class="forms-sample">
-                                <div class="form-group row">
-                                    <label for="label" class="col-sm-3 col-form-label">Label</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="label" placeholder="Label">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="category" class="col-sm-3 col-form-label">Category</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="category">
-                                            <option>Comuters & laptops</option>
-                                            <option>Accessories</option>
-                                            <option>Kitchen</option>
-                                            <option>Others</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <h4 class="card-title">Order List</h4>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table id="order-listing" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Order code</th>
+                                                    <th>Date</th>
+                                                    <th>Customer's Full Name</th>
+                                                    <th>Customer's Phone</th>
+                                                    <th>Total Price</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
 
-                                <div class="form-group row">
-                                    <label for="price" class="col-sm-3 col-form-label">Price in MAD</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" id="price" placeholder="00.0">
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>#123-45</td>
+                                                    <td>02/12/2019</td>
+                                                    <td>Ilham Ait hafid</td>
+                                                    <td>+2120000-000000</td>
+                                                    <td>1999 MAD</td>
+                                                    <td>
+                                                        <label class="badge badge-warning">Pending</label>
+                                                    </td>
+                                                    <td>
+                                                        <form action="view_order.html">
+                                                            <button class="btn btn-outline-primary" type="submit">View</button>
+                                                            <button class="btn btn-outline-primary" type="reset">Approuve</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>#983-35</td>
+                                                    <td>29/11/2019</td>
+                                                    <td>Fatiha Habli</td>
+                                                    <td>+2120000-000000</td>
+                                                    <td>2049 MAD</td>
+                                                    <td>
+                                                        <label class="badge badge-warning">Pending</label>
+                                                    </td>
+                                                    <td>
+                                                        <form action="view_order.html">
+                                                            <button class="btn btn-outline-primary" type="submit">View</button>
+                                                            <button class="btn btn-outline-primary" type="reset">Approuve</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>#656-04</td>
+                                                    <td>17/07/2019</td>
+                                                    <td>Ilham Bouicha</td>
+                                                    <td>+2120000-000000</td>
+                                                    <td>599 MAD</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Delivered</label>
+                                                    </td>
+                                                    <td>
+                                                        <form action="view_order.html">
+                                                            <button class="btn btn-outline-primary" type="submit">View</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="weight" class="col-sm-3 col-form-label">Weight in Kilograms</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" id="weight" placeholder="00.0">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="description" class="col-sm-3 col-form-label">Description</label>
-                                    <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Images</label>
-                                    <input type="file" name="img[]" class="file-upload-default">
-                                    <div class="input-group col-sm-9">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:../../partials/_footer.html -->
@@ -215,17 +238,21 @@
     </div>
     <!-- container-scroller -->
     <!-- base:js -->
-    <script src="../../../../vendors/base/vendor.bundle.base.js"></script>
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="../../../../js/off-canvas.js"></script>
-    <script src="../../../../js/hoverable-collapse.js"></script>
-    <script src="../../../../js/template.js"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
+    <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
-  <script src="../../../../js/file-upload.js"></script>
+    <script src="../../js/data-table.js"></script>
     <!-- End custom js for this page-->
 </body>
 

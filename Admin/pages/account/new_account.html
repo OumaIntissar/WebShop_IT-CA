@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>HiliteUI Admin</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                             <span class="nav-profile-name">Settings</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="../user/profile.html">
                                 <i class="mdi mdi-account text-primary"></i>
                                 My profile
                             </a>
@@ -88,8 +88,8 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="category_list.html">Category List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="new_category.html">New Category</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../category/category_list.html">Category List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../category/new_category.html">New Category</a></li>
 
                             </ul>
                         </div>
@@ -115,15 +115,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <a class="nav-link" data-toggle="" href="#auth" aria-expanded="true" aria-controls="auth">
                             <i class="mdi mdi-account-circle menu-icon"></i>
                             <span class="menu-title">Manage Accounts</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="auth">
+                        <div class="" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.html">Account List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.html">New Account</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="account_list.html">Account List</a></li>
+                                <li class="nav-item"> <a class="nav-link active" href="new_account.html">New Account</a></li>
                             </ul>
                         </div>
                     </li>
@@ -136,67 +136,64 @@
                     </li>
                 </ul>
             </nav>
-
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6 text-center mx-auto">
-                                    <div class="border-bottom text-center pb-4">
-                                        <img src="https://via.placeholder.com/92x92" alt="profile" class="img-lg rounded-circle mb-3" />
-                                        <div class="mb-3">
-                                            <h3>Nouinou Otman</h3>
-                                            <div class="d-flex align-items-center justify-content-center">
-                                                <h5 class="mb-0 mr-2 text-muted">Morocco</h5>
-                                            </div>
-                                        </div>
+                            <h4 class="card-title">New Account</h4>
+                            <form class="forms-sample">
+                                <div class="form-group row">
+                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Full Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Full name">
                                     </div>
-                                    <div class="border-bottom py-4">
-                                        <p>Role</p>
-                                        <div>
-                                            <label class="badge badge-outline-dark">Super Admin</label>
-                                        </div>
-                                    </div>
-                                    <div class="py-4">
-                                        <p class="clearfix">
-                                            <span class="float-left">
-                                                Status
-                                            </span>
-                                            <span class="float-right text-muted">
-                                                Active
-                                            </span>
-                                        </p>
-                                        <p class="clearfix">
-                                            <span class="float-left">
-                                                Date of creation
-                                            </span>
-                                            <span class="float-right text-muted">
-                                                02/12/2019
-                                            </span>
-                                        </p>
-                                        <p class="clearfix">
-                                            <span class="float-left">
-                                                Phone
-                                            </span>
-                                            <span class="float-right text-muted">
-                                                +2120000-000000
-                                            </span>
-                                        </p>
-                                        <p class="clearfix">
-                                            <span class="float-left">
-                                                E-Mail
-                                            </span>
-                                            <span class="float-right text-muted">
-                                                o.nouinou@testmail.com
-                                            </span>
-                                        </p>
-
-                                    </div>
-                                    <button class="btn btn-primary btn-block mb-2">Modify</button>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="exampleSelectGender" class="col-sm-3 col-form-label">Role</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="exampleSelectGender">
+                                            <option>Manager</option>
+                                            <option>Seller</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="status">
+                                            <option>Active</option>
+                                            <option>Blocked</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </form>
                         </div>
                     </div>
 
@@ -219,21 +216,21 @@
     </div>
     <!-- container-scroller -->
     <!-- base:js -->
-    <script src="../../../../vendors/base/vendor.bundle.base.js"></script>
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="../../../../js/off-canvas.js"></script>
-    <script src="../../../../js/hoverable-collapse.js"></script>
-    <script src="../../../../js/template.js"></script>
-    <script src="../../../../js/settings.js"></script>
-    <script src="../../../../js/todolist.js"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
-    <script src="../../../../js/data-table.js"></script>
+    <script src="../../js/data-table.js"></script>
     <!-- End custom js for this page-->
 </body>
 

@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>HiliteUI Admin</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
 
 <body>
@@ -115,15 +115,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="" href="#auth" aria-expanded="true" aria-controls="auth">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="mdi mdi-account-circle menu-icon"></i>
                             <span class="menu-title">Manage Accounts</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="" id="auth">
+                        <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="account_list.html">Account List</a></li>
-                                <li class="nav-item"> <a class="nav-link active" href="new_account.html">New Account</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.html">Account List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.html">New Account</a></li>
                             </ul>
                         </div>
                     </li>
@@ -136,66 +136,70 @@
                     </li>
                 </ul>
             </nav>
+
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">New Account</h4>
-                            <form class="forms-sample">
-                                <div class="form-group row">
-                                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Full Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Full name">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleSelectGender" class="col-sm-3 col-form-label">Role</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="exampleSelectGender">
-                                            <option>Manager</option>
-                                            <option>Seller</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="status" class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="status">
-                                            <option>Active</option>
-                                            <option>Blocked</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
-                        </div>
-                    </div>
+                                      <div class="card px-2">
+                      <div class="card-body">
+                          <div class="container-fluid">
+                            <h3 class="text-right my-5">Order&nbsp;&nbsp;#123-45</h3>
+                            <hr>
+                          </div>
+                          <div class="container-fluid d-flex justify-content-between">
+                            <div class="col-lg-3 pl-0">
+                              <p class="mt-7 mb-2 "><b>Ordered by</b></p>
+                              <p>Ilham Bouicha</p>
+                              <p>Address: C-201, Oulfa-34800 Casablanca</p>
+                              <p>Phone number: +2120000-000000<br></p>
+                            </div>
+                            <div class="col-lg-3 pr-0">
+                              <p class="mt-5 mb-2 text-right"><b>Gadget WebShop</b></p>
+                              <p class="text-right">Morocco</p>
+                            </div>
+                          </div>
+                          <div class="container-fluid d-flex justify-content-between">
+                            <div class="col-lg-3 pl-0">
+                              <p class="mb-0 mt-5">Order Date : 17/07/2019</p>
+                              <p>Delivery Date : <span style="color: red">no delivered yet!</span></p>
+                            </div>
+                          </div>
+                          <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                            <div class="table-responsive w-100">
+                                <table class="table">
+                                  <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th>#</th>
+                                        <th>Label</th>
+                                        <th class="">Category</th>
+                                        <th class="text-right">Price</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Total</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr class="text-right">
+                                      <td class="text-left">1</td>
+                                      <td class="text-left">Dell inspiron 15 5578</td>
+                                      <td class="text-left">Computers & laptops</td>
+                                      <td>2099 MAD</td>
+                                      <td>1</td>
+                                      <td>2099 MAD</td>
+                                    </tr>
+                                    
+                                  </tbody>
+                                </table>
+                              </div>
+                          </div>
+                          <div class="container-fluid mt-5 w-100">
+                            <h4 class="text-right mb-5">Total : 2099 MAD</h4>
+                            <hr>
+                          </div>
+                          <div class="container-fluid w-100">
+                            <a href="#" class="btn btn-success float-right mt-4">Approuve</a>
+                          </div>
+                      </div>
+                  </div>
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -216,21 +220,21 @@
     </div>
     <!-- container-scroller -->
     <!-- base:js -->
-    <script src="../../../../vendors/base/vendor.bundle.base.js"></script>
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="../../../../js/off-canvas.js"></script>
-    <script src="../../../../js/hoverable-collapse.js"></script>
-    <script src="../../../../js/template.js"></script>
-    <script src="../../../../js/settings.js"></script>
-    <script src="../../../../js/todolist.js"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
-    <script src="../../../../js/data-table.js"></script>
+    <script src="../../js/data-table.js"></script>
     <!-- End custom js for this page-->
 </body>
 
