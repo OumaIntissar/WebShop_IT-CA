@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+
+/* session_start(); */
+include_once("../../actions/db_connection.php");
+?>
 <html lang="en">
 
 <head>

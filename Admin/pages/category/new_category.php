@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include_once("../../actions/db_connection.php");
+?>
 <html lang="en">
 
 <head>
