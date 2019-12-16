@@ -21,11 +21,11 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
+        <!-- partial:../../partials/_navbar.php -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-left navbar-brand-wrapper d-flex align-items-center justify-content-between">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="../../images/logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../images/logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="index.php"><img src="../../images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../../images/logo-mini.svg" alt="logo" /></a>
                 <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-menu"></span>
                 </button>
@@ -37,11 +37,11 @@
                             <span class="nav-profile-name">Settings</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="../user/profile.html">
+                            <a class="dropdown-item" href="../user/profile.php">
                                 <i class="mdi mdi-account text-primary"></i>
                                 My profile
                             </a>
-                            <a class="dropdown-item" href="../login/login.html">
+                            <a class="dropdown-item" href="../login/login.php">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
@@ -56,7 +56,7 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
+            <!-- partial:../../partials/_sidebar.php -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
@@ -75,7 +75,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/dashboard.html">
+                        <a class="nav-link" href="../dashboard/dashboard.php">
                             <i class="mdi mdi-shield-check menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -88,8 +88,8 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../category/category_list.html">Category List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../category/new_category.html">New Category</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="category_list.php">Category List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="new_category.php">New Category</a></li>
 
                             </ul>
                         </div>
@@ -103,13 +103,13 @@
                         </a>
                         <div class="collapse" id="icons">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../product/product_list.html">Product List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../product/new_product.html">New Product</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/product_list.php">Product List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/new_product.php">New Product</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="order_list.html">
+                        <a class="nav-link" href="../order/order_list.php">
                             <i class="mdi mdi-cart-outline menu-icon"></i>
                             <span class="menu-title">Manage Orders</span>
                         </a>
@@ -122,14 +122,14 @@
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.html">Account List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.html">New Account</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.php">Account List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.php">New Account</a></li>
                             </ul>
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../login/login.html">
+                        <a class="nav-link" href="../login/login.php">
                             <i class="mdi mdi-logout menu-icon"></i>
                             <span class="menu-title">Log out</span>
                         </a>
@@ -140,88 +140,40 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Order List</h4>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="table-responsive">
-                                        <table id="order-listing" class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Order code</th>
-                                                    <th>Date</th>
-                                                    <th>Customer's Full Name</th>
-                                                    <th>Customer's Phone</th>
-                                                    <th>Total Price</th>
-                                                    <th>Status</th>
-                                                    <th>Actions</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>#123-45</td>
-                                                    <td>02/12/2019</td>
-                                                    <td>Ilham Ait hafid</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>1999 MAD</td>
-                                                    <td>
-                                                        <label class="badge badge-warning">Pending</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="view_order.html">
-                                                            <button class="btn btn-outline-primary" type="submit">View</button>
-                                                            <button class="btn btn-outline-primary" type="reset">Approuve</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>#983-35</td>
-                                                    <td>29/11/2019</td>
-                                                    <td>Fatiha Habli</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>2049 MAD</td>
-                                                    <td>
-                                                        <label class="badge badge-warning">Pending</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="view_order.html">
-                                                            <button class="btn btn-outline-primary" type="submit">View</button>
-                                                            <button class="btn btn-outline-primary" type="reset">Approuve</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>#656-04</td>
-                                                    <td>17/07/2019</td>
-                                                    <td>Ilham Bouicha</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>599 MAD</td>
-                                                    <td>
-                                                        <label class="badge badge-success">Delivered</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="view_order.html">
-                                                            <button class="btn btn-outline-primary" type="submit">View</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            <h4 class="card-title">Modify Category</h4>
+                            <form class="forms-sample">
+                                <div class="form-group row">
+                                    <label for="label" class="col-sm-3 col-form-label">Label</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="label" placeholder="Label">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="status">
+                                            <option>Active</option>
+                                            <option>Hidden</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="description" class="col-sm-3 col-form-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </form>
                         </div>
                     </div>
+
                 </div>
                 <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
+                <!-- partial:../../partials/_footer.php -->
                 <div class="footer-wrapper">
                     <footer class="footer">
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">

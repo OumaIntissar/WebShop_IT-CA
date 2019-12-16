@@ -21,11 +21,11 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
+        <!-- partial:../../partials/_navbar.php -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-left navbar-brand-wrapper d-flex align-items-center justify-content-between">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="../../images/logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../images/logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="index.php"><img src="../../images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../../images/logo-mini.svg" alt="logo" /></a>
                 <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-menu"></span>
                 </button>
@@ -37,11 +37,11 @@
                             <span class="nav-profile-name">Settings</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="../user/profile.html">
+                            <a class="dropdown-item">
                                 <i class="mdi mdi-account text-primary"></i>
                                 My profile
                             </a>
-                            <a class="dropdown-item" href="../login/login.html">
+                            <a class="dropdown-item" href="../login/login.php">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
@@ -56,7 +56,7 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
+            <!-- partial:../../partials/_sidebar.php -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
@@ -75,7 +75,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/dashboard.html">
+                        <a class="nav-link" href="../dashboard/dashboard.php">
                             <i class="mdi mdi-shield-check menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -88,8 +88,8 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../category/category_list.html">Category List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../category/new_category.html">New Category</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="category_list.php">Category List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="new_category.php">New Category</a></li>
 
                             </ul>
                         </div>
@@ -103,13 +103,13 @@
                         </a>
                         <div class="collapse" id="icons">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../product/product_list.html">Product List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../product/new_product.html">New Product</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/product_list.php">Product List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../product/new_product.php">New Product</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../order/order_list.html">
+                        <a class="nav-link" href="../order/order_list.php">
                             <i class="mdi mdi-cart-outline menu-icon"></i>
                             <span class="menu-title">Manage Orders</span>
                         </a>
@@ -122,14 +122,14 @@
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.html">Account List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.html">New Account</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/account_list.php">Account List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../account/new_account.php">New Account</a></li>
                             </ul>
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../login/login.html">
+                        <a class="nav-link" href="../login/login.php">
                             <i class="mdi mdi-logout menu-icon"></i>
                             <span class="menu-title">Log out</span>
                         </a>
@@ -140,70 +140,69 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                                      <div class="card px-2">
-                      <div class="card-body">
-                          <div class="container-fluid">
-                            <h3 class="text-right my-5">Order&nbsp;&nbsp;#123-45</h3>
-                            <hr>
-                          </div>
-                          <div class="container-fluid d-flex justify-content-between">
-                            <div class="col-lg-3 pl-0">
-                              <p class="mt-7 mb-2 "><b>Ordered by</b></p>
-                              <p>Ilham Bouicha</p>
-                              <p>Address: C-201, Oulfa-34800 Casablanca</p>
-                              <p>Phone number: +2120000-000000<br></p>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6 text-center mx-auto">
+                                    <div class="border-bottom text-center pb-4">
+                                        <img src="https://via.placeholder.com/92x92" alt="profile" class="img-lg rounded-circle mb-3" />
+                                        <div class="mb-3">
+                                            <h3>Nouinou Otman</h3>
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <h5 class="mb-0 mr-2 text-muted">Morocco</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-bottom py-4">
+                                        <p>Role</p>
+                                        <div>
+                                            <label class="badge badge-outline-dark">Super Admin</label>
+                                        </div>
+                                    </div>
+                                    <div class="py-4">
+                                        <p class="clearfix">
+                                            <span class="float-left">
+                                                Status
+                                            </span>
+                                            <span class="float-right text-muted">
+                                                Active
+                                            </span>
+                                        </p>
+                                        <p class="clearfix">
+                                            <span class="float-left">
+                                                Date of creation
+                                            </span>
+                                            <span class="float-right text-muted">
+                                                02/12/2019
+                                            </span>
+                                        </p>
+                                        <p class="clearfix">
+                                            <span class="float-left">
+                                                Phone
+                                            </span>
+                                            <span class="float-right text-muted">
+                                                +2120000-000000
+                                            </span>
+                                        </p>
+                                        <p class="clearfix">
+                                            <span class="float-left">
+                                                E-Mail
+                                            </span>
+                                            <span class="float-right text-muted">
+                                                o.nouinou@testmail.com
+                                            </span>
+                                        </p>
+
+                                    </div>
+                                    <button class="btn btn-primary btn-block mb-2">Modify</button>
+                                </div>
                             </div>
-                            <div class="col-lg-3 pr-0">
-                              <p class="mt-5 mb-2 text-right"><b>Gadget WebShop</b></p>
-                              <p class="text-right">Morocco</p>
-                            </div>
-                          </div>
-                          <div class="container-fluid d-flex justify-content-between">
-                            <div class="col-lg-3 pl-0">
-                              <p class="mb-0 mt-5">Order Date : 17/07/2019</p>
-                              <p>Delivery Date : <span style="color: red">no delivered yet!</span></p>
-                            </div>
-                          </div>
-                          <div class="container-fluid mt-5 d-flex justify-content-center w-100">
-                            <div class="table-responsive w-100">
-                                <table class="table">
-                                  <thead>
-                                    <tr class="bg-dark text-white">
-                                        <th>#</th>
-                                        <th>Label</th>
-                                        <th class="">Category</th>
-                                        <th class="text-right">Price</th>
-                                        <th class="text-right">Quantity</th>
-                                        <th class="text-right">Total</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr class="text-right">
-                                      <td class="text-left">1</td>
-                                      <td class="text-left">Dell inspiron 15 5578</td>
-                                      <td class="text-left">Computers & laptops</td>
-                                      <td>2099 MAD</td>
-                                      <td>1</td>
-                                      <td>2099 MAD</td>
-                                    </tr>
-                                    
-                                  </tbody>
-                                </table>
-                              </div>
-                          </div>
-                          <div class="container-fluid mt-5 w-100">
-                            <h4 class="text-right mb-5">Total : 2099 MAD</h4>
-                            <hr>
-                          </div>
-                          <div class="container-fluid w-100">
-                            <a href="#" class="btn btn-success float-right mt-4">Approuve</a>
-                          </div>
-                      </div>
-                  </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
+                <!-- partial:../../partials/_footer.php -->
                 <div class="footer-wrapper">
                     <footer class="footer">
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">
