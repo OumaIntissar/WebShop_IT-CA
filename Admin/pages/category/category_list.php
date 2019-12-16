@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-
-/* session_start(); */
-include_once("../../actions/db_connection.php");
+    include_once("../../actions/db_connection.php");
+    $query = "SELECT * FROM `category`";
+    $select = mysql_query($query); 
 ?>
 <html lang="en">
 
@@ -164,63 +164,35 @@ include_once("../../actions/db_connection.php");
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                               <?php
+                                                    $count = 1;
+                                                    while($data = mysql_fetch_assoc($select)):
+                                                    $label_category = $data['label_cat'];
+                                                    $desc_category = $data['desc_cat'];
+                                                    $status_category = $data['status'];
+                                                ?>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Computers & Laptops</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
+                                                    <td><?php echo  $count;?></td>
+                                                    <td><?php echo  $label_category;?></td>
+                                                    <td><?php echo  $desc_category;?></td>
+                                                    <?php
+                                                        if($status_category == 'ACTIVE'){
+                                                    ?>
                                                     <td>
                                                         <label class="badge badge-success">Active</label>
                                                     </td>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Accessories</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Kitchen</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
+                                                    <?php
+                                                        }else{
+                                                    ?>
                                                     <td>
                                                         <label class="badge badge-danger">Hidden</label>
                                                     </td>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Show</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Headphones</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
+                                                    <?php
+                                                        }
+                                                    $count ++;
+                                                    endwhile;
+
+                                                    ?>
                                                     <td>
                                                         <form action="modify_category.php">
                                                             <button class="btn btn-outline-primary">Modify</button>
@@ -228,40 +200,6 @@ include_once("../../actions/db_connection.php");
                                                         </form>
                                                     </td>
                                                 </tr>
-                                                 <tr>
-                                                    <td>5</td>
-                                                    <td>others</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>All</td>
-                                                    <td>
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                    </td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                
-                                                
                                             </tbody>
                                         </table>
                                     </div>
