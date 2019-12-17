@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<?php 
-    include_once("../../actions/db_connection.php");
-    if(!empty($_POST["label"]) && !empty($_POST["text"])){
-        $category_name = $_POST["label"];
-        $category_description = $_POST["text"];
-        $sql = "INSERT INTO category (label_cat, desc_cat)
-                VALUES ('$category_name', '$category_description')";
-?>
-
 <html lang="en">
 
 <head>
@@ -152,7 +143,7 @@
 					<div class="card">
 						<div class="card-body">
 							<h4 class="card-title">New Category</h4>
-							<form class="forms-sample" action="new_category.php" method="post">
+							<form class="forms-sample" action="actions/new_category.php" method="post">
 								<div class="form-group row">
 									<label for="label" class="col-sm-3 col-form-label">Label</label>
 									<div class="col-sm-9">
@@ -208,11 +199,8 @@
 	<script src="../../js/alerts.js"></script>
 
 	<?php
-        if ($conn->query($sql) === TRUE) {
+        if(isset($_GET['success']))
             echo "<script>showSwal('add-category-succeded');</script>";
-        }
-        $conn->close();
-       }
     ?>
 	<!-- End custom js for this page-->
 </body>
