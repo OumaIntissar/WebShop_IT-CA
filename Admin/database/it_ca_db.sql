@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2019 at 08:31 PM
--- Server version: 5.7.26
--- PHP Version: 5.6.40
+-- Hôte : 127.0.0.1
+-- Généré le :  mer. 18 déc. 2019 à 04:44
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,115 +19,212 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `it_ca_db`
+-- Base de données :  `it_ca_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity`
+-- Structure de la table `activity`
 --
 
-DROP TABLE IF EXISTS `activity`;
-CREATE TABLE IF NOT EXISTS `activity` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+CREATE TABLE `activity` (
+  `id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activitylog`
+-- Structure de la table `activitylog`
 --
 
-DROP TABLE IF EXISTS `activitylog`;
-CREATE TABLE IF NOT EXISTS `activitylog` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+CREATE TABLE `activitylog` (
+  `id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
   `full_name` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
   `statut` varchar(100) NOT NULL,
-  `mobile` int(100) NOT NULL,
-  PRIMARY KEY (`id_admin`)
+  `mobile` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Structure de la table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `id_cat` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `category` (
+  `id_cat` int(11) NOT NULL,
   `label_cat` varchar(20) NOT NULL,
   `desc_cat` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL DEFAULT 'ACTIVE',
-  PRIMARY KEY (`id_cat`)
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
+(1, 'Computers & Laptops', 'bbbbbbblllllll', 0),
+(2, 'kitchen', 'ffffffffff', 0),
+(3, 'test', 'WWWWW', 0),
+(5, 'omaima', 'intissar is a ood person', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `costumer`
+-- Structure de la table `costumer`
 --
 
-DROP TABLE IF EXISTS `costumer`;
-CREATE TABLE IF NOT EXISTS `costumer` (
-  `id_cost` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `costumer` (
+  `id_cost` int(100) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `phone` int(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_cost`)
+  `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Structure de la table `order`
 --
 
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE IF NOT EXISTS `order` (
-  `id_order` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `order` (
+  `id_order` int(20) NOT NULL,
   `code` varchar(100) NOT NULL,
   `date` date NOT NULL,
   `id_cost` int(100) NOT NULL,
   `total_price` decimal(11,2) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_order`)
+  `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Structure de la table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `id_prod` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `id_prod` int(100) NOT NULL,
   `label_prod` varchar(100) NOT NULL,
   `id_cat` int(100) NOT NULL,
   `price_prod` decimal(11,2) NOT NULL,
   `weight_prod` decimal(11,2) NOT NULL,
   `desc_prod` varchar(100) NOT NULL,
   `image_prod` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_prod`)
+  `available_stock` tinyint(1) NOT NULL,
+  `hide_show` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `product`
+--
+
+INSERT INTO `product` (`id_prod`, `label_prod`, `id_cat`, `price_prod`, `weight_prod`, `desc_prod`, `image_prod`, `available_stock`, `hide_show`) VALUES
+(1, 'Whirepool Refrigerator 1.20X0.70', 3, '3000.00', '20.90', 'bllllllllaaaaa description', 'img is here', 0, 0);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `activitylog`
+--
+ALTER TABLE `activitylog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id_cat`);
+
+--
+-- Index pour la table `costumer`
+--
+ALTER TABLE `costumer`
+  ADD PRIMARY KEY (`id_cost`);
+
+--
+-- Index pour la table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id_order`);
+
+--
+-- Index pour la table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id_prod`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `activity`
+--
+ALTER TABLE `activity`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `activitylog`
+--
+ALTER TABLE `activitylog`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `costumer`
+--
+ALTER TABLE `costumer`
+  MODIFY `id_cost` int(100) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
