@@ -1,12 +1,8 @@
-
-
 <?php
     include_once("../../actions/db_connection.php");
     $sql = "SELECT * FROM category";
     $result = $conn->query($sql);
 ?>
-
-
 
 <!DOCTYPE html>
 
@@ -171,10 +167,11 @@
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                    $counter = 1;
                                                     // output data of each row
                                                     while($row = $result->fetch_assoc()) {
                                                         echo "<tr>";
-                                                        echo "<td>".$row["id_cat"]."</td>";
+                                                        echo "<td>".$counter."</td>";
                                                         echo "<td>".$row["label_cat"]."</td>";
                                                         echo "<td>".$row["desc_cat"]."</td>";
                                                         echo "<td>";
@@ -199,6 +196,7 @@
                                                         
                                                         echo "</td>";
                                                         echo "</tr>";
+                                                        $counter ++;
                                                     }
                                                 ?>                                                   
                                             </tbody>
