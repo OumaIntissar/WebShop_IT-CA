@@ -192,10 +192,8 @@
 	<!-- endinject -->
 	<!-- Custom js for this page-->
 	<script src="../../vendors/sweetalert/sweetalert.min.js"></script>
-	<script src="../../vendors/jquery.avgrund/jquery.avgrund.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
-	<script src="../../js/avgrund.js"></script>
 	<script src="../../js/alerts.js"></script>
 
 	<?php
