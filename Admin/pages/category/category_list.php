@@ -178,7 +178,7 @@
                                                         echo "<td>".$row["label_cat"]."</td>";
                                                         echo "<td>".$row["desc_cat"]."</td>";
                                                         echo "<td>";
-                                                            if($row["status"] == 'ACTIVE'){
+                                                            if($row["status"] == 1){
                                                                 echo "<label class='badge badge-success'>Active</label>";
                                                             }
                                                             else{
@@ -186,7 +186,7 @@
                                                             }   
                                                         echo "</td>";
                                                         echo "<td>";
-                                                        echo "<form action='modify_category.php' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                        echo "<form action='modify_category.php?id=".$row['id_cat']."' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
                                                               <button class='btn btn-outline-primary'>Hide</button> </form>";
                                                         echo "</td>";
                                                         echo "</tr>";
