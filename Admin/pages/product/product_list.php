@@ -1,6 +1,6 @@
 <?php
     include_once("../../actions/db_connection.php");
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM product INNER JOIN category ON product.id_cat=category.id_cat";
     $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -159,50 +159,53 @@
                                                     <th>image</th>
                                                     <th>Label</th>
                                                     <th>Category</th>
-                                                    <th>Date</th>
                                                     <th>Price</th>
                                                     <th>Quantity</th>
                                                     <th>Status</th>
                                                     <th>Hidden</th>
                                                     <th>Actions</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                     // output data of each row
                                                     while($row = $result->fetch_assoc()) {
-                                                        echo "<tr>";
-                                                        echo "<td>".$row["id_prod"]."</td>";
-                                                        echo "<td>".$row["label_prod"]."</td>";
-                                                        echo "<td>".$row["id_cat"]."</td>";
-                                                        echo "<td>test</td>";
-                                                        echo "<td>13-10-1998</td>";
-                                                        echo "<td>".$row["price_prod"]."</td>";
-                                                        echo "<td>quntite";
-   
-                                                        echo "</td>";
-                                                        echo "<td>";
+                                                        $id_prod = $row["id_prod"];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $id_prod ?></td>
+                                                    <td><?php echo $row["image_prod"]; ?></td>
+                                                    <td><?php echo $row["label_prod"]; ?></td>
+                                                    <td><?php echo $row["label_cat"]; ?></td>  
+                                                    <td><?php echo $row["price_prod"]; ?></td>
+                                                    <td><?php echo $row["quantity_prod"]; ?></td>
+                                                    <td>
+                                                        <?php
                                                             if($row["available_stock"] == 1){
                                                                 echo "<label class='badge badge-warning'>Out Stock</label>";
                                                             }
                                                             else{
                                                                 echo "<label class='badge badge-primary'>In Stock</label>";
-                                                            }   
-                                                        echo "</td>";
-                                                        echo "<td>";
+                                                            }
+                                                        ?> 
+                                                    </td>
+                                                    <td>
+                                                        <?php 
                                                             if($row["hide_show"] == 1){
                                                                 echo "<label class='badge badge-success'>Active</label>";
                                                             }
                                                             else{
                                                                 echo "<label class='badge badge-danger'>Hidden</label>";
-                                                            }   
-                                                        echo "</td>";
-
-                                                        echo "<td><form action='modify_product.php?id=".$row['id_prod']."' method='post'> <button class='btn btn-outline-primary'>Modify</button> 
-                                                              <button class='btn btn-outline-primary'>Hide</button> </form>";
-                                                        echo "</td>";
-                                                        echo "</tr>";
+                                                            } 
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <form action="modify_product.php?id=<?php echo $id_prod;?>" method="POST"> 
+                                                            <button class='btn btn-outline-primary' type="submit">Modify</button> 
+                                                              <button class='btn btn-outline-primary' type="submit">Hide</button> </form>
+                                                    </td>                                                  
+                                                </tr>
+                                                <?php
                                                     }
                                                 ?>                                                   
                                             </tbody>
