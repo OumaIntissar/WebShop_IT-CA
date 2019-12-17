@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 18 déc. 2019 à 04:44
+-- Généré le :  mer. 18 déc. 2019 à 05:55
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.1.33
 
@@ -124,15 +124,17 @@ CREATE TABLE `product` (
   `desc_prod` varchar(100) NOT NULL,
   `image_prod` varchar(100) NOT NULL,
   `available_stock` tinyint(1) NOT NULL,
-  `hide_show` tinyint(1) NOT NULL
+  `hide_show` tinyint(1) NOT NULL,
+  `quantity_prod` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `product`
 --
 
-INSERT INTO `product` (`id_prod`, `label_prod`, `id_cat`, `price_prod`, `weight_prod`, `desc_prod`, `image_prod`, `available_stock`, `hide_show`) VALUES
-(1, 'Whirepool Refrigerator 1.20X0.70', 3, '3000.00', '20.90', 'bllllllllaaaaa description', 'img is here', 0, 0);
+INSERT INTO `product` (`id_prod`, `label_prod`, `id_cat`, `price_prod`, `weight_prod`, `desc_prod`, `image_prod`, `available_stock`, `hide_show`, `quantity_prod`) VALUES
+(1, 'Whirepool Refrigerator 1.20X0.70', 3, '3000.00', '20.90', 'bllllllllaaaaa description', 'img is here', 0, 0, 10),
+(5, 'pc i5 4 genr', 5, '2000.00', '23.30', 'tdesription 2', 'balanla', 1, 1, 2);
 
 --
 -- Index pour les tables déchargées
@@ -224,7 +226,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
