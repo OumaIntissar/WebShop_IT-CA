@@ -52,6 +52,21 @@
           }
         }
       )
+    } else if (type === 'add-category-succeded') {
+      swal({
+        title: 'Category has been added succefully!',
+        text: '',
+        timer: 2000,
+        button: false
+      }).then(
+        function() {},
+        // handling the promise rejection
+        function(dismiss) {
+          if (dismiss === 'timer') {
+            console.log('I was closed by the timer')
+          }
+        }
+      )
     } else if (type === 'warning-message-and-cancel') {
       swal({
         title: 'Are you sure?',
