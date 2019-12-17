@@ -1,3 +1,8 @@
+<?php
+    include_once("../../actions/db_connection.php");
+    $sql = "SELECT * FROM product";
+    $result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,6 +156,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>image</th>
                                                     <th>Label</th>
                                                     <th>Category</th>
                                                     <th>Date</th>
@@ -163,81 +169,42 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Dell xps 13</td>
-                                                    <td>Computers & Laptops</td>
-                                                    <td>01/12/2019</td>
-                                                    <td>10900 MAD</td>
-                                                    <td>30 pcs</td>
-                                                    <td>
-                                                        <label class="badge badge-success">In Stock</label>
-                                                    </td>
-                                                    <td>No</td>
-                                                    <td>
-                                                        <form action="modify_product.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Dell inspiron 15 5578</td>
-                                                    <td>Computers & Laptops</td>
-                                                    <td>23/09/2019</td>
-                                                    <td>10300 MAD</td>
-                                                    <td>3 pcs</td>
-                                                    <td>
-                                                        <label class="badge badge-success">In Stock</label>
-                                                    </td>
-                                                    <td>Yes</td>
-                                                    <td>
-                                                        <form action="modify_product.php">
+                                                <?php
+                                                    // output data of each row
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo "<tr>";
+                                                        echo "<td>".$row["id_prod"]."</td>";
+                                                        echo "<td>".$row["label_prod"]."</td>";
+                                                        echo "<td>".$row["id_cat"]."</td>";
+                                                        echo "<td>test</td>";
+                                                        echo "<td>13-10-1998</td>";
+                                                        echo "<td>".$row["price_prod"]."</td>";
+                                                        echo "<td>quntite";
+   
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                            if($row["available_stock"] == 1){
+                                                                echo "<label class='badge badge-warning'>Out Stock</label>";
+                                                            }
+                                                            else{
+                                                                echo "<label class='badge badge-primary'>In Stock</label>";
+                                                            }   
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                            if($row["hide_show"] == 1){
+                                                                echo "<label class='badge badge-success'>Active</label>";
+                                                            }
+                                                            else{
+                                                                echo "<label class='badge badge-danger'>Hidden</label>";
+                                                            }   
+                                                        echo "</td>";
 
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Show</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>LG Dishwasher</td>
-                                                    <td>Kitchen</td>
-                                                    <td>01/11/2019</td>
-                                                    <td>7000 MAD</td>
-                                                    <td>0 pcs</td>
-                                                    <td>
-                                                        <label class="badge badge-danger">Out Stock</label>
-                                                    </td>
-                                                    <td>No</td>
-                                                    <td>
-                                                        <form action="modify_product.php">
-
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Whirepool Refrigerator 1.20X0.70</td>
-                                                    <td>Kitchen</td>
-                                                    <td>14/07/2019</td>
-                                                    <td>12000 MAD</td>
-                                                    <td>0 pcs</td>
-                                                    <td>
-                                                        <label class="badge badge-success">In Stock</label>
-                                                    </td>
-                                                    <td>No</td>
-                                                    <td>
-                                                        <form action="modify_product.php">
-
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
+                                                        echo "<td><form action='modify_product.php?id=".$row['id_prod']."' method='post'> <button class='btn btn-outline-primary'>Modify</button> 
+                                                              <button class='btn btn-outline-primary'>Hide</button> </form>";
+                                                        echo "</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                ?>                                                   
                                             </tbody>
                                         </table>
                                     </div>
