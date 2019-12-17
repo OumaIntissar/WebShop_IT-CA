@@ -154,17 +154,20 @@ include_once("../../actions/db_connection.php");
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Modify Category</h4>
-                            <form class="forms-sample">
+                            <form class="forms-sample" action="actions/update_category.php" method="post">
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="label" placeholder="Label">
+                                        <input type="text" name="lab_name" class="form-control" id="label" placeholder="Label"
+                                                value="<?php echo $row["label_cat"]; ?>"
+                                        >
+                                        <input type="hidden" name="cat_id" value="<?php echo $category_id; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="status" class="col-sm-3 col-form-label">Status</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="status">
+                                        <select class="form-control" name="taskOption">
                                             <option <?php if($row["status"]=="1") echo 'selected="selected"'; ?>>Active</option>
                                             <option <?php if($row["status"]=="0") echo 'selected="selected"'; ?>>Hidden</option>
                                         </select>
@@ -173,11 +176,11 @@ include_once("../../actions/db_connection.php");
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_cat"]; ?></textarea>
+                                        <textarea type="text" class="form-control" name="text" rows="7" id="description" placeholder="Description"><?php echo $row["desc_cat"]; ?></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="reset" class="btn btn-light" onclick="location.href='http://localhost/webShop_Git/WebShop_IT-CA/Admin/pages/category/category_list.php';" >Cancel</button>
+                                <button type="reset" class="btn btn-light" onclick="location.href='category_list.php';" >Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -210,12 +213,16 @@ include_once("../../actions/db_connection.php");
     <script src="../../js/settings.js"></script>
     <script src="../../js/todolist.js"></script>
     <!-- endinject -->
-    <!-- plugin js for this page -->
-    <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- Custom js for this page-->
+    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
-    <script src="../../js/data-table.js"></script>
+    <script src="../../js/alerts.js"></script>
+
+    <?php
+        if(isset($_GET['success']))
+            echo "<script>showSwal('add-category-succeded');</script>";
+    ?>
     <!-- End custom js for this page-->
 </body>
 
