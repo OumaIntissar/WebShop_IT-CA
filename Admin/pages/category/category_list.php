@@ -147,7 +147,7 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    
+
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Category List</h4>
@@ -198,7 +198,7 @@
                                                         echo "</tr>";
                                                         $counter ++;
                                                     }
-                                                ?>                                                   
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -237,10 +237,18 @@
     <!-- plugin js for this page -->
     <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="../../js/data-table.js"></script>
+    <script src="../../js/alerts.js"></script>
+
     <!-- End custom js for this page-->
+
+    <?php
+        if(isset($_GET['success']))
+            echo "<script>showSwal('update-category-succeded');</script>";
+    ?>
 </body>
 
 </html>

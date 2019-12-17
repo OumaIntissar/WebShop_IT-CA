@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
-include_once("../../actions/db_connection.php");
+    include_once("../../actions/db_connection.php");
+    $category_id = $_GET["id"];
+
+    $res = mysqli_query($conn, "SELECT * from category WHERE id_cat='$category_id'");
+    if(mysqli_num_rows($res) > 0){
+        $row = mysqli_fetch_assoc($res);
+    }
 ?>
 <html lang="en">
 
@@ -21,15 +27,6 @@ include_once("../../actions/db_connection.php");
     <!-- endinject -->
     <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
-<?php 
-    include_once("../../actions/db_connection.php");
-    $category_id = $_GET["id"];
-
-    $res = mysqli_query($conn, "SELECT * from category WHERE id_cat='$category_id'");
-    if(mysqli_num_rows($res) > 0){
-        $row = mysqli_fetch_assoc($res);
-    }
-?>
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.php -->

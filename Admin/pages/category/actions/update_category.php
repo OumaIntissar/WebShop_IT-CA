@@ -4,7 +4,7 @@
     $category_desc = $_POST["text"];
     $category_state = $_POST["taskOption"];
     $category_id = $_POST["cat_id"];
-    //echo $category_id;
+
     if($category_state == "Active"){
 		$category_state = 1;
     }elseif ($category_state == "Hidden") {
@@ -12,9 +12,9 @@
     }
     $sql = "UPDATE category 
     		SET label_cat='$category_name', desc_cat='$category_desc', status='$category_state'
-    		WHERE id_cat='$category_id' ";
+    		WHERE id_cat='$category_id'";
     if ($conn->query($sql)) {
-        header("Location: ../modify_category.php?id=".$category_id."&success=true"); 
+        header("Location: ../category_list.php?success=true"); 
     }else {
     	echo "lala";
     }
