@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-include_once("../../actions/db_connection.php");
-?>
 <html lang="en">
 
 <head>
@@ -143,20 +140,42 @@ include_once("../../actions/db_connection.php");
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
+                    <?php 
+                        $con = mysqli_connect("localhost","root","","it_ca_db");
+                        if(!empty($_POST["label"]) && !empty($_POST["text"])){
+                            $category_name = $_POST["label"];
+                            $category_description = $_POST["text"];
+                            $sql = "INSERT INTO category (label_cat, desc_cat)
+                                    VALUES ('$category_name', '$category_description')";
+
+                            if ($con->query($sql) === TRUE) {
+                                echo "New category created successfully";
+                            }
+                            $con->close();
+                        }elseif (empty($_POST["label"]) && !empty($_POST["text"])) {
+                            echo '<script language="javascript">';
+                            echo 'alert("Please make a selection in the required fields.")';
+                            echo '</script>';
+                        }elseif (!empty($_POST["label"]) && empty($_POST["text"])) {
+                            echo '<script language="javascript">';
+                            echo 'alert("Please make a selection in the required fields.")';
+                            echo '</script>';                       
+                        }
+                    ?>
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">New Category</h4>
-                            <form class="forms-sample">
+                            <form class="forms-sample" action="new_category.php" method="post">
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="label" placeholder="Label">
+                                        <input type="text" name="label" class="form-control" id="label" placeholder="Label">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"></textarea>
+                                        <textarea type="text" class="form-control" name="text" rows="7" id="description" placeholder="Description"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
