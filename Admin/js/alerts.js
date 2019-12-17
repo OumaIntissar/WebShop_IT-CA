@@ -37,25 +37,23 @@
         }
       })
 
-    } else if (type === 'auto-close') {
-      swal({
-        title: 'Auto close alert!',
-        text: 'I will close in 2 seconds.',
-        timer: 2000,
-        button: false
-      }).then(
-        function() {},
-        // handling the promise rejection
-        function(dismiss) {
-          if (dismiss === 'timer') {
-            console.log('I was closed by the timer')
-          }
-        }
-      )
     } else if (type === 'add-category-succeded') {
       swal({
         title: 'Category has been added succefully!',
         text: '',
+        icon: 'success',
+        button: {
+          text: "Continue",
+          value: true,
+          visible: true,
+          className: "btn btn-primary"
+        }
+      })
+
+    } else if (type === 'auto-close') {
+      swal({
+        title: 'Auto close alert!',
+        text: 'I will close in 2 seconds.',
         timer: 2000,
         button: false
       }).then(
