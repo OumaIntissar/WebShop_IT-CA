@@ -186,8 +186,17 @@
                                                             }   
                                                         echo "</td>";
                                                         echo "<td>";
-                                                        echo "<form action='modify_category.php?id=".$row['id_cat']."' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                        echo "<form action='modify_category.php?id=".$row['id_cat']."'              method='post'> <button class='btn btn-outline-primary'                type='submit'>Modify</button> 
+                                                               </form>";
+                                                        if($row["status"] == 1){
+                                                            echo "<form action='actions/hide_category.php?id=".$row['id_cat']."'              method='post'> 
                                                               <button class='btn btn-outline-primary'>Hide</button> </form>";
+                                                        }
+                                                        else{
+                                                            echo "<form action='actions/show_category.php?id=".$row['id_cat']."'              method='post'> 
+                                                              <button class='btn btn-outline-primary'>Show</button> </form>";
+                                                        } 
+                                                        
                                                         echo "</td>";
                                                         echo "</tr>";
                                                     }
