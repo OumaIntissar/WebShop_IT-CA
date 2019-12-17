@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+
+
 <?php
     include_once("../../actions/db_connection.php");
-    $query = "SELECT * FROM `category`";
-    $select = mysql_query($query); 
+    $sql = "SELECT * FROM category";
+    $result = $conn->query($sql);
 ?>
+
+
+
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -164,42 +170,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               <?php
-                                                    $count = 1;
-                                                    while($data = mysql_fetch_assoc($select)):
-                                                    $label_category = $data['label_cat'];
-                                                    $desc_category = $data['desc_cat'];
-                                                    $status_category = $data['status'];
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo  $count;?></td>
-                                                    <td><?php echo  $label_category;?></td>
-                                                    <td><?php echo  $desc_category;?></td>
-                                                    <?php
-                                                        if($status_category == 'ACTIVE'){
-                                                    ?>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <?php
-                                                        }else{
-                                                    ?>
-                                                    <td>
-                                                        <label class="badge badge-danger">Hidden</label>
-                                                    </td>
-                                                    <?php
-                                                        }
-                                                    $count ++;
-                                                    endwhile;
-
-                                                    ?>
-                                                    <td>
-                                                        <form action="modify_category.php">
-                                                            <button class="btn btn-outline-primary">Modify</button>
-                                                            <button class="btn btn-outline-primary">Hide</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
+                                                <?php
+                                                    // output data of each row
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo "<tr>";
+                                                        echo "<td>".$row["id_cat"]."</td>";
+                                                        echo "<td>".$row["label_cat"]."</td>";
+                                                        echo "<td>".$row["desc_cat"]."</td>";
+                                                        echo "<td>";
+                                                            if($row["status"] == 'ACTIVE'){
+                                                                echo "<label class='badge badge-success'>Active</label>";
+                                                            }
+                                                            else{
+                                                                echo "<label class='badge badge-danger'>Hidden</label>";
+                                                            }   
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                        echo "<form action='modify_category.php' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                              <button class='btn btn-outline-primary'>Hide</button> </form>";
+                                                        echo "</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                ?>                                                   
                                             </tbody>
                                         </table>
                                     </div>
