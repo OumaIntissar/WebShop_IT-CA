@@ -210,16 +210,7 @@
     <script src="../../js/settings.js"></script>
     <script src="../../js/todolist.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- Custom js for this page-->
-    <script src="../../js/alerts.js"></script>
-
-    <?php
-        if(isset($_GET['success']))
-            echo "<script>showSwal('update-category-succeded');</script>";
-    ?>
+   
     <!-- End custom js for this page-->
 </body>
 
