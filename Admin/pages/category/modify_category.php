@@ -21,7 +21,15 @@ include_once("../../actions/db_connection.php");
     <!-- endinject -->
     <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
+<?php 
+    include_once("../../actions/db_connection.php");
+    $category_id = $_GET["id"];
 
+    $res = mysqli_query($conn, "SELECT * from category WHERE id_cat='$category_id'");
+    if(mysqli_num_rows($res) > 0){
+        $row = mysqli_fetch_assoc($res);
+    }
+?>
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.php -->
@@ -157,19 +165,19 @@ include_once("../../actions/db_connection.php");
                                     <label for="status" class="col-sm-3 col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="status">
-                                            <option>Active</option>
-                                            <option>Hidden</option>
+                                            <option <?php if($row["status"]=="1") echo 'selected="selected"'; ?>>Active</option>
+                                            <option <?php if($row["status"]=="0") echo 'selected="selected"'; ?>>Hidden</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"></textarea>
+                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_cat"]; ?></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button type="reset" class="btn btn-light" onclick="location.href='http://localhost/webShop_Git/WebShop_IT-CA/Admin/pages/category/category_list.php';" >Cancel</button>
                             </form>
                         </div>
                     </div>
