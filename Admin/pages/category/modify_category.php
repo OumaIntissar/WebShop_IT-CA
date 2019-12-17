@@ -221,7 +221,7 @@ include_once("../../actions/db_connection.php");
 
     <?php
         if(isset($_GET['success']))
-            echo "<script>showSwal('add-category-succeded');</script>";
+            echo "<script>showSwal('update-category-succeded');</script>";
     ?>
     <!-- End custom js for this page-->
 </body>

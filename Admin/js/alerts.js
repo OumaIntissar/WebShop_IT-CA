@@ -50,6 +50,19 @@
         }
       })
 
+    } else if (type === 'update-category-succeded') {
+      swal({
+        title: 'Category has been updated succefully!',
+        text: '',
+        icon: 'success',
+        button: {
+          text: "Continue",
+          value: true,
+          visible: true,
+          className: "btn btn-primary"
+        }
+      })
+
     } else if (type === 'auto-close') {
       swal({
         title: 'Auto close alert!',
