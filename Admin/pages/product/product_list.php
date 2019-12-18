@@ -182,20 +182,20 @@
                                                     <td>
                                                         <?php
                                                             if($row["available_stock"] == 1){
-                                                                echo "<label class='badge badge-warning'>Out Stock</label>";
+                                                                echo "<label class='badge badge-danger'>Out Stock</label>";
                                                             }
                                                             else{
-                                                                echo "<label class='badge badge-primary'>In Stock</label>";
+                                                                echo "<label class='badge badge-success'>In Stock</label>";
                                                             }
                                                         ?> 
                                                     </td>
                                                     <td>
                                                         <?php 
                                                             if($row["hide_show"] == 1){
-                                                                echo "<label class='badge badge-success'>Active</label>";
+                                                                echo "<label class='badge badge-primary'>Active</label>";
                                                             }
                                                             else{
-                                                                echo "<label class='badge badge-danger'>Hidden</label>";
+                                                                echo "<label class='badge badge-warning'>Hidden</label>";
                                                             } 
                                                         ?>
                                                     </td>
