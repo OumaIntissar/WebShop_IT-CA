@@ -157,7 +157,7 @@
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary mr-2">Submit</button>
-								<button class="btn btn-light">Cancel</button>
+								<button class="btn btn-light" type="reset" onclick="location.href='category_list.php';">Cancel</button>
 							</form>
 						</div>
 					</div>

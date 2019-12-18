@@ -176,10 +176,10 @@
                                                         echo "<td>".$row["desc_cat"]."</td>";
                                                         echo "<td>";
                                                             if($row["status"] == 1){
-                                                                echo "<label class='badge badge-success'>Active</label>";
+                                                                echo "<label class='badge badge-primary'>Active</label>";
                                                             }
                                                             else{
-                                                                echo "<label class='badge badge-danger'>Hidden</label>";
+                                                                echo "<label class='badge badge-warning'>Hidden</label>";
                                                             }   
                                                         echo "</td>";
                                                         echo "<td>";
