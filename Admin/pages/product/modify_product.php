@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php
+    include_once("../../actions/db_connection.php");
+    $category_id = $_GET["id"];
+
+    $res_ncat = mysqli_query($conn, "SELECT * from category WHERE id_cat='$category_id'");
+    if(mysqli_num_rows($res_ncat) > 0){
+        $row_ncat = mysqli_fetch_assoc($res_ncat);
+    }
+
+    $res = mysqli_query($conn, "SELECT * from product WHERE id_prod='$category_id'");
+    if(mysqli_num_rows($res) > 0){
+        $row = mysqli_fetch_assoc($res);
+    }
+?>
 <html lang="en">
 
 <head>
@@ -147,17 +161,30 @@
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="label" placeholder="Label">
+                                        <input type="text" class="form-control" id="label" placeholder="Label" 
+                                               value="<?php echo $row["label_prod"]; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-3 col-form-label">Category</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="category">
-                                            <option>Comuters & laptops</option>
-                                            <option>Accessories</option>
-                                            <option>Kitchen</option>
-                                            <option>Others</option>
+                                            <?php 
+                                                $res_cat = mysqli_query($conn, "SELECT * from category");
+                                                if(mysqli_num_rows($res_cat) > 0){
+                                                    while($row_cat = mysqli_fetch_array($res_cat)){
+                                                    
+                                            ?>
+                                            <option <?php if($row_ncat["label_cat"] == $row_cat["label_cat"]) 
+                                                            echo 'selected="selected"'; 
+                                                    ?>
+                                            > 
+                                                <?php echo $row_cat["label_cat"]; ?>
+                                            </option>
+                                            <?php 
+                                                    }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -165,19 +192,21 @@
                                 <div class="form-group row">
                                     <label for="price" class="col-sm-3 col-form-label">Price in MAD</label>
                                     <div class="col-sm-9">
-                                        <input type="number"  step="0.01" class="form-control" id="price" placeholder="00.0">
+                                        <input type="number"  step="0.01" class="form-control" id="price" placeholder="00.0"
+                                               value="<?php echo $row["price_prod"]; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="weight" class="col-sm-3 col-form-label">Weight in Kilograms</label>
                                     <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" id="weight" placeholder="00.0">
+                                        <input type="number" step="0.01" class="form-control" id="weight" placeholder="00.0"
+                                        value="<?php echo $row["weight_prod"]; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"></textarea>
+                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?>"</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
