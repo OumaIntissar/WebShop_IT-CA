@@ -210,9 +210,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="quantity" class="col-sm-3 col-form-label">Quantity</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" step="0.01" class="form-control" name="quantity" id="quantity" placeholder="00.0"
+                                        value="<?php echo $row["quantity_prod"]; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
                                         <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?>"</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Image</label>
+                                    <input type="file" name="image" class="file-upload-default">
+                                    
+                                    <div class="input-group col-sm-9">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                        </span>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -252,6 +270,7 @@
     <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- End plugin js for this page -->
+    <script src="../../js/file-upload.js"></script>
     <!-- Custom js for this page-->
     <script src="../../js/data-table.js"></script>
     <script src="../../js/alerts.js"></script>
