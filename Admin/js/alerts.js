@@ -63,6 +63,19 @@
         }
       })
 
+    }else if (type === 'add-produit-succeded') {
+      swal({
+        title: 'Produit has been added succefully!',
+        text: '',
+        icon: 'success',
+        button: {
+          text: "Continue",
+          value: true,
+          visible: true,
+          className: "btn btn-primary"
+        }
+      })
+
     } else if (type === 'auto-close') {
       swal({
         title: 'Auto close alert!',
