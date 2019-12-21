@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <?php
     include_once("../../actions/db_connection.php");
-    $category_id = $_GET["id"];
+    $prod_id = $_GET["id"];
 
-    $res_ncat = mysqli_query($conn, "SELECT * from category WHERE id_cat='$category_id'");
-    if(mysqli_num_rows($res_ncat) > 0){
-        $row_ncat = mysqli_fetch_assoc($res_ncat);
-    }
+    
 
-    $res = mysqli_query($conn, "SELECT * from product WHERE id_prod='$category_id'");
+    $res = mysqli_query($conn, "SELECT * from product WHERE id_prod='$prod_id'");
     if(mysqli_num_rows($res) > 0){
         $row = mysqli_fetch_assoc($res);
+    }
+
+    $catId = $row["id_cat"];
+
+    $res_ncat = mysqli_query($conn, "SELECT * from category WHERE id_cat='$catId'");
+    if(mysqli_num_rows($res_ncat) > 0){
+        $row_ncat = mysqli_fetch_assoc($res_ncat);
     }
 ?>
 <html lang="en">
@@ -157,18 +161,20 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Modify Product</h4>
-                            <form class="forms-sample">
+                            <form class="forms-sample" action="actions/update_product.php" method="post">
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="label" placeholder="Label" 
-                                               value="<?php echo $row["label_prod"]; ?>">
+                                        <input type="text" name="prd_label" class="form-control col-sm-9" id="label" placeholder="Label" 
+                                               value="<?php echo $row["label_prod"]; ?>"
+                                        >
+                                        <input type="hidden" name="prod_id" value="<?php echo $prod_id; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-3 col-form-label">Category</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="category">
+                                        <select class="form-control" name="prodCat">
                                             <?php 
                                                 $res_cat = mysqli_query($conn, "SELECT * from category");
                                                 if(mysqli_num_rows($res_cat) > 0){
@@ -192,25 +198,25 @@
                                 <div class="form-group row">
                                     <label for="price" class="col-sm-3 col-form-label">Price in MAD</label>
                                     <div class="col-sm-9">
-                                        <input type="number"  step="0.01" class="form-control" id="price" placeholder="00.0"
+                                        <input type="number" name="prd_price" step="0.01" class="form-control" id="price" placeholder="00.0"
                                                value="<?php echo $row["price_prod"]; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="weight" class="col-sm-3 col-form-label">Weight in Kilograms</label>
                                     <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" id="weight" placeholder="00.0"
+                                        <input type="number" name="prd_quantite" step="0.01" class="form-control" id="weight" placeholder="00.0"
                                         value="<?php echo $row["weight_prod"]; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?>"</textarea>
+                                        <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?>"</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button type="reset" class="btn btn-light" onclick="location.href='product_list.php';">Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -248,7 +254,14 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="../../js/data-table.js"></script>
+    <script src="../../js/alerts.js"></script>
+
     <!-- End custom js for this page-->
+
+    <?php
+        if(isset($_GET['success']))
+            echo "<script>showSwal('update-category-succeded');</script>";
+    ?>
 </body>
 
 </html>

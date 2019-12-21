@@ -16,6 +16,6 @@
     if ($conn->query($sql)) {
         header("Location: ../category_list.php?success=true"); 
     }else {
-    	echo "lala";
+    	echo "ERROR";
     }
 ?>
