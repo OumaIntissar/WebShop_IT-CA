@@ -164,7 +164,7 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="category" id="category">
                                         <?php 
-                                                $res_cat = mysqli_query($conn, "SELECT * from category");
+                                                $res_cat = mysqli_query($conn, "SELECT * from category where status = '1'");
                                                 if(mysqli_num_rows($res_cat) > 0){
                                                     while($row_cat = mysqli_fetch_array($res_cat)){
                                                     
@@ -173,7 +173,10 @@
                                                             echo 'selected="selected"'; 
                                                     ?>
                                             > 
-                                                <?php echo $row_cat["label_cat"]; ?>
+                                                <?php 
+                                                
+                                                echo $row_cat["label_cat"]; ?>
+                                                
                                             </option>
                                             <?php 
                                                     }
