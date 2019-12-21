@@ -63,9 +63,9 @@
         }
       })
 
-    }else if (type === 'add-produit-succeded') {
+    } else if (type === 'add-product-succeded') {
       swal({
-        title: 'Produit has been added succefully!',
+        title: 'Product has been added succefully!',
         text: '',
         icon: 'success',
         button: {
