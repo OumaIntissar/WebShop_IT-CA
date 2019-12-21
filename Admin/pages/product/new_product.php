@@ -265,7 +265,7 @@
 
 	<?php
         if(isset($_GET['success']))
-            echo "<script>showSwal('add-category-succeded');</script>";
+            echo "<script>showSwal('add-produit-succeded');</script>";
     ?>
 
 
