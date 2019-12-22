@@ -181,7 +181,7 @@
                                                     <td><?php echo $row["quantity_prod"]; ?></td>
                                                     <td>
                                                         <?php
-                                                            if($row["available_stock"] == 1){
+                                                            if($row["quantity_prod"] <= 0){
                                                                 echo "<label class='badge badge-danger'>Out Stock</label>";
                                                             }
                                                             else{
@@ -191,7 +191,7 @@
                                                     </td>
                                                     <td>
                                                         <?php 
-                                                            if($row["hide_show"] == 1){
+                                                            if($row["active"] == 1){
                                                                 echo "<label class='badge badge-primary'>Active</label>";
                                                             }
                                                             else{
@@ -202,7 +202,15 @@
                                                     <td>
                                                         <form action="modify_product.php?id=<?php echo $id_prod;?>" method="POST"> 
                                                             <button class='btn btn-outline-primary' type="submit">Modify</button> 
-                                                              <button class='btn btn-outline-primary' type="submit">Hide</button> </form>
+                                                        </form>
+                                                             <?php 
+                                                                 if($row["active"] == 1){
+                                                                    echo "<form action='actions/hide_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Hide</button></form>";
+                                                                 }
+                                                                  else{
+                                                                    echo "<form action='actions/show_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Show</button></form>";
+                                                                  } 
+                                                            ?>
                                                     </td>                                                  
                                                 </tr>
                                                 <?php
