@@ -161,7 +161,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Modify Product</h4>
-                            <form class="forms-sample" action="actions/update_product.php" method="post">
+                            <form class="forms-sample" action="actions/update_product.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
@@ -219,15 +219,15 @@
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?>"</textarea>
+                                        <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Image</label>
-                                    <input type="file" name="image" class="file-upload-default">
+                                    <input type="file" name="image" class="file-upload-default" >
                                     
                                     <div class="input-group col-sm-9">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="<?php echo $row["image_prod"]; ?>">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>
