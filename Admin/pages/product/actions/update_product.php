@@ -12,6 +12,10 @@ $msg ="";
     $prd_cat = $_POST["prodCat"];
     $product_image = $_FILES['image']['name'];
     
+    if(empty($prd_name) || empty($prd_desc)){
+        header("Location: ../modify_product.php?id=".$prd_id."&error=true");
+        exit();
+    }
 
     // the path to store the uploaded image
     $target = "../images/".basename($product_image);
@@ -22,23 +26,40 @@ $msg ="";
     }
     $id_cat = $row["id_cat"];
 
+    if(empty($product_image))
     $sql = "UPDATE product 
-    		SET image_prod='$product_image', label_prod='$prd_name',quantity_prod ='$prd_quantity' ,desc_prod='$prd_desc', price_prod='$prd_price', weight_prod='$prd_weight', id_cat='$id_cat'   /*image_prod=*/
-            WHERE id_prod='$prd_id'";
-            
-            
+    		SET 
+                label_prod='$prd_name',
+                quantity_prod ='$prd_quantity' ,
+                desc_prod='$prd_desc', 
+                price_prod='$prd_price', 
+                weight_prod='$prd_weight', 
+                id_cat='$id_cat'
+            WHERE 
+                id_prod='$prd_id'";
+    else
+    $sql = "UPDATE product 
+    SET 
+        image_prod='$product_image', 
+        label_prod='$prd_name',
+        quantity_prod ='$prd_quantity' ,
+        desc_prod='$prd_desc', 
+        price_prod='$prd_price', 
+        weight_prod='$prd_weight', 
+        id_cat='$id_cat'
+    WHERE 
+        id_prod='$prd_id'";
 
     //move uploaded image to images folder
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-         $msg = "Image uploaded successfully";
-    }else{
-        $msg = "Failed to upload image";
-     }
-
+    if(!empty($product_image))
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $msg = "Image uploaded successfully";
+        }else{
+            $msg = "Failed to upload image";
+        }
 
     if ($conn->query($sql)) {
         header("Location: ../product_list.php?success=true"); 
-        // echo $prd_name."-".$prd_price."-".$prd_weight."-".$prd_id."-".$prd_cat."-".$id_cat;
     }else {
     	echo "ERROR";
     }

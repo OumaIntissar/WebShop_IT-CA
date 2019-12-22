@@ -245,10 +245,16 @@
     <!-- plugin js for this page -->
     <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="../../js/data-table.js"></script>
+    <script src="../../js/alerts.js"></script>
     <!-- End custom js for this page-->
+    <?php
+        if(isset($_GET['success']))
+            echo "<script>showSwal('update-product-succeded');</script>";
+    ?>
 </body>
 
 </html>

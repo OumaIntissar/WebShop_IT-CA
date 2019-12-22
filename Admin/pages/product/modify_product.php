@@ -269,6 +269,7 @@
     <!-- plugin js for this page -->
     <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
     <!-- End plugin js for this page -->
     <script src="../../js/file-upload.js"></script>
     <!-- Custom js for this page-->
@@ -278,8 +279,8 @@
     <!-- End custom js for this page-->
 
     <?php
-        if(isset($_GET['success']))
-            echo "<script>showSwal('update-category-succeded');</script>";
+        if(isset($_GET['error']))
+            echo "<script>showSwal('warning-message-update');</script>";
     ?>
 </body>
 
