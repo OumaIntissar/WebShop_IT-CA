@@ -164,20 +164,23 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="category" id="category">
                                         <?php 
-                                                $res_cat = mysqli_query($conn, "SELECT * from category where status = '1'");
-                                                if(mysqli_num_rows($res_cat) > 0){
-                                                    while($row_cat = mysqli_fetch_array($res_cat)){
-                                                    
-                                            ?>
-                                            <option <?php if($row_ncat["label_cat"] == $row_cat["label_cat"]) 
-                                                            echo 'selected="selected"'; 
-                                                    ?>
-                                            > 
-                                                <?php 
-                                                
-                                                echo $row_cat["label_cat"]; ?>
-                                                
-                                            </option>
+                                            $res_cat = mysqli_query($conn, "SELECT * from category");
+                                            if(mysqli_num_rows($res_cat) > 0){
+                                                while($row_cat = mysqli_fetch_array($res_cat)){
+                                        ?>
+                                             
+                                            <?php 
+                                                if($row_cat["status"] == 0) {
+                                                    echo '<option style="color: red">'; 
+                                                    echo $row_cat["label_cat"].' (hidden)'; 
+                                                    echo '</option>';
+                                                }
+                                                if($row_cat["status"] == 1) {
+                                                    echo '<option>'; 
+                                                    echo $row_cat["label_cat"]; 
+                                                    echo '</option>';
+                                                }
+                                            ?>                                            
                                             <?php 
                                                     }
                                                 }

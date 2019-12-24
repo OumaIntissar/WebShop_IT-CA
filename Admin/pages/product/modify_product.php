@@ -12,10 +12,7 @@
 
     $catId = $row["id_cat"];
 
-    $res_ncat = mysqli_query($conn, "SELECT * from category WHERE id_cat='$catId'");
-    if(mysqli_num_rows($res_ncat) > 0){
-        $row_ncat = mysqli_fetch_assoc($res_ncat);
-    }
+    
 ?>
 <html lang="en">
 
@@ -176,18 +173,25 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="prodCat">
                                             <?php 
+                                                $selected = '';
                                                 $res_cat = mysqli_query($conn, "SELECT * from category");
                                                 if(mysqli_num_rows($res_cat) > 0){
                                                     while($row_cat = mysqli_fetch_array($res_cat)){
-                                                    
-                                            ?>
-                                            <option <?php if($row_ncat["label_cat"] == $row_cat["label_cat"]) 
-                                                            echo 'selected="selected"'; 
-                                                    ?>
-                                            > 
-                                                <?php echo $row_cat["label_cat"]; ?>
-                                            </option>
-                                            <?php 
+                                        
+                                                        if($row_ncat["id_cat"] == $catId) 
+                                                            $selected = 'selected="selected"'; 
+                                             
+                                                        if($row_cat["status"] == 0) {
+                                                            echo '<option style="color: red"'.$selected.'>'; 
+                                                            echo $row_cat["label_cat"].' (hidden)'; 
+                                                            echo '</option>';
+                                                        }
+                                                        
+                                                        if($row_cat["status"] == 1) {
+                                                            echo '<option'.$selected.'>'; 
+                                                            echo $row_cat["label_cat"]; 
+                                                            echo '</option>';
+                                                        }
                                                     }
                                                 }
                                             ?>
@@ -222,9 +226,9 @@
                                         <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!--<div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Image</label>
-                                    <input type="file" name="image" class="file-upload-default" >
+                                    <input type="file" name="image" class="file-upload-default" required>
                                     
                                     <div class="input-group col-sm-9">
                                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="<?php echo $row["image_prod"]; ?>">
@@ -232,7 +236,7 @@
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>
                                     </div>
-                                </div>
+                                </div>-->
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button type="reset" class="btn btn-light" onclick="location.href='product_list.php';">Cancel</button>
                             </form>
