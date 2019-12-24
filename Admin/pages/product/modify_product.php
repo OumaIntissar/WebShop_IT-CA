@@ -231,7 +231,7 @@
                                     <input type="file" name="image" class="file-upload-default" required>
                                     
                                     <div class="input-group col-sm-9">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="<?php echo $row["image_prod"]; ?>">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" value="<?php //echo $row["image_prod"]; ?>">
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>
