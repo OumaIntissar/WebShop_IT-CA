@@ -3,6 +3,6 @@
     $id_product = $_GET['id'];
     $sql = "UPDATE `product` SET `active`= '0' WHERE id_prod = '$id_product' ";
     if ($conn->query($sql)) {
-        header("Location: ../product_list.php?success=true&ff"); 
+        header("Location: ../product_list.php?success=true"); 
     }
 ?>
