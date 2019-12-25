@@ -174,7 +174,7 @@
                                         <select class="form-control" name="prodCat">
                                             <?php 
                                                 $selected = '';
-                                                $res_cat = mysqli_query($conn, "SELECT * from category");
+                                                $res_cat = mysqli_query($conn, "SELECT * from category where status='1'");
                                                 if(mysqli_num_rows($res_cat) > 0){
                                                     while($row_cat = mysqli_fetch_array($res_cat)){
                                         
