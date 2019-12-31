@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
 <div class="super_container">
 	
 	<!-- Header -->
@@ -24,41 +23,6 @@
 	<header class="header">
 
 		<!-- Top Bar -->
-
-		<div class="top_bar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-						<div class="top_bar_content ml-auto">
-							<div class="top_bar_menu">
-								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#">English<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">Français</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">DH</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-							<div class="top_bar_user">
-								<div class="user_icon"><img src="images/user.svg" alt=""></div>
-								<div><a href="sing_up.html">Register</a></div>
-								<div><a href="sing_in.html">Sign in</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>		
-		</div>
 
 		<!-- Header Main -->
 
@@ -69,7 +33,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="index.html">OneTech</a></div>
+							<div class="logo"><a href="index.php">OneTech</a></div>
 						</div>
 					</div>
 
@@ -104,13 +68,7 @@
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
-								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="favorite.html">Favorite</a></div>
-									<div class="wishlist_count">115</div>
-								</div>
-							</div>
+							
 
 							<!-- Cart -->
 							<div class="cart">
@@ -120,7 +78,7 @@
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.html">Cart</a></div>
+										<div class="cart_text"><a href="cart.php">Cart</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -176,60 +134,21 @@
 									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
 								</ul>
 							</div>
+							
+
+							<!-- Main Nav Menu -->
 
 							<!-- Main Nav Menu -->
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									
-									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
 							<!-- Menu Trigger -->
-
 							<div class="menu_trigger_container ml-auto">
 								<div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
 									<div class="menu_burger">
@@ -244,101 +163,17 @@
 				</div>
 			</div>
 		</nav>
-		
-		<!-- Menu -->
-
-		<div class="page_menu">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						
-						<div class="page_menu_content">
-							
-							<div class="page_menu_search">
-								<form action="#">
-									<input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
-								</form>
-							</div>
-							<ul class="page_menu_nav">
-								<li class="page_menu_item has-children">
-									<a href="#">Language<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Currency<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item">
-									<a href="index.html">Home<i class="fa fa-angle-down"></i></a>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-										<li class="page_menu_item has-children">
-											<a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-											<ul class="page_menu_selection">
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-											</ul>
-										</li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
-							</ul>
-							
-							<div class="menu_contact">
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</header>
 
+	<!-- Cart -->
 
 	<div class="cart_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
-						<div class="cart_title">Product Saved</div>
+						<div class="cart_title">Shopping Cart</div>
 						<div class="cart_items">
 							<ul class="cart_list">
 								<li class="cart_item clearfix">
@@ -350,7 +185,19 @@
 										</div>
 										<div class="cart_item_quantity cart_info_col">
 											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">1</div>
+											<div class="cart_item_text">
+												<div class="dropdown">
+												  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												    Quantite
+												  </button>
+												  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+												    <a class="dropdown-item" href="#">1</a>
+												    <a class="dropdown-item" href="#">2</a>
+												    <a class="dropdown-item" href="#">3</a>
+												  </div>
+												</div>
+
+											</div>
 										</div>
 										<div class="cart_item_price cart_info_col">
 											<div class="cart_item_title">Price</div>
@@ -367,13 +214,26 @@
 									</div>
 								</li>
 							</ul>
-
-							<!-- add to cart -->
-							<a href="#" class="btn btn-primary btn-lg pull-right">
-          					<span class=""></span> Add To Cart
-       						 </a>
 						</div>
 						
+						<!-- Order Total -->
+						<div class="order_total">
+							<div class="order_total_content text-md-right">
+								<div class="order_total_title">Order Total:</div>
+								<div class="order_total_amount">$2000</div>
+							</div>
+						</div>
+						  
+						<div class="cart_buttons">
+							<!-- <a href="#" class="btn btn-lg">
+          					<button type="button" class="btn btn-lg btn-outline-warning">CheckOut</button> 
+       						 </a> -->
+							
+							<a href="command.php" class="btn btn-info btn-lg">
+          					<span class="glyphicon glyphicon-shopping-cart"></span> Order
+       						 </a>
+							
+						</div>
 					</div>
 				</div>
 			</div>
@@ -389,7 +249,7 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="index.html">OneTech</a></div>
+							<div class="logo"><a href="index.php">OneTech</a></div>
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
 						<div class="footer_phone">+38 068 005 3570</div>

@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cart</title>
+<title>OneTech</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
 </head>
 
 <body>
+
 <div class="super_container">
 	
 	<!-- Header -->
@@ -134,21 +142,20 @@
 									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
 								</ul>
 							</div>
-							
-
-							<!-- Main Nav Menu -->
 
 							<!-- Main Nav Menu -->
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="product_list.html">Product list<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="sign_in.html">Sign In<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="sign_up.html">Registre<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
 							<!-- Menu Trigger -->
+
 							<div class="menu_trigger_container ml-auto">
 								<div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
 									<div class="menu_burger">
@@ -166,81 +173,176 @@
 
 	</header>
 
-	<!-- Cart -->
 
-	<div class="cart_section">
+	<!-- Product List -->
+	<div class="reviews">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="cart_container">
-						<div class="cart_title">Shopping Cart</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-								<li class="cart_item clearfix">
-									<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-										<div class="cart_item_name cart_info_col">
-											<div class="cart_item_title">Name</div>
-											<div class="cart_item_text">MacBook Air 13</div>
-										</div>
-										<div class="cart_item_quantity cart_info_col">
-											<div class="cart_item_title">Quantity</div>
-											<div class="cart_item_text">
-												<div class="dropdown">
-												  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												    Quantite
-												  </button>
-												  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-												    <a class="dropdown-item" href="#">1</a>
-												    <a class="dropdown-item" href="#">2</a>
-												    <a class="dropdown-item" href="#">3</a>
-												  </div>
-												</div>
+				<div class="col">
+					
+					<div class="reviews_title_container">
+						<h3 class="reviews_title">Product List</h3>
+					</div>
 
-											</div>
+					<div class="reviews_slider_container">
+						
+						<!-- Reviews Slider -->
+						<div class="owl-carousel owl-theme reviews_slider">
+							
+							
+
+							<!-- Reviews Slider Item -->
+							<div class="owl-item">
+								<div class="review d-flex flex-row align-items-start justify-content-start">
+									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
+									<div class="review_content">
+										<div class="review_name">sony playstation 4 Pro 1 To</div>
+										<div class="review_rating_container">
+											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
 										</div>
-										<div class="cart_item_price cart_info_col">
-											<div class="cart_item_title">Price</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_title">Total</div>
-											<div class="cart_item_text">$2000</div>
-										</div>
-										<div class="cart_item_total cart_info_col">
-											<div class="cart_item_action">Action</div>
-											<div class="cart_item_text"><a href="#" class="btn btn-outline-danger btn-sm glyphicon glyphicon-remove"></a></div>
+										<div class="review_text">
+											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
+											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
+											<p>Capacité de stockage intégrée:	2To
+											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
+											<p>RAM	8Go</p>
+											<p>Année de publication	2016</p>
+										</div><br>
+										<div class="col-md-4 center-block">
+    										<a href="#" class="btn btn-info btn-lg">
+          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+       						 				</a>
 										</div>
 									</div>
-								</li>
-							</ul>
-						</div>
-						
-						<!-- Order Total -->
-						<div class="order_total">
-							<div class="order_total_content text-md-right">
-								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">$2000</div>
+								</div>
 							</div>
+
+							<!-- Reviews Slider Item -->
+							<div class="owl-item">
+								<div class="review d-flex flex-row align-items-start justify-content-start">
+									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
+									<div class="review_content">
+										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
+										<div class="review_rating_container">
+											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="review_time" style="font-size: 20px;">600 DH</div>
+										</div>
+										<div class="review_text">
+											<p>Cable audio avec prise mini-jack de 3</p>
+											<p>Cable Usb vers micro USB pour le chargement</p>
+											<p>Pochette de tronsport</p>
+											<p>Poids du produit 280 g</p>
+											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
+											<p>Type de casque :  Casque Hi-Fi</p>
+										</div><br>
+										<div class="col-md-4 center-block">
+    										<a href="#" class="btn btn-info btn-lg">
+          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+       						 				</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+
+						<hr>
+						<!-- Reviews Slider -->
+						<div class="owl-carousel owl-theme reviews_slider">
+
+							<!-- Reviews Slider Item -->
+							<div class="owl-item">
+								<div class="review d-flex flex-row align-items-start justify-content-start">
+									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
+									<div class="review_content">
+										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
+										<div class="review_rating_container">
+											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
+										</div>
+										<div class="review_text">
+											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
+											<p>Weight	350 g (12.35 oz)</p>
+											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
+											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
+											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
+
+
+										</div><br>
+										<div class="col-md-4 center-block">
+    										<a href="#" class="btn btn-info btn-lg">
+          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+       						 				</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Reviews Slider Item -->
+							<div class="owl-item">
+								<div class="review d-flex flex-row align-items-start justify-content-start">
+									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
+									<div class="review_content">
+										<div class="review_name">sony playstation 4 Pro 1 To</div>
+										<div class="review_rating_container">
+											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
+										</div>
+										<div class="review_text">
+											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
+											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
+											<p>Capacité de stockage intégrée:	2To
+											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
+											<p>RAM	8Go</p>
+											<p>Année de publication	2016</p>
+										</div><br>
+										<div class="col-md-4 center-block">
+    										<a href="#" class="btn btn-info btn-lg">
+          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+       						 				</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Reviews Slider Item -->
+							<div class="owl-item">
+								<div class="review d-flex flex-row align-items-start justify-content-start">
+									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
+									<div class="review_content">
+										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
+										<div class="review_rating_container">
+											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
+											<div class="review_time" style="font-size: 20px;">600 DH</div>
+										</div>
+										<div class="review_text">
+											<p>Cable audio avec prise mini-jack de 3</p>
+											<p>Cable Usb vers micro USB pour le chargement</p>
+											<p>Pochette de tronsport</p>
+											<p>Poids du produit 280 g</p>
+											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
+											<p>Type de casque :  Casque Hi-Fi</p>
+										</div><br>
+										<div class="col-md-4 center-block">
+    										<a href="#" class="btn btn-info btn-lg">
+          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+       						 				</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
 						</div>
-						  
-						<div class="cart_buttons">
-							<!-- <a href="#" class="btn btn-lg">
-          					<button type="button" class="btn btn-lg btn-outline-warning">CheckOut</button> 
-       						 </a> -->
-							
-							<a href="command.html" class="btn btn-info btn-lg">
-          					<span class="glyphicon glyphicon-shopping-cart"></span> Order
-       						 </a>
-							
-						</div>
+						<hr>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Product List -->
 
-	<!-- Footer -->
+
+<!-- Footer -->
 
 	<footer class="footer">
 		<div class="container">
@@ -316,6 +418,7 @@
 			</div>
 		</div>
 	</footer>
+	<!-- End footer -->
 
 	<!-- Copyright -->
 
@@ -328,7 +431,7 @@
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -344,8 +447,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
 <script src="plugins/greensock/animation.gsap.min.js"></script>
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
-<script src="js/cart_custom.js"></script>
+<script src="js/custom.js"></script>
 </body>
 
 </html>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

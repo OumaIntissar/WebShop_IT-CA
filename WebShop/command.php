@@ -40,7 +40,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="index.html">OneTech</a></div>
+                            <div class="logo"><a href="index.php">OneTech</a></div>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                                         <div class="cart_count"><span>10</span></div>
                                     </div>
                                     <div class="cart_content">
-                                        <div class="cart_text"><a href="cart.html">Cart</a></div>
+                                        <div class="cart_text"><a href="cart.php">Cart</a></div>
                                         <div class="cart_price">$85</div>
                                     </div>
                                 </div>
@@ -110,10 +110,10 @@
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="product_list.html">Product list<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_in.html">Sign In<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_up.html">Registre<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="product_list.php">Product list<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
 
@@ -168,7 +168,7 @@
                                     </ul>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+                                    <a href="index.php">Home<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item has-children">
                                     <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
@@ -206,7 +206,7 @@
                                         <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                                     </ul>
                                 </li>
-                                <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item"><a href="contact.php">contact<i class="fa fa-angle-down"></i></a></li>
                             </ul>
                             
                             <div class="menu_contact">
@@ -258,7 +258,7 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
-							<div class="logo"><a href="index.html">OneTech</a></div>
+							<div class="logo"><a href="index.php">OneTech</a></div>
 						</div>
 						<div class="footer_title">Got Question? Call Us 24/7</div>
 						<div class="footer_phone">+38 068 005 3570</div>
