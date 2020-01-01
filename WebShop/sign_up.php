@@ -42,29 +42,29 @@
                     <h3>Register</h3>
                     <div class="form-holder">
                         <span class="lnr lnr-user"></span>
-                        <input type="text" class="" placeholder="Full Name">
+                        <input type="text" class="" placeholder="Full Name...">
                     </div>
                     <div class="form-holder">
                         <span class="lnr lnr-user"></span>
-                        <input type="text" class="" placeholder="Phone number">
+                        <input type="text" class="" placeholder="Phone number...">
                     </div>
                     <div class="form-holder">
                         <span class="lnr lnr-envelope"></span>
-                        <input type="text" class="" placeholder="E-mail">
+                        <input type="text" class="" placeholder="E-mail...">
                     </div>                    
                     <div class="form-holder">
                         <span class="lnr lnr-phone-handset"></span>
-                        <input type="text" class="" placeholder="Address">
+                        <input type="text" class="" placeholder="Address...">
                     </div>
 
                     <div class="form-holder">
                         <span class="lnr lnr-lock"></span>
-                        <input type="password" class="" placeholder="Password">
+                        <input type="password" class="" placeholder="Password...">
                     </div>
 
                     <div class="form-holder">
                         <span class="lnr lnr-lock"></span>
-                        <input type="password" class="" placeholder="Re Password">
+                        <input type="password" class="" placeholder="Re Password...">
                     </div>
 
                     <button class="btn btn-info btn-md" style="margin-top: 70px;">
