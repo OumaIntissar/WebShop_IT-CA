@@ -1,0 +1,1 @@
+<?php echo "you have to delete this product from DB "?>
