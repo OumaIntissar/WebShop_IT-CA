@@ -1,37 +1,48 @@
+<?php
+    include_once("connection/db_connection.php");
+    $sql = "SELECT * FROM product  WHERE active='1' AND quantity_prod>0";
+    $result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>OneTech</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="OneTech shop project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
-<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
-
+	<title>OneTech</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="OneTech shop project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+	<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
+	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 
 <body>
+<style>
+	.price-text-color{color:#FFD700; font-size: 25px;}
+	.img-responsive {
+    width: 200px; /* You can set the dimensions to whatever you want */
+    height: 120px!important;
+	}
+	.btn_cart_detail{
+		margin-top: 15px;
+	}
+</style>
+
+
 
 <div class="super_container">
-	
-	<!-- Header -->
-	
+	<!-- Header -->	
 	<header class="header">
-
 		<!-- Top Bar -->
-
 		<!-- Header Main -->
 
 		<div class="header_main">
@@ -173,175 +184,67 @@
 
 	</header>
 
-
-	<!-- Product List -->
-	<div class="reviews">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="reviews_title_container">
-						<h3 class="reviews_title">Product List</h3>
-					</div>
-
-					<div class="reviews_slider_container">
-						
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-							
-							
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-
-						<hr>
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
-											<p>Weight	350 g (12.35 oz)</p>
-											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
-											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
-											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
+<div class="reviews">
+<!-- Product Slider - START -->
+	<div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Products List</h3>
+            </div>
+        </div>
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                	<hr>
+                    <div class="row">
+                            <?php
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) { 
+                            	$id_prod = $row["id_prod"];         
+                            ?>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <h5><?php echo $row["label_prod"]; ?></h5>
+                                            <h5 class="price-text-color"><?php echo $row["price_prod"] ?>  DH</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="photo">
+                                	<img src="<?php echo $row['image_prod'] ?>"  class="img-responsive" alt="a">
+                                </div>
+                                <div class="info">
+                                    <div class="separator clear-left btn_cart_detail">
 
 
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-						<hr>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Product List -->
-
-
+                               			<form action="product.php?id=<?php echo $id_prod;?>" method="POST"> 
+	                                        <button class="btn btn-info btn-md ">
+	                                            <span class="glyphicon glyphicon-shopping-cart "></span>  Add To Cart  
+	                                        </button>
+                                            <button type="submit" class="btn btn-default btn-md">
+                                            	<span class="fa fa-list"></span>   More details
+                                        	</button>
+                                        </form>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                    <br><hr>
+                                </div>
+                            </div>
+                        </div> 
+                       <?php
+                       }
+                       ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Slider - END -->
 <!-- Footer -->
 
 	<footer class="footer">
@@ -414,14 +317,11 @@
 						</ul>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</footer>
 	<!-- End footer -->
-
 	<!-- Copyright -->
-
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
@@ -438,7 +338,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 </div>
-
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
@@ -452,7 +351,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
 </body>
-
 </html>
 	
 
