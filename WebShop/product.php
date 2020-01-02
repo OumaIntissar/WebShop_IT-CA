@@ -225,29 +225,30 @@
 
 	<div class="single_product">
 		<div class="container">
-			<div class="row">
+			<div class="row">	
+				<?php 
+					$id_prod = $_GET['id'];
+					$prod = mysqli_query($conn, "SELECT * from product where id_prod = $id_prod");
+					if(mysqli_num_rows($prod) > 0){
+					$row_prod = mysqli_fetch_array($prod);
+					$id_cat = $row_prod["id_cat"];
+					$cat = mysqli_query($conn, "SELECT * from category where id_cat = $id_cat");
+					$row_cat = mysqli_fetch_array($cat);
+					
 
-				<!-- Images -->
-				<div class="col-lg-2 order-lg-1 order-2">
-					<ul class="image_list">
-						<li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-						<li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-						<li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
-					</ul>
-				</div>
+					echo'
 
-				<!-- Selected Image -->
-				<div class="col-lg-5 order-lg-2 order-1">
-					<div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
-				</div>
+					<!-- Selected Image -->
+						<div class="col-lg-5 order-lg-2 order-1">
+							<div class="image_selected"><img src="../Admin/pages/product/images/'.$row_prod["image_prod"].'" alt=""></div>
+						</div>
 
-				<!-- Description -->
-				<div class="col-lg-5 order-3">
-					<div class="product_description">
-						<div class="product_category">Laptops</div>
-						<div class="product_name">MacBook Air 13</div>
-						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-						<div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
+						<!-- Description -->
+						<div class="col-lg-5 order-3">
+							<div class="product_description">
+						<div class="product_category">'.$row_cat["label_cat"].'</div>
+						<div class="product_name">'.$row_prod["label_prod"].'</div>
+						<div class="product_text"><p>'.$row_prod["desc_prod"].'</p></div>
 						<div class="order_info d-flex flex-row">
 							<form action="#">
 								<div class="clearfix" style="z-index: 1000;">
@@ -264,16 +265,16 @@
 
 								</div>
 
-								<div class="product_price">$2000</div>
+								<div class="product_price">'.$row_prod["price_prod"].' MAD</div>
 								<div class="button_container">
-			                        <a class="btn btn-info btn-lg" href="cart.php?id=<?php echo $id_prod ?>">
-			                            <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart  
-			                        </a>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
+									<a href="cart.php"><button type="button" class="button cart_button">Add to Cart</button></a>
 								</div>
 								
 							</form>
-						</div>
+						</div>';
+					}
+						?>
+						
 					</div>
 				</div>
 

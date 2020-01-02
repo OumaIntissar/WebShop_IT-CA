@@ -196,7 +196,7 @@
 		                                </div>
 		                                <div class="photo">
 		                                	<a href="product.php?id=<?php echo $id_prod ?>" style="margin-right: -100px!important;">
-		                                		<img src="<?php echo $row['image_prod'] ?>"  class="img-responsive" alt="image of product">
+		                                		<img src="<?php echo '../Admin/pages/product/images/'.$row['image_prod']; ?>"  class="img-responsive" alt="image of product">
 		                                	</a>
 		                                </div>
 		                                <div class="col-sm-2 col-ofsset-sm-1 info">
