@@ -172,7 +172,7 @@
 	                <h3>Product List</h3>
 	            </div>
 	        </div>
-	        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+	        <div id="carousel-example" class="carousel slide" data-ride="carousel">
 	            <!-- Wrapper for slides -->
 	            <div class="carousel-inner">
 	                <div class="item active">
@@ -183,7 +183,7 @@
 	                            while($row = $result->fetch_assoc()) { 
 	                            	$id_prod = $row["id_prod"];         
 	                            ?>
-	                        <div class="col-sm-3 text-center">
+	                        <div class="col-sm-4 col-12 col-xl-3 text-center">
 	                       		
 		                            <div class="col-item">
 		                                <div class="info">
@@ -196,7 +196,7 @@
 		                                </div>
 		                                <div class="photo">
 		                                	<a href="product.php?id=<?php echo $id_prod ?>" style="margin-right: -100px!important;">
-		                                		<img src="<?php echo '../Admin/pages/product/images/'.$row['image_prod']; ?>"  class="img-responsive" alt="image of product">
+		                                		<img src="<?php echo '../Admin/pages/product/images/'.$row['image_prod']; ?>"  class="img-responsive center-block" alt="image of product">
 		                                	</a>
 		                                </div>
 		                                <div class="col-sm-2 col-ofsset-sm-1 info">
