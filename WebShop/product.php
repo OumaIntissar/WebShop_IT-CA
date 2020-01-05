@@ -227,22 +227,26 @@
 		<div class="container">
 			<div class="row">	
 				<?php 
-					$id_prod = $_GET['id'];
+					$id_prod = $_GET['id_product'];
 					$prod = mysqli_query($conn, "SELECT * from product where id_prod = $id_prod");
 					if(mysqli_num_rows($prod) > 0){
 					$row_prod = mysqli_fetch_array($prod);
 					$id_cat = $row_prod["id_cat"];
 					$cat = mysqli_query($conn, "SELECT * from category where id_cat = $id_cat");
 					$row_cat = mysqli_fetch_array($cat);
-					
+					?>
 
-					echo'
+						
 
-					<!-- Selected Image -->
+						<!-- Selected Image -->
 						<div class="col-lg-5 order-lg-2 order-1">
-							<div class="image_selected"><img src="../Admin/pages/product/images/'.$row_prod["image_prod"].'" alt=""></div>
+							<div class="image_selected">
+								<img src="<?php echo $row_prod['image_prod'] ?>"  class="img-responsive" alt="image of product">
+							</div>
 						</div>
 
+						<?php
+						echo'
 						<!-- Description -->
 						<div class="col-lg-5 order-3">
 							<div class="product_description">
@@ -256,7 +260,7 @@
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Quantity: </span>
-										<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+										<input id="quantity_input" type="number" pattern="[0-9]*" value="1">
 										<div class="quantity_buttons">
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
