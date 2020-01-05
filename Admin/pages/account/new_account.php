@@ -142,53 +142,60 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">New Account</h4>
-                            <form class="forms-sample">
+                            <form class="forms-sample" method="POST" action="actions/new_account.php">
                                 <div class="form-group row">
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Full Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Full name">
+                                        <input type="text" class="form-control" id="exampleInputUsername2" name="fullname" placeholder="Full name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleSelectGender" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="exampleSelectGender">
-                                            <option>Manager</option>
-                                            <option>Seller</option>
+                                        <select class="form-control" id="exampleSelectGender" name="role" required>
+                                            <option value="">None</option>
+                                            <option value="Manager">Manager</option>
+                                            <option value="Seller">Seller</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="status" class="col-sm-3 col-form-label">Status</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="status">
-                                            <option>Active</option>
-                                            <option>Blocked</option>
+                                        <select class="form-control" id="status" name="status" required>
+                                        	<option value="">None</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Blocked">Blocked</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                                        <input type="email" class="form-control" id="exampleInputEmail2" name="email" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
+                                    <div class="col-sm-9 d-flex align-items-center">
+                                		<div style="margin-right: 10px;">
+                                			+212
+                                		</div>
+                                		<div class="w-100">
+                                			<input type="tel" class="form-control" id="exampleInputMobile" pattern="[6,7]{1}[0-9]{8}" name="phone" placeholder="Mobile number" required>
+                                		</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                                        <input type="password" class="form-control" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." id="exampleInputPassword2" name="password" placeholder="Password" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
+                                        <input type="password" class="form-control" title="Please enter the same Password as above." id="exampleInputConfirmPassword2" name="repassword" placeholder="Password" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
