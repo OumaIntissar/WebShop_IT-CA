@@ -20,6 +20,13 @@
 </head>
 
 <body>
+    <?php
+        include_once("../../actions/db_connection.php");
+        $sql = "SELECT atvl.id_activity , atvl.id_admin , atv.name_activity , atv.name_activity , atvl.date , atvl.label , adm.full_name , adm.role FROM activitylog atvl 
+        INNER JOIN activity atv ON atvl.id_activity=atv.id_activity 
+        INNER JOIN admin adm ON atvl.id_admin=adm.id_admin";
+        $result = $conn->query($sql);
+    ?>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.php -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -149,7 +156,7 @@
                             <div class="d-flex align-items-center justify-content-md-end">
                                 <div class="mb-3 mb-xl-0">
                                     <div class="btn-group dropdown">
-                                        <button type="button" class="btn btn-success">03 Dec 2019</button>
+                                        <button type="button" class="btn btn-success"><?php echo date("L")." ".date("M")." ".date("Y"); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -359,56 +366,62 @@
                                                     <th>Date</th>
                                                     <th>Activity</th>
                                                     <th>Admin Full Name</th>
+                                                    <th>Description</th>
                                                     <th>Role</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <?php 
+                                                $nbr = 1;
+                                                while($row = $result->fetch_assoc()) {
+                                                $name_adm = $row["full_name"];
+                                                $name_act = $row["name_activity"];
+                                                $name_act = str_replace("-"," ",$name_act);
+                                                $id_act = $row["id_activity"];
+                                                $date_act = $row["date"];
+                                                $date_act_array = explode(" ", $date_act);
+                                                $date= $date_act_array[0];
+                                                $time=$date_act_array[1];
+                                                $role_adm = $row["role"];
+                                                $desc_act = $row["label"];
+                                            ?>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>2012/08/03</td>
+                                                    <td><?php echo $nbr; ?></td>
+                                                    <td><?php echo $date; ?></td>
                                                     <td>
-                                                        <label class="badge badge-info">Modify-Product</label>
+                                                        <label class="<?php 
+                                                        if($id_act === "1" || $id_act === "4" || $id_act === "7" ){
+                                                            echo "badge badge-success";
+                                                        }elseif($id_act === "2" || $id_act === "5" || $id_act === "8" ){
+                                                            echo "badge badge-info";
+                                                        }elseif($id_act === "3" || $id_act === "6" || $id_act === "9" ){
+                                                            echo "badge badge-danger";
+                                                        }else{
+                                                            echo "badge badge-warning";
+                                                        }
+                                                        ?>"><?php echo $name_act; ?></label>
                                                     </td>
-                                                    <td>Tahiri Abdelali</td>
+                                                    <td><?php echo $name_adm; ?></td>
                                                     <td>
-                                                        <button class="btn btn-outline-primary">Manager</button>
+                                                        <?php echo $desc_act; ?>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary"><?php 
+                                                        if($role_adm == "A"){
+                                                            echo "Super Admin";
+                                                        }elseif($role_adm == "S"){
+                                                            echo "Seller";
+                                                        }elseif($role_adm == "M"){
+                                                            echo "Manager";
+                                                        }
+                                                        ?></button>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2012/08/03</td>
-                                                    <td>
-                                                        <label class="badge badge-warning">hide-Product</label>
-                                                    </td>
-                                                    <td>Intissar Oumaiyma Abdelali</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Manager</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2012/08/03</td>
-                                                    <td>
-                                                        <label class="badge badge-success">Add-Product</label>
-                                                    </td>
-                                                    <td>Chanchaf jaouhara</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Seller</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2012/08/03</td>
-                                                    <td>
-                                                        <label class="badge badge-danger">Delete-Category</label>
-                                                    </td>
-                                                    <td>Nouinou Otman</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Super-Admin</button>
-                                                    </td>
-                                                </tr>
-
+                                            <?php 
+                                                $nbr = $nbr + 1;
+                                                }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>

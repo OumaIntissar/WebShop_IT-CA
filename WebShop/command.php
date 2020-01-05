@@ -1,7 +1,12 @@
+<?php
+    include_once("connection/db_connection.php");
+    $sql_category    = "SELECT * FROM category WHERE status='1'";
+    $result_category = $conn->query($sql_category);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cart</title>
+<title>Command</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -9,15 +14,27 @@
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- STYLE SING_UP CSS -->
-    <link rel="stylesheet" href="css/style_sing_up.css">
 
+<!-- STYLE SING_UP CSS -->
+<link rel="stylesheet" href="css/style_sing_up.css">
+    <style type="text/css">
+        a:link{
+             text-decoration: none;
+        }
+        input {
+            height: 50px;
+            width: 100%;
+            border: 2px solid white;
+            border-radius: 4px;
+            font-size:20px;
+        }
+
+        input[type=text]:focus {
+            border: 3px solid#accffe;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,23 +66,10 @@
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-                                        <div class="custom_dropdown">
-                                            <div class="custom_dropdown_list">
-                                                <span class="custom_dropdown_placeholder clc">All Categories</span>
-                                                <i class="fas fa-chevron-down"></i>
-                                                <ul class="custom_list clc">
-                                                    <li><a class="clc" href="#">All Categories</a></li>
-                                                    <li><a class="clc" href="#">Computers</a></li>
-                                                    <li><a class="clc" href="#">Laptops</a></li>
-                                                    <li><a class="clc" href="#">Cameras</a></li>
-                                                    <li><a class="clc" href="#">Hardware</a></li>
-                                                    <li><a class="clc" href="#">Smartphones</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+                                    <form action="product_list.php" method="GET" class="header_search_form clearfix">
+                                        <input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
+                                        <button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -96,29 +100,38 @@
         
         <!-- Main Navigation -->
 
+
         <nav class="main_nav">
             <div class="container">
                 <div class="row">
-                    <div class="col">
-                        
+                    <div class="col">                       
                         <div class="main_nav_content d-flex flex-row">
-
                             <!-- Categories Menu -->
-
-                           
+                            <div class="cat_menu_container" style="margin-left: -30px;">
+                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cat_burger"><span></span><span></span><span></span></div>
+                                    <div class="cat_menu_text">categories</div>
+                                </div>
+                                <ul class="cat_menu">
+                                    <?php
+                                    // output data of each row
+                                    while($row = $result_category->fetch_assoc()) { 
+                                        $id_cat  = $row["id_cat"];   
+                                        $label_cat = $row["label_cat"];     
+                                    ?>
+                                        <li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>                               
+                                    <?php } ?>
+                                </ul>
+                            </div>
                             <!-- Main Nav Menu -->
-
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
                                     <li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="product_list.php">Product list<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
-
                             <!-- Menu Trigger -->
-
                             <div class="menu_trigger_container ml-auto">
                                 <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
                                     <div class="menu_burger">
@@ -220,37 +233,41 @@
         </div>
 
         <div class="wrapper">
-            <div class="inner">
+            <div class="inner" style="margin-left: 30px;">
                 <!-- <img src="images/image-1.png" alt="" class="image-1"> -->
                 <form action="" class="form2" style="margin-left: -100px; width: 150%;">
                     <h3>Please Confirm your Order</h3>
                     <div class="form-holder">
                         <span class="lnr lnr-user"></span>
-                        <input type="text" class="form-control" placeholder="Phone number">
+                        <input type="text" class="" placeholder="Full Name...">
+                    </div>
+                    <div class="form-holder">
+                        <span class="lnr lnr-user"></span>
+                        <input type="text" class="" placeholder="Phone number...">
                     </div>
                     <div class="form-holder">
                         <span class="lnr lnr-envelope"></span>
-                        <input type="text" class="form-control" placeholder="E-mail">
+                        <input type="text" class="" placeholder="E-mail...">
                     </div>
                     <div class="form-holder">
                         <span class="lnr lnr-phone-handset"></span>
-                        <input type="text" class="form-control" placeholder="Address">
+                        <input type="text" class="" placeholder="Address...">
                     </div>
-                    <div class="form-holder">
+                    <div class="">
                         <span class="lnr lnr-lock"></span>
-                        <input type="text" class="form-control" placeholder="City">
+                        <input type="text"  placeholder="City...">
                     </div>
-                    <button class="btn" style="margin-top: 70px;">
+                    <button class="btn btn-info btn-md" style="margin-top: 70px;">
                         <span>Send Order</span>
                     </button>
                 </form>
                 <!-- <img src="images/image-2.png" alt="" class="image-2"> -->
             </div>
-        </div>
-
+        </div><br><br>
     </header>
-    <!-- Footer -->
 
+
+    <!-- Footer -->
     <footer class="footer" style="background-color: #F0F0F0;">
 		<div class="container">
 			<div class="row">

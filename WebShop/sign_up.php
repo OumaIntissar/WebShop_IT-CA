@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sing up</title>
+<title>Sing in</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -12,51 +12,79 @@
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- STYLE SING_UP CSS -->
-    <link rel="stylesheet" href="css/style_sing_up.css">
 
 </head>
 
 <body>
 
-<div class="super_container">
-    <div class="wrapper">
-        <div class="inner" style="width: 30%">
-            <form action="" class="form2">
-                <h3>Register</h3>
-                <div class="form-holder">
-                    <span class="lnr lnr-user"></span>
-                    <input type="text" class="form-control" placeholder="Full name">
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-user"></span>
-                    <input type="text" class="form-control" placeholder="E-mail">
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-phone-handset"></span>
-                    <input type="text" class="form-control" placeholder="Phone Number">
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-envelope"></span>
-                    <input type="text" class="form-control" placeholder="Address">
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" placeholder="Re Password">
-                </div>
-                <button class="btn">
-                    <span>Register</span>
-                </button>
-            </form>
-        </div>
-    </div>
+<div class="super_container" style="height: 100%;">	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" action="actions/sign_up.php" method="post">
+					<span class="login100-form-title p-t-20 p-b-45" style="font-size: xx-large;">
+                    Register
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="text" name="fullName" placeholder="Full Name" required="required">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="email" name="email" placeholder="E-mail" required="required">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-at"></i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="tel" name="phone" placeholder="Phone number" required="required">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password" required="required">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="password" name="re-password" placeholder="Re Password" required="required">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn p-t-10">
+						<button class="login100-form-btn">
+                        Register
+						</button>
+					</div>
+
+					<div class="text-center w-full p-t-25 p-b-70">
+                    <a href="sign_in.php">You have already an account ?</a>
+					</div>
+
+				
+
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>

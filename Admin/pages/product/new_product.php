@@ -156,13 +156,13 @@
                                 <div class="form-group row">
                                     <label for="label" class="col-sm-3 col-form-label">Label</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="label" id="label" placeholder="Label">
+                                        <input type="text" class="form-control" name="label" id="label" placeholder="Label" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-3 col-form-label">Category</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="category" id="category">
+                                        <select required class="form-control" name="category" id="category">
                                         <?php 
                                             $res_cat = mysqli_query($conn, "SELECT * from category");
                                             if(mysqli_num_rows($res_cat) > 0){
@@ -192,34 +192,34 @@
                                 <div class="form-group row">
                                     <label for="price" class="col-sm-3 col-form-label">Price in MAD</label>
                                     <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" name="price" id="price" placeholder="00.0">
+                                        <input type="number" step="0.01" class="form-control" name="price" id="price" placeholder="00.0" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="weight" class="col-sm-3 col-form-label">Weight in Kilograms</label>
                                     <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" name="weight" id="weight" placeholder="00.0">
+                                        <input type="number" step="0.01" class="form-control" name="weight" id="weight" placeholder="00.0" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="quantity" class="col-sm-3 col-form-label">Quantity</label>
                                     <div class="col-sm-9">
-                                        <input type="number" step="0.01" class="form-control" name="quantity" id="quantity" placeholder="00.0">
+                                        <input type="number" step="0.01" class="form-control" name="quantity" id="quantity" placeholder="00.0" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
-                                        <textarea type="text" class="form-control" rows="7" name="description" id="description" placeholder="Description"></textarea>
+                                        <textarea type="text" class="form-control" rows="7" name="description" id="description" placeholder="Description" required="required"></textarea>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Image</label>
-                                    <input type="file" name="image" class="file-upload-default">
+                                    <input type="file" name="image" class="file-upload-default" required="required">
                                     
                                     <div class="input-group col-sm-9">
-                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" >
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>

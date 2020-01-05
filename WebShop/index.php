@@ -1,3 +1,11 @@
+<?php
+    include_once("connection/db_connection.php");
+    $sql_products_best_selling = "SELECT * FROM product  WHERE active='1' AND quantity_prod>0 limit 5";
+    $result_products_best_selling = $conn->query($sql_products_best_selling);
+
+    $sql_category 	 = "SELECT * FROM category WHERE status='1'";
+    $result_category = $conn->query($sql_category);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +28,19 @@
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
+	<style>
+		.price-text-color{color:#FFD700; font-size: 25px;}
+		.img-responsive {
+	    width: 240px; /* You can set the dimensions to whatever you want */
+	    height: 180px!important;
+		}
+
+	</style>
 </head>
 
 <body>
 
-<div class="super_container">
-	
+<div class="super_container">	
 	<!-- Header -->
 	
 	<header class="header">
@@ -37,7 +52,6 @@
 		<div class="header_main">
 			<div class="container">
 				<div class="row">
-
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
@@ -50,23 +64,10 @@
 						<div class="header_search">
 							<div class="header_search_content">
 								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
-											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
-												</ul>
-											</div>
-										</div>
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+									<form action="product_list.php" method="GET" class="header_search_form clearfix">
+										<input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
+										<button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
+										</button>
 									</form>
 								</div>
 							</div>
@@ -77,7 +78,6 @@
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 							
-
 							<!-- Cart -->
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
@@ -114,15 +114,17 @@
 									<div class="cat_menu_text">categories</div>
 								</div>
 
+
+
 								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+								<?php
+	                            // output data of each row
+	                            while($row = $result_category->fetch_assoc()) { 
+	                            	$id_cat  = $row["id_cat"];   
+	                            	$label_cat = $row["label_cat"];     
+	                            ?>
+									<li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
+								<?php } ?>
 								</ul>
 							</div>
 
@@ -131,7 +133,6 @@
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="product_list.php">Product list<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
@@ -147,7 +148,6 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -158,19 +158,13 @@
 
 	
 
-
-
-
 	<!-- Banner -->
-
 	<div class="banner_2">
 		<div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
 		<div class="banner_2_container">
 			<div class="banner_2_dots"></div>
 			<!-- Banner 2 Slider -->
-
 			<div class="owl-carousel owl-theme banner_2_slider">
-
 				<!-- Banner 2 Slider Item -->
 				<div class="owl-item">
 					<div class="banner_2_item">
@@ -187,8 +181,7 @@
           										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
        						 				</a>
 										</div>
-									</div>
-									
+									</div>									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
@@ -199,7 +192,6 @@
 						</div>			
 					</div>
 				</div>
-
 				<!-- Banner 2 Slider Item -->
 				<div class="owl-item">
 					<div class="banner_2_item">
@@ -216,8 +208,7 @@
           										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
        						 				</a>
 										</div>
-									</div>
-									
+									</div>									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
@@ -228,7 +219,6 @@
 						</div>			
 					</div>
 				</div>
-
 				<!-- Banner 3 Slider Item -->
 				<div class="owl-item">
 					<div class="banner_2_item">
@@ -245,8 +235,7 @@
           										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
        						 				</a>
 										</div>
-									</div>
-									
+									</div>									
 								</div>
 								<div class="col-lg-8 col-md-6 fill_height">
 									<div class="banner_2_image_container">
@@ -257,14 +246,12 @@
 						</div>			
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
 
 	<!-- Popular Categories -->
-
-	<div class="popular_categories" style="">
+	<div class="popular_categories">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -275,10 +262,9 @@
 							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
 						</div>
 					</div>
-				</div>
-				
-				<!-- Popular Categories Slider -->
+				</div>	
 
+				<!-- Popular Categories Slider -->
 				<div class="col-lg-9">
 					<div class="popular_categories_slider_container">
 						<div class="owl-carousel owl-theme popular_categories_slider">
@@ -331,817 +317,71 @@
 		</div>
 	</div>
 
-    <!-- Our featured offers -->
-	<div class="reviews" style="padding-top: 0px;">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="reviews_title_container">
-						<h3 class="reviews_title">Best Selling</h3>
-					</div>
 
-					<div class="reviews_slider_container">
-						
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-							
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Roberto Sanchez</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time">2 day ago</div>
-										</div>
-										<div class="review_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</p></div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-						<div class="reviews_dots"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Hot New Arrivals -->
-
-
-
-
-						
-						<div class="bestsellers_panel panel">
-
-							<!-- Best Sellers Slider -->
-
-							<div class="bestsellers_slider slider">
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_1.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_2.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_3.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_4.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_5.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_6.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_1.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_2.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_3.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_4.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item discount">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_5.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-								<!-- Best Sellers Item -->
-								<div class="bestsellers_item">
-									<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-										<div class="bestsellers_image"><img src="images/best_6.png" alt=""></div>
-										<div class="bestsellers_content">
-											<div class="bestsellers_category"><a href="#">Headphones</a></div>
-											<div class="bestsellers_name"><a href="product.php">Xiaomi Redmi Note 4</a></div>
-											<div class="rating_r rating_r_4 bestsellers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="bestsellers_price discount">$225<span>$300</span></div>
-										</div>
-									</div>
-									<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-									<ul class="bestsellers_marks">
-										<li class="bestsellers_mark bestsellers_discount">-25%</li>
-										<li class="bestsellers_mark bestsellers_new">new</li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-					</div>
-						
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-
-	<!-- Trends -->
-
-
-	<!-- Best Selling -->
-
-	<!-- Best Selling -->
-
-	<!-- Recently Viewed -->
-
-
-	<!-- Brands 
-
-	<div class="brands">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="brands_slider_container">
-						
-						<!-- Brands Slider 
-
-						<div class="owl-carousel owl-theme brands_slider">
-							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_1.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_2.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
-
-						</div>
-					-->
-						<!-- Brands Slider Navigation 
-						<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
-						<div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	-->
-	<!-- Newsletter -->
-
-
-	
-	<!-- Product List -->
+	<!-- Product List START -->
 	<div class="reviews">
 		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="reviews_title_container">
-						<h3 class="reviews_title">Product List</h3>
-					</div>
-
-					<div class="reviews_slider_container">
-						
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-							
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
-											<p>Weight	350 g (12.35 oz)</p>
-											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
-											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
-											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
-
-
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-
-						<hr>
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
-											<p>Weight	350 g (12.35 oz)</p>
-											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
-											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
-											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
-
-
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-						<hr>
-					</div>
-					<div class="reviews_slider_container">
-						
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-							
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
-											<p>Weight	350 g (12.35 oz)</p>
-											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
-											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
-											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
-
-
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-
-						<hr>
-						<!-- Reviews Slider -->
-						<div class="owl-carousel owl-theme reviews_slider">
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_1.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Huawei Mediapad T3 Kob- L09 Lte Téléphone Tablette</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">2 500 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Dimensions	211.1 x 124.7 x 8 mm (8.31 x 4.91 x 0.31 in)</p>
-											<p>Weight	350 g (12.35 oz)</p>
-											<p>Type	IPS LCD capacitive touchscreen, 16M colors</p>
-											<p>Size	8.0 inches, 185.6 cm2 (~70.5% screen-to-body ratio)</p>
-											<p>Resolution	800 x 1280 pixels, 16:10 ratio (~189 ppi density)</p>
-
-
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_2.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">sony playstation 4 Pro 1 To</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">3 000 DH</div>
-										</div>
-										<div class="review_text">
-											<p> Services Internet intégrés	: Facebook, YouTube, Skype …</p>
-											<p>Formats vidéo pris en charge : 	720p, 1080p (Full HD), 1080i …</p>
-											<p>Capacité de stockage intégrée:	2To
-											<p>Prise en charge de contrôleurs sans fil (max) :	4  pce</p>
-											<p>RAM	8Go</p>
-											<p>Année de publication	2016</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Reviews Slider Item -->
-							<div class="owl-item">
-								<div class="review d-flex flex-row align-items-start justify-content-start">
-									<div><div class="review_image"><img src="images/review_3.jpg" alt=""></div></div>
-									<div class="review_content">
-										<div class="review_name">Casque Bluetooth B&O PLAY Beoplay H7 Sans Fil</div>
-										<div class="review_rating_container">
-											<div class="rating_r rating_r_4 review_rating"><i></i><i></i><i></i><i></i><i></i></div>
-											<div class="review_time" style="font-size: 20px;">600 DH</div>
-										</div>
-										<div class="review_text">
-											<p>Cable audio avec prise mini-jack de 3</p>
-											<p>Cable Usb vers micro USB pour le chargement</p>
-											<p>Pochette de tronsport</p>
-											<p>Poids du produit 280 g</p>
-											<p>Hauteur/Largeur/Longueur  :   40 mm/225 mm/197 mm</p>
-											<p>Type de casque :  Casque Hi-Fi</p>
-										</div><br>
-										<div class="col-md-4 center-block">
-    										<a href="#" class="btn btn-info btn-lg">
-          										<span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
-       						 				</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-						<hr>
-					</div>
-					
-				</div>
-			</div>
-		</div>
+	        <div class="row">
+	            <div class="col-md-9">
+	                <h3>Best Selling</h3>
+	            </div>
+	        </div>
+	        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+	            <!-- Wrapper for slides -->
+	            <div class="carousel-inner">
+	                <div class="item active">
+	                	<hr>
+	                    <div class="row">
+	                            <?php
+	                            // output data of each row
+	                            while($row = $result_products_best_selling->fetch_assoc()) { 
+	                            	$id_prod = $row["id_prod"];         
+	                            ?>
+	                        <div class="col-sm-3 text-center">
+	                       		
+		                            <div class="col-item">
+		                                <div class="info">
+		                                    <div class="row">
+		                                        <div class="price col-md-12">
+		                                            <h5><?php echo $row["label_prod"]; ?></h5>
+		                                            <h5 class="price-text-color"><?php echo $row["price_prod"] ?>  DH</h5>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="photo">
+		                                	<a href="product.php?id=<?php echo $id_prod ?>" style="margin-right: -100px!important;">
+		                                		<img src="<?php echo $row['image_prod'] ?>"  class="img-responsive" alt="image of product">
+		                                	</a>
+		                                </div>
+		                                <div class="col-sm-2 col-ofsset-sm-1 info">
+		                                    <div class="separator clear-left btn_cart_detail">
+			                                    <a class="btn btn-info btn-lg" href="cart.php?id=<?php echo $id_prod ?>">
+			                                    <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart  
+			                                    </a>
+		                                    </div>
+		                                    <div class="clearfix">
+		                                    </div>
+		                                    <br><hr>
+		                                </div>
+		                            </div>
+		                       
+	                        </div> 
+	                       <?php
+	                       }
+	                       ?>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</div>
-	<!-- Product List -->
+	<!-- Product List END -->
 
 
-	<!-- Footer -->
-
-<!-- Footer -->
-
+	<!-- Footer Start-->
 	<footer class="footer" style="background-color: #F0F0F0;">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
@@ -1164,7 +404,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-lg-2 offset-lg-2">
 					<div class="footer_column">
 						<div class="footer_title">Find it Fast</div>
@@ -1180,33 +419,29 @@
 							<li><a href="#">Car Electronics</a></li>
 						</ul>
 					</div>
-				</div>
-
-
-	
-
+				</div>	
 			</div>
 		</div>
 	</footer>
 	<!-- End footer -->
 
 	<!-- Copyright -->
-
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col">
-					
+				<div class="col">					
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> by <a href="https://colorlib.com" target="_blank">IT-CA</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> by <a href="https://colorlib.com" target="_blank">IT-CA</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Copyright End -->
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -1221,6 +456,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> by <a
 <script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
-</body>
 
+</body>
 </html>

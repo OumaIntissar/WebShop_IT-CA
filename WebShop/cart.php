@@ -1,3 +1,9 @@
+<?php
+    include_once("connection/db_connection.php");
+
+    $sql_category 	 = "SELECT * FROM category WHERE status='1'";
+    $result_category = $conn->query($sql_category);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,64 +18,46 @@
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
-
+	<style type="text/css">
+		a:link{
+ 			 text-decoration: none;
+		}
+	</style>
 </head>
 
 <body>
 <div class="super_container">
 	
-	<!-- Header -->
-	
+	<!-- Header -->	
 	<header class="header">
-
 		<!-- Top Bar -->
-
 		<!-- Header Main -->
-
 		<div class="header_main">
 			<div class="container">
 				<div class="row">
-
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
 							<div class="logo"><a href="index.php">OneTech</a></div>
 						</div>
 					</div>
-
 					<!-- Search -->
 					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
 						<div class="header_search">
 							<div class="header_search_content">
 								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
-											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
-												</ul>
-											</div>
-										</div>
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+									<form action="product_list.php" method="GET" class="header_search_form clearfix">
+										<input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
+										<button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
+										</button>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							
-
 							<!-- Cart -->
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
@@ -87,10 +75,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!-- Main Navigation -->
+		</div>	
 
+		<!-- Main Navigation -->
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
@@ -106,37 +93,19 @@
 									<div class="cat_menu_text">categories</div>
 								</div>
 
+
+
 								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+								<?php
+	                            // output data of each row
+	                            while($row = $result_category->fetch_assoc()) { 
+	                            	$id_cat  = $row["id_cat"];   
+	                            	$label_cat = $row["label_cat"];     
+	                            ?>
+									<li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
+								<?php } ?>
 								</ul>
 							</div>
-							
-
-							<!-- Main Nav Menu -->
 
 							<!-- Main Nav Menu -->
 
@@ -149,6 +118,7 @@
 							</div>
 
 							<!-- Menu Trigger -->
+
 							<div class="menu_trigger_container ml-auto">
 								<div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
 									<div class="menu_burger">
@@ -157,15 +127,12 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
-
 	</header>
-
 	<!-- Cart -->
 
 	<div class="cart_section">
@@ -209,7 +176,11 @@
 										</div>
 										<div class="cart_item_total cart_info_col">
 											<div class="cart_item_action">Action</div>
-											<div class="cart_item_text"><a href="#" class="btn btn-outline-danger btn-sm glyphicon glyphicon-remove"></a></div>
+											<div class="cart_item_text">
+												<a href="delete_product.php?id=<?php echo "id_product" ?>" class="btn btn-default btn-sm">		
+													<i class="glyphicon glyphicon-remove" style="color: #FF1493;"></i>									
+												</a>
+											</div>
 										</div>
 									</div>
 								</li>
@@ -225,11 +196,7 @@
 						</div>
 						  
 						<div class="cart_buttons">
-							<!-- <a href="#" class="btn btn-lg">
-          					<button type="button" class="btn btn-lg btn-outline-warning">CheckOut</button> 
-       						 </a> -->
-							
-							<a href="command.php" class="btn btn-info btn-lg">
+							<a href="command.php?id=<?php echo "Abdelali" ?>" class="btn btn-info btn-lg">
           					<span class="glyphicon glyphicon-shopping-cart"></span> Order
        						 </a>
 							
@@ -240,12 +207,10 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
-
-	<footer class="footer">
+	<!-- Footer Start-->
+	<footer class="footer" style="background-color: #F0F0F0;">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-3 footer_col">
 					<div class="footer_column footer_contact">
 						<div class="logo_container">
@@ -268,7 +233,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-lg-2 offset-lg-2">
 					<div class="footer_column">
 						<div class="footer_title">Find it Fast</div>
@@ -284,56 +248,29 @@
 							<li><a href="#">Car Electronics</a></li>
 						</ul>
 					</div>
-				</div>
-
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<ul class="footer_list footer_list_2">
-							<li><a href="#">Video Games & Consoles</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Cameras & Photos</a></li>
-							<li><a href="#">Hardware</a></li>
-							<li><a href="#">Computers & Laptops</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-lg-2">
-					<div class="footer_column">
-						<div class="footer_title">Customer Care</div>
-						<ul class="footer_list">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order Tracking</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Customer Services</a></li>
-							<li><a href="#">Returns / Exchange</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="#">Product Support</a></li>
-						</ul>
-					</div>
-				</div>
-
+				</div>	
 			</div>
 		</div>
 	</footer>
+	<!-- End footer -->
 
 	<!-- Copyright -->
-
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col">
-					
+				<div class="col">					
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> by <a href="https://colorlib.com" target="_blank">IT-CA</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Copyright End -->
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -344,8 +281,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
 <script src="plugins/greensock/animation.gsap.min.js"></script>
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
-<script src="js/cart_custom.js"></script>
+<script src="js/custom.js"></script>
 </body>
 
 </html>

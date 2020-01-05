@@ -1,7 +1,8 @@
 <?php
-    include_once("actions/db_connection.php");
+    include_once("connection/db_connection.php");
+    $sql_category    = "SELECT * FROM category WHERE status='1'";
+    $result_category = $conn->query($sql_category);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,14 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
 
@@ -27,27 +36,7 @@
 	<!-- Header -->
 	
 	<header class="header">
-
-		<!-- Top Bar -->
-		<!--
-		<div class="top_bar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="top_bar_content ml-auto">
-							<div class="top_bar_user">
-								<div class="user_icon"><img src="images/user.svg" alt=""></div>
-								<div><a href="sing_up.php">Register</a></div>
-								<div><a href="sing_in.php">Sign in</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>		
-		</div>
-		-->
 		<!-- Header Main -->
-
 		<div class="header_main">
 			<div class="container">
 				<div class="row">
@@ -60,32 +49,19 @@
 					</div>
 
 					<!-- Search -->
-					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-						<div class="header_search">
-							<div class="header_search_content">
-								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
-										<input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-										<div class="custom_dropdown">
-											<div class="custom_dropdown_list">
-												<span class="custom_dropdown_placeholder clc">All Categories</span>
-												<i class="fas fa-chevron-down"></i>
-												<ul class="custom_list clc">
-													<li><a class="clc" href="#">All Categories</a></li>
-													<li><a class="clc" href="#">Computers</a></li>
-													<li><a class="clc" href="#">Laptops</a></li>
-													<li><a class="clc" href="#">Cameras</a></li>
-													<li><a class="clc" href="#">Hardware</a></li>
-													<li><a class="clc" href="#">Smartphones</a></li>
-												</ul>
-											</div>
-										</div>
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                        <div class="header_search">
+                            <div class="header_search_content">
+                                <div class="header_search_form_container">
+                                    <form action="product_list.php" method="GET" class="header_search_form clearfix">
+                                        <input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
+                                        <button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
@@ -127,32 +103,15 @@
 								</div>
 
 								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-								</ul>
+									<?php
+		                            // output data of each row
+		                            while($row = $result_category->fetch_assoc()) { 
+		                            	$id_cat  = $row["id_cat"];   
+		                            	$label_cat = $row["label_cat"];     
+		                            ?>
+										<li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
+									<?php } ?>
+									</ul>
 							</div>
 
 							<!-- Main Nav Menu -->
@@ -160,8 +119,8 @@
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="index.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="index.php">Registre<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 
@@ -268,12 +227,14 @@
 		<div class="container">
 			<div class="row">	
 				<?php 
-					$prod = mysqli_query($conn, "SELECT * from product where id_prod = 41");
+					$id_prod = $_GET['id'];
+					$prod = mysqli_query($conn, "SELECT * from product where id_prod = $id_prod");
 					if(mysqli_num_rows($prod) > 0){
 					$row_prod = mysqli_fetch_array($prod);
 					$id_cat = $row_prod["id_cat"];
 					$cat = mysqli_query($conn, "SELECT * from category where id_cat = $id_cat");
 					$row_cat = mysqli_fetch_array($cat);
+					
 
 					echo'
 
@@ -383,22 +344,22 @@
 
 
 	<!-- Copyright -->
-
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col">
-					
+				<div class="col">					
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</div>
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> by <a href="https://colorlib.com" target="_blank">IT-CA</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Copyright End -->
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
