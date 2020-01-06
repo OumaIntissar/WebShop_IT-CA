@@ -5,7 +5,6 @@
 	if ($conn->connect_error) {
 	    header("Location: ../../404.html");
 	}
-
 ?>  
 
 
