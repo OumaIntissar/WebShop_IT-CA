@@ -174,29 +174,80 @@
                                             </div>
                                             <div id="sales" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    <div class="carousel-item active">
+                                                    <?php 
+                                                    $k = 0;
+                                                    while($k<6){
+                                                        if($k == 0){
+                                                            $year = date("Y");
+                                                            $month = date("m");
+                                                        }elseif($month == 1){
+                                                            $year = $year - 1;
+                                                            $month = 12;
+                                                        }else{
+                                                            $month = $month - 1;
+                                                        }
+                                                        //echo $year."-".$month."<br>";
+                                                        $sql_getSalles = "SELECT Sum(total_price) AS 'price' , date FROM `order`
+                                                                        where date like '$year-$month-%'";
+                                                        $result_salles = $conn->query($sql_getSalles);
+                                                        $row_sls = $result_salles->fetch_assoc();
+                                                        $k = $k+1;
+                                                        //echo $row_sub["nombre"].'-'.$year.'-'.$month."<br>";
+                                                    ?>
+                                                    <div class="<?php 
+                                                    if($k==1){
+                                                        echo "carousel-item active";
+                                                    }else{
+                                                        echo "carousel-item";
+                                                    } ?>">
                                                         <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">27632 MAD</h2>
+                                                            <h2 class="mr-3"><?php if($row_sls["price"] ==0){echo '0.00 MAD';}else{echo $row_sls["price"].' MAD'; }  ?> </h2>
                                                         </div>
                                                         <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
                                                             <i class="mdi mdi-calendar mr-1"></i>
                                                             <span class="text-left">
-                                                                Oct
+                                                                <?php 
+                                                                    if($month == 1){
+                                                                        echo "January";
+                                                                    }elseif($month == 2){
+                                                                        echo "February";
+                                                                    }elseif($month == 3){
+                                                                        echo "March";
+                                                                    }
+                                                                    elseif($month == 4){
+                                                                        echo "April";
+                                                                    }
+                                                                    elseif($month == 5){
+                                                                        echo "May";
+                                                                    }
+                                                                    elseif($month == 6){
+                                                                        echo "June";
+                                                                    }
+                                                                    elseif($month == 7){
+                                                                        echo "July";
+                                                                    }
+                                                                    elseif($month == 8){
+                                                                        echo "Aughst";
+                                                                    }
+                                                                    elseif($month == 9){
+                                                                        echo "September";
+                                                                    }
+                                                                    elseif($month == 10){
+                                                                        echo "October";
+                                                                    }
+                                                                    elseif($month == 11){
+                                                                        echo "November";
+                                                                    }
+                                                                    elseif($month == 12){
+                                                                        echo "Decemeber";
+                                                                    }
+                                                                ?>
                                                             </span>
                                                         </button>
                                                     </div>
-
-                                                    <div class="carousel-item">
-                                                        <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">1098 MAD</h2>
-                                                        </div>
-                                                        <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
-                                                            <i class="mdi mdi-calendar mr-1"></i>
-                                                            <span class="text-left">
-                                                                Nov
-                                                            </span>
-                                                        </button>
-                                                    </div>
+                                                    <?php 
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <a class="carousel-control-prev" href="#sales" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -216,37 +267,88 @@
                                             <div class="d-flex flex-wrap justify-content-between">
                                                 <h4 class="card-title">Orders</h4>
                                             </div>
-                                            <div id="sales" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
+                                            <div id="orders" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    <div class="carousel-item active">
+                                                    <?php 
+                                                    $j = 0;
+                                                    while($j<6){
+                                                        if($j == 0){
+                                                            $year = date("Y");
+                                                            $month = date("m");
+                                                        }elseif($month == 1){
+                                                            $year = $year - 1;
+                                                            $month = 12;
+                                                        }else{
+                                                            $month = $month - 1;
+                                                        }
+                                                        //echo $year."-".$month."<br>";
+                                                        $sql_getOrders = "SELECT COUNT(id_order) AS 'nombre' , date FROM `order`
+                                                                where date like '$year-$month-%'";
+                                                        $result_orders = $conn->query($sql_getOrders);
+                                                        $row_ord = $result_orders->fetch_assoc();
+                                                        $j = $j+1;
+                                                        //echo $row_sub["nombre"].'-'.$year.'-'.$month."<br>";
+                                                    ?>
+                                                    <div class="<?php 
+                                                    if($j==1){
+                                                        echo "carousel-item active";
+                                                    }else{
+                                                        echo "carousel-item";
+                                                    } ?>">
                                                         <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">2762</h2>
+                                                            <h2 class="mr-3"><?php echo $row_ord["nombre"]; ?></h2>
                                                         </div>
                                                         <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
                                                             <i class="mdi mdi-calendar mr-1"></i>
                                                             <span class="text-left">
-                                                                Oct
+                                                                <?php 
+                                                                    if($month == 1){
+                                                                        echo "January";
+                                                                    }elseif($month == 2){
+                                                                        echo "February";
+                                                                    }elseif($month == 3){
+                                                                        echo "March";
+                                                                    }
+                                                                    elseif($month == 4){
+                                                                        echo "April";
+                                                                    }
+                                                                    elseif($month == 5){
+                                                                        echo "May";
+                                                                    }
+                                                                    elseif($month == 6){
+                                                                        echo "June";
+                                                                    }
+                                                                    elseif($month == 7){
+                                                                        echo "July";
+                                                                    }
+                                                                    elseif($month == 8){
+                                                                        echo "Aughst";
+                                                                    }
+                                                                    elseif($month == 9){
+                                                                        echo "September";
+                                                                    }
+                                                                    elseif($month == 10){
+                                                                        echo "October";
+                                                                    }
+                                                                    elseif($month == 11){
+                                                                        echo "November";
+                                                                    }
+                                                                    elseif($month == 12){
+                                                                        echo "Decemeber";
+                                                                    }
+                                                                ?>
                                                             </span>
                                                         </button>
                                                     </div>
-
-                                                    <div class="carousel-item">
-                                                        <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">298</h2>
-                                                        </div>
-                                                        <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
-                                                            <i class="mdi mdi-calendar mr-1"></i>
-                                                            <span class="text-left">
-                                                                Nov
-                                                            </span>
-                                                        </button>
-                                                    </div>
+                                                    <?php 
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <a class="carousel-control-prev" href="#sales" role="button" data-slide="prev">
+                                                <a class="carousel-control-prev" href="#orders" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
-                                                <a class="carousel-control-next" href="#sales" role="button" data-slide="next">
+                                                <a class="carousel-control-next" href="#orders" role="button" data-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
@@ -306,18 +408,80 @@
                                             </div>
                                             <div id="subscriptions" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
                                                 <div class="carousel-inner">
-                        
-                                                    <div class="">
+                                                    <?php 
+                                                    $i = 0;
+                                                    while($i<6){
+                                                        if($i == 0){
+                                                            $year = date("Y");
+                                                            $month = date("m");
+                                                        }elseif($month == 1){
+                                                            $year = $year - 1;
+                                                            $month = 12;
+                                                        }else{
+                                                            $month = $month - 1;
+                                                        }
+                                                        //echo $year."-".$month."<br>";
+                                                        $sql_getSubscriptions = "SELECT COUNT(id_cost) AS 'nombre' , date FROM `costumer`n 
+                                                                where date like '$year-$month-%'";
+                                                        $result_subscription = $conn->query($sql_getSubscriptions);
+                                                        $row_sub = $result_subscription->fetch_assoc();
+                                                        $i = $i+1;
+                                                        //echo $row_sub["nombre"].'-'.$year.'-'.$month."<br>";
+                                                    ?>
+                                                    <div class="<?php 
+                                                    if($i==1){
+                                                        echo "carousel-item active";
+                                                    }else{
+                                                        echo "carousel-item";
+                                                    } ?>">
                                                         <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">ghghgh</h2>
+                                                            <h2 class="mr-3"><?php echo $row_sub["nombre"]; ?></h2>
                                                         </div>
                                                         <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
                                                             <i class="mdi mdi-calendar mr-1"></i>
                                                             <span class="text-left">
-
+                                                                <?php 
+                                                                    if($month == 1){
+                                                                        echo "January";
+                                                                    }elseif($month == 2){
+                                                                        echo "February";
+                                                                    }elseif($month == 3){
+                                                                        echo "March";
+                                                                    }
+                                                                    elseif($month == 4){
+                                                                        echo "April";
+                                                                    }
+                                                                    elseif($month == 5){
+                                                                        echo "May";
+                                                                    }
+                                                                    elseif($month == 6){
+                                                                        echo "June";
+                                                                    }
+                                                                    elseif($month == 7){
+                                                                        echo "July";
+                                                                    }
+                                                                    elseif($month == 8){
+                                                                        echo "Aughst";
+                                                                    }
+                                                                    elseif($month == 9){
+                                                                        echo "September";
+                                                                    }
+                                                                    elseif($month == 10){
+                                                                        echo "October";
+                                                                    }
+                                                                    elseif($month == 11){
+                                                                        echo "November";
+                                                                    }
+                                                                    elseif($month == 12){
+                                                                        echo "Decemeber";
+                                                                    }
+                                                                ?>
                                                             </span>
                                                         </button>
                                                     </div>
+                                                    <?php 
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <a class="carousel-control-prev" href="#subscriptions" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

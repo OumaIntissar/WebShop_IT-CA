@@ -119,6 +119,7 @@ CREATE TABLE `costumer` (
   `full_name` varchar(100) NOT NULL,
   `phone` int(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `Date` datetime NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -130,6 +131,8 @@ INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `password`) VA
 (1, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', ''),
 (2, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', '123456'),
 (3, 'Oumaiyma', 632512, 'o.intissar@mundiapolis.ma', '123456');
+
+
 
 -- --------------------------------------------------------
 
