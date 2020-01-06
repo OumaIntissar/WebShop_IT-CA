@@ -59,6 +59,14 @@ $msg ="";
         }
 
     if ($conn->query($sql)) {
+        // add activity 
+        $label = str_replace(" ","-",$prd_name);
+        $date = date("Y-m-d h:i:sa");
+        $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
+                        VALUES (2,1,'$label','$date')";
+        if ($conn->query($sql_activity)) {
+            echo "thats nice"; 
+        }
         header("Location: ../product_list.php?success=true"); 
     }else {
     	echo "ERROR";

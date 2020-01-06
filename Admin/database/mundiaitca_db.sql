@@ -40,15 +40,17 @@ CREATE TABLE `activity` (
 INSERT INTO `activity` (`id_activity`, `name_activity`) VALUES
 (1, 'Add-Product'),
 (2, 'Modify-Product'),
-(3, 'Delete-Product'),
+(3, 'hide-Product'),
 (4, 'Add-Category'),
 (5, 'Modify-Category'),
-(6, 'Delete-Category'),
+(6, 'hide-Category'),
 (7, 'Add-Account'),
 (8, 'Modify-Account'),
 (9, 'Delete-Account'),
 (10, 'Approve-Order'),
-(11, 'Disapprove-Order');
+(11, 'Disapprove-Order'),
+(12, 'Show-Product'),
+(13, 'Show-Category');
 
 -- --------------------------------------------------------
 
@@ -59,6 +61,7 @@ INSERT INTO `activity` (`id_activity`, `name_activity`) VALUES
 CREATE TABLE `activitylog` (
   `id_activity` int(20) NOT NULL,
   `id_admin` int(20) NOT NULL,
+  `label` varchar(500) NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

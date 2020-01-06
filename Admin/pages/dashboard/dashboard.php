@@ -24,7 +24,8 @@
         include_once("../../actions/db_connection.php");
         $sql = "SELECT atvl.id_activity , atvl.id_admin , atv.name_activity , atv.name_activity , atvl.date , atvl.label , adm.full_name , adm.role FROM activitylog atvl 
         INNER JOIN activity atv ON atvl.id_activity=atv.id_activity 
-        INNER JOIN admin adm ON atvl.id_admin=adm.id_admin";
+        INNER JOIN admin adm ON atvl.id_admin=adm.id_admin
+        ORDER BY atvl.date DESC";
         $result = $conn->query($sql);
     ?>
     <div class="container-scroller">
@@ -156,7 +157,7 @@
                             <div class="d-flex align-items-center justify-content-md-end">
                                 <div class="mb-3 mb-xl-0">
                                     <div class="btn-group dropdown">
-                                        <button type="button" class="btn btn-success"><?php echo date("L")." ".date("M")." ".date("Y"); ?></button>
+                                        <button type="button" class="btn btn-success"><?php echo date("d")." ".date("M")." ".date("Y"); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -303,40 +304,31 @@
                                             <div class="d-flex flex-wrap justify-content-between">
                                                 <h4 class="card-title">Subscriptions</h4>
                                             </div>
-                                            <div id="sales" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
+                                            <div id="subscriptions" class="carousel slide dashboard-widget-carousel position-static pt-2" data-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    <div class="carousel-item active">
+                        
+                                                    <div class="">
                                                         <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">1102</h2>
+                                                            <h2 class="mr-3">ghghgh</h2>
                                                         </div>
                                                         <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
                                                             <i class="mdi mdi-calendar mr-1"></i>
                                                             <span class="text-left">
-                                                                Oct
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <div class="d-flex flex-wrap align-items-baseline">
-                                                            <h2 class="mr-3">652</h2>
-                                                        </div>
-                                                        <button class="btn btn-outline-secondary btn-sm btn-icon-text d-flex align-items-center">
-                                                            <i class="mdi mdi-calendar mr-1"></i>
-                                                            <span class="text-left">
-                                                                Nov
+
                                                             </span>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <a class="carousel-control-prev" href="#sales" role="button" data-slide="prev">
+                                                <a class="carousel-control-prev" href="#subscriptions" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
-                                                <a class="carousel-control-next" href="#sales" role="button" data-slide="next">
+                                                <a class="carousel-control-next" href="#subscriptions" role="button" data-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
