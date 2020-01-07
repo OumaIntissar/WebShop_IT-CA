@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 04 jan. 2020 à 22:57
--- Version du serveur :  10.4.8-MariaDB
--- Version de PHP :  7.3.11
+-- Généré le :  mar. 07 jan. 2020 à 22:25
+-- Version du serveur :  10.1.36-MariaDB
+-- Version de PHP :  7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `mundiaitca_db`
+-- Base de données :  `it_ca_db`
 --
 
 -- --------------------------------------------------------
@@ -50,7 +50,9 @@ INSERT INTO `activity` (`id_activity`, `name_activity`) VALUES
 (10, 'Approve-Order'),
 (11, 'Disapprove-Order'),
 (12, 'Show-Product'),
-(13, 'Show-Category');
+(13, 'Show-Category'),
+(14, 'Block-Account'),
+(15, 'Unblock-Account');
 
 -- --------------------------------------------------------
 
@@ -65,6 +67,15 @@ CREATE TABLE `activitylog` (
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `activitylog`
+--
+
+INSERT INTO `activitylog` (`id_activity`, `id_admin`, `label`, `Date`) VALUES
+(6, 1, 'cat-1', '2020-01-07 09:24:55'),
+(14, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 10:05:16'),
+(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 10:05:18');
+
 -- --------------------------------------------------------
 
 --
@@ -73,14 +84,23 @@ CREATE TABLE `activitylog` (
 
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
-  `full_name` varchar(40) NOT NULL,
+  `full_name` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` varchar(1) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `mobile` varchar(10) NOT NULL,
   `date_C` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `full_name`, `email`, `password`, `role`, `status`, `mobile`, `date_C`) VALUES
+(1, 'AMEDDAH Ayoub', 'a.ameddah@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'A', 1, '677864195', '2020-01-06'),
+(2, 'AIT LECHGAR Ayoub', 'a.ait_lechgar@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'M', 1, '654789456', '2020-01-07'),
+(3, 'CHANCHAF JAouhara', 'j.chanchaf@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'S', 0, '688963145', '2020-01-07');
 
 -- --------------------------------------------------------
 
@@ -92,7 +112,7 @@ CREATE TABLE `category` (
   `id_cat` int(11) NOT NULL,
   `label_cat` varchar(20) NOT NULL,
   `desc_cat` varchar(100) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -100,7 +120,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
-(1, 'cat 1', 'Description of category1 google lictionnaire', 1),
+(1, 'cat 1', 'Description of category1 google lictionnaire', 0),
 (2, 'cat2', 'description hhh', 1),
 (3, 'cat3', 'descr', 1),
 (4, 'cat4', 'desc 4', 1),
@@ -128,12 +148,10 @@ CREATE TABLE `costumer` (
 -- Déchargement des données de la table `costumer`
 --
 
-INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `password`) VALUES
-(1, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', ''),
-(2, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', '123456'),
-(3, 'Oumaiyma', 632512, 'o.intissar@mundiapolis.ma', '123456');
-
-
+INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `Date`, `password`) VALUES
+(1, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', '0000-00-00 00:00:00', ''),
+(2, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', '0000-00-00 00:00:00', '123456'),
+(3, 'Oumaiyma', 632512, 'o.intissar@mundiapolis.ma', '0000-00-00 00:00:00', '123456');
 
 -- --------------------------------------------------------
 
@@ -150,7 +168,7 @@ CREATE TABLE `order` (
   `id_ville` int(4) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `total_price` decimal(11,2) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -180,7 +198,7 @@ CREATE TABLE `product` (
   `weight_prod` decimal(11,2) NOT NULL,
   `desc_prod` varchar(100) NOT NULL,
   `image_prod` varchar(100) NOT NULL,
-  `active` tinyint(1) DEFAULT 0,
+  `active` tinyint(1) DEFAULT '0',
   `quantity_prod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -264,13 +282,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `category`
