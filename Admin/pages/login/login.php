@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,16 +31,16 @@
             <div class="auth-form-transparent text-left p-3 mx-auto">
               <h1>WebShop Admin</h1>
               <h4>Welcome back!</h4>
-              <form class="pt-3">
+              <form class="pt-3" method="post" action="actions/login.php">
                 <div class="form-group">
-                  <label for="username">Username</label>
+                  <label for="username">Email</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="mdi mdi-account-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" id="username" placeholder="Username">
+                    <input type="text" class="form-control form-control-lg border-left-0" name="email" id="email" placeholder="Email" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -47,17 +51,17 @@
                         <i class="mdi mdi-lock-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control form-control-lg border-left-0" id="password" placeholder="Password">                        
+                    <input type="password" class="form-control form-control-lg border-left-0" name="password" id="password" placeholder="Password" required>
                   </div>
                 </div>
                 <div class="my-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.php">LOGIN</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="col-lg-6 login-half-bg d-flex flex-row">
-            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2018  All rights reserved.</p>
+            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2019  All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -76,7 +80,36 @@
   <script src="../../js/template.js"></script>
   <script src="../../js/settings.js"></script>
   <script src="../../js/todolist.js"></script>
+  <script src="../../js/sweetalert2.all.min.js"></script>
   <!-- endinject -->
+
+  <?php
+    if (isset($_GET['error'])){
+        echo "<script>
+                    Swal.fire({
+                      text: 'Your account is not activated yet!',
+                      type: 'warning',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'login.php';
+                        }
+                    })
+                </script>";
+    } else if(isset($_GET['error1'])) {
+        echo "<script>
+                    Swal.fire({
+                      text: 'The email address or password is incorrect!',
+                      type: 'warning',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'login.php';
+                        }
+                    })
+                </script>";
+    }
+  ?>
 </body>
 
 </html>
