@@ -38,7 +38,7 @@ include('../menu/menu.php');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $id_prod ?></td>
-                                                    <td><?php echo $row["image_prod"]; ?></td>
+                                                    <td><img src="<?php echo "images/".$row["image_prod"]; ?>" alt="Smiley face" height="60" width="55"></td>
                                                     <td><?php echo $row["label_prod"]; ?></td>
                                                     <td><?php echo $row["label_cat"]; ?></td>  
                                                     <td><?php echo $row["price_prod"]; ?></td>
