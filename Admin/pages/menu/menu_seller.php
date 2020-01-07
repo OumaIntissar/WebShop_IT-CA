@@ -69,7 +69,7 @@
                                 <?php echo $_SESSION['fullname']; ?>
                             </p>
                             <p class="designation">
-                                Super Admin
+                                Seller
                             </p>
                         </div>
                     </a>
@@ -81,32 +81,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" href="../category/category_list.php">
                         <i class="mdi mdi-book-multiple menu-icon"></i>
-                        <span class="menu-title">Manage categories</span>
-                        <i class="menu-arrow"></i>
+                        <span class="menu-title">Category List</span>
                     </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../category/category_list.php">Category List</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../category/new_category.php">New Category</a></li>
-
-                        </ul>
-                    </div>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                    <a class="nav-link" href="../product/product_list.php">
                         <i class="mdi mdi-database menu-icon"></i>
-                        <span class="menu-title">Manage products</span>
-                        <i class="menu-arrow"></i>
+                        <span class="menu-title">Product List</span>
                     </a>
-                    <div class="collapse" id="icons">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../product/product_list.php">Product List</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../product/new_product.php">New Product</a></li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../order/order_list.php">
@@ -114,20 +98,6 @@
                         <span class="menu-title">Manage Orders</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="mdi mdi-account-circle menu-icon"></i>
-                        <span class="menu-title">Manage Accounts</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../account/account_list.php">Account List</a></li>
-                            <li class="nav-item"> <a class="nav-link active" href="../account/new_account.php">New Account</a></li>
-                        </ul>
-                    </div>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="../login/login.php">
                         <i class="mdi mdi-logout menu-icon"></i>

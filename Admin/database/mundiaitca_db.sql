@@ -73,12 +73,13 @@ CREATE TABLE `activitylog` (
 
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
-  `full_name` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `full_name` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `role` varchar(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `mobile` varchar(10) NOT NULL
+  `mobile` varchar(10) NOT NULL,
+  `date_C` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

@@ -1,5 +1,17 @@
 <?php
-include('../menu/menu.php');
+    include('../menu/menu.php');
+    if($_SESSION['status'] == '1'){
+        $status = 'Active';
+    }else if($_SESSION['status'] == '0'){
+        $status = 'Blocked';
+    }
+    if ($_SESSION['role'] == 'A'){
+        $role = "Super Admin";
+    } else if($_SESSION['role'] == 'M'){
+        $role = "Manager";
+    } else if($_SESSION['role'] == 'S') {
+        $role = "Seller";
+    }
 ?>
             <!-- partial -->
             <div class="main-panel">
@@ -11,7 +23,7 @@ include('../menu/menu.php');
                                     <div class="border-bottom text-center pb-4">
                                         <img src="https://via.placeholder.com/92x92" alt="profile" class="img-lg rounded-circle mb-3" />
                                         <div class="mb-3">
-                                            <h3>Nouinou Otman</h3>
+                                            <h3><?php echo $_SESSION['fullname'] ?></h3>
                                             <div class="d-flex align-items-center justify-content-center">
                                                 <h5 class="mb-0 mr-2 text-muted">Morocco</h5>
                                             </div>
@@ -20,7 +32,7 @@ include('../menu/menu.php');
                                     <div class="border-bottom py-4">
                                         <p>Role</p>
                                         <div>
-                                            <label class="badge badge-outline-dark">Super Admin</label>
+                                            <label class="badge badge-outline-dark"><?php echo $role ?></label>
                                         </div>
                                     </div>
                                     <div class="py-4">
@@ -29,7 +41,7 @@ include('../menu/menu.php');
                                                 Status
                                             </span>
                                             <span class="float-right text-muted">
-                                                Active
+                                                <?php echo $status ?>
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -37,7 +49,7 @@ include('../menu/menu.php');
                                                 Date of creation
                                             </span>
                                             <span class="float-right text-muted">
-                                                02/12/2019
+                                                <?php echo date("m/d/Y", strtotime( $_SESSION['dateC'])) ?>
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -45,7 +57,7 @@ include('../menu/menu.php');
                                                 Phone
                                             </span>
                                             <span class="float-right text-muted">
-                                                +2120000-000000
+                                                +212<?php echo $_SESSION['mobile'] ?>
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -53,7 +65,7 @@ include('../menu/menu.php');
                                                 E-Mail
                                             </span>
                                             <span class="float-right text-muted">
-                                                o.nouinou@testmail.com
+                                                <?php echo $_SESSION['email'] ?>
                                             </span>
                                         </p>
 

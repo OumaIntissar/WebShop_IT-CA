@@ -69,7 +69,7 @@
                                 <?php echo $_SESSION['fullname']; ?>
                             </p>
                             <p class="designation">
-                                Super Admin
+                                Manager
                             </p>
                         </div>
                     </a>
@@ -114,20 +114,6 @@
                         <span class="menu-title">Manage Orders</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="mdi mdi-account-circle menu-icon"></i>
-                        <span class="menu-title">Manage Accounts</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../account/account_list.php">Account List</a></li>
-                            <li class="nav-item"> <a class="nav-link active" href="../account/new_account.php">New Account</a></li>
-                        </ul>
-                    </div>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="../login/login.php">
                         <i class="mdi mdi-logout menu-icon"></i>

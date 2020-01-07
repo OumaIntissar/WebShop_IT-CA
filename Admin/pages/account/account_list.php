@@ -1,5 +1,9 @@
 <?php
-include('../menu/menu.php');
+    include '../../actions/db_connection.php';
+    include('../menu/menu.php');
+    $id= $_SESSION['id'];
+    $sql = "SELECT * FROM admin WHERE role != 'A'";
+    $res = mysqli_query($conn, $sql);
 ?>
             <!-- partial -->
             <div class="main-panel">
@@ -14,10 +18,10 @@ include('../menu/menu.php');
                                         <table id="order-listing" class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th>Id</th>
                                                     <th>Full Name</th>
                                                     <th>Role</th>
-                                                    <th>Date</th>
+                                                    <th>Creation Date</th>
                                                     <th>E-mail</th>
                                                     <th>Phone number</th>
                                                     <th>Status</th>
@@ -26,63 +30,56 @@ include('../menu/menu.php');
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Otman Nouinou</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Super Admin</button>
-                                                    </td>
-                                                    <td>02/12/2019</td>
-                                                    <td>o.nouinou@gmail.com</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="modify_account.php">
-                                                            <button class="btn btn-outline-primary" type="submit">Modify</button>
-                                                            <button class="btn btn-outline-primary" type="reset">unBlock</button>
-                                                       </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Ameddah Ayoub</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Seller</button>
-                                                    </td>
-                                                    <td>02/12/2019</td>
-                                                    <td>a.ameddah@gmail.com</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>
-                                                        <label class="badge badge-success">Active</label>
-                                                    </td>
-                                                    <td>
-                                                        <form action="modify_account.php">
-                                                            <button class="btn btn-outline-primary" type="submit">Modify</button>
-                                                            <button class="btn btn-outline-primary" type="reset">unBlock</button>
-                                                       </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Ait lachgar Ayoub</td>
-                                                    <td>
-                                                        <button class="btn btn-outline-primary">Manager</button>
-                                                    </td>
-                                                    <td>02/12/2019</td>
-                                                    <td>a.ameddah@gmail.com</td>
-                                                    <td>+2120000-000000</td>
-                                                    <td>
-                                                        <label class="badge badge-danger">Blocked</label>
-                                                    </td>
-                                                    <td>
-                                                       <form action="modify_account.php">
-                                                            <button class="btn btn-outline-primary" type="submit">Modify</button>
-                                                            <button class="btn btn-outline-primary" type="reset">unBlock</button>
-                                                       </form>
-                                                    </td>
-                                                </tr>
+                                            <?php
+                                                while ($row = mysqli_fetch_assoc($res)) {
+                                                    echo "<tr>";
+                                                        echo "<td>".$row['id_admin']."</td>";
+                                                        echo "<td>".$row['full_name']."</td>";
+                                                        echo "<td>";
+                                                            echo "<label class='badge badge-primary'>";
+                                                                if ($row['role'] == 'A'){
+                                                                    $role = "Super Admin";
+                                                                } else if($row['role'] == 'M'){
+                                                                    $role = "Manager";
+                                                                } else if($row['role'] == 'S') {
+                                                                    $role = "Seller";
+                                                                }
+                                                                echo $role;
+                                                            echo "</label>";
+                                                        echo "</td>";
+                                                        echo "<td>".date("d/m/Y", strtotime( $row['date_C']))."</td>";
+                                                        echo "<td>".$row['email']."</td>";
+                                                        echo "<td>+212 ".$row['mobile']."</td>";
+                                                        echo "<td>";
+                                                            if($row['status'] == '1'){
+                                                                echo "<label class='badge badge-success'>Active</label>";
+                                                            }else if($row['status'] == '0'){
+                                                                echo "<label class='badge badge-danger'>Blocked</label>";
+                                                            }
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                        $id_ad = $row['id_admin'];
+                                                        $sql1 = "SELECT * FROM activitylog WHERE id_admin = '$id_ad' ";
+                                                        $res1 = mysqli_query($conn, $sql1);
+                                                        $row1 = mysqli_num_rows($res1);
+                                                        if($row1 == 0){
+                                                            echo "<form action='actions/block.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
+                                                                    <button class='btn btn-outline-primary' name='id'>Delete</button>
+                                                                  </form>";
+                                                        }
+                                                        if($row['status'] == 1){
+                                                            echo "<form action='actions/block.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
+                                                                    <button class='btn btn-outline-primary' name='id'>Block</button>
+                                                                  </form>";
+                                                        }elseif ($row['status'] == 0){
+                                                            echo "<form action='actions/unblock.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
+                                                                    <button class='btn btn-outline-primary'>unBlock</button>
+                                                                  </form>";
+                                                        }
+                                                        echo "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>

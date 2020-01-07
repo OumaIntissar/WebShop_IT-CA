@@ -1,6 +1,6 @@
 <?php
-include '../../actions/db_connection.php';
-include('../menu/menu.php');
+    include '../../actions/db_connection.php';
+    include('../menu/menu.php');
 ?>
             <!-- partial -->
             <div class="main-panel">
