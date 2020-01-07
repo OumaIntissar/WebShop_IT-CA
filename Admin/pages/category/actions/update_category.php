@@ -1,5 +1,6 @@
 <?php 
-	include_once("../../../actions/db_connection.php");
+    include_once("../../../actions/db_connection.php");
+    session_start();
 	$category_name = $_POST["lab_name"];
     $category_desc = $_POST["text"];
     $category_state = $_POST["taskOption"];
@@ -17,8 +18,9 @@
         // add activity 
         $label = str_replace(" ","-",$category_name);
         $date = date("Y-m-d h:i:sa");
+        $id_adm = $_SESSION['id'];
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (5,1,'$label','$date')";
+                        VALUES (5,$id_adm,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
         }

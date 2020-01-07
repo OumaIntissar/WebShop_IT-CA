@@ -1,5 +1,6 @@
 <?php 
     include_once("../../../actions/db_connection.php");
+    session_start();
     $id_product = $_GET['id'];
     $sql = "UPDATE `product` SET `active`= '1' WHERE id_prod = '$id_product' ";
     if ($conn->query($sql)) {
@@ -11,8 +12,9 @@
         $prod_name = $row["label_prod"];
         $label = str_replace(" ","-",$prod_name);
         $date = date("Y-m-d h:i:sa");
+        $id_adm = $_SESSION['id'];
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (12,1,'$label','$date')";
+                        VALUES (12,$id_adm,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
         }
