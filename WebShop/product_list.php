@@ -24,14 +24,13 @@
 
 
     $number_product_in_cart = 0;
+	$total_price = 0;
 
 	if(isset($_SESSION["connected"])){
 		$id_costumer = $_SESSION['id_costumer'];
 	    $sql_cart_2 	 = "SELECT  * FROM cart WHERE id_customer=$id_costumer";
 		$result_cart_number_product_total_price = $conn->query($sql_cart_2);
 
-		$number_product_in_cart = 0;
-		$total_price = 0;
 	    while($row2 = $result_cart_number_product_total_price->fetch_assoc()) { 
 			$number_product_in_cart +=1;
 			$total_price += $row2["price_product"]*$row2["quantite_product"];
@@ -142,7 +141,7 @@
 									<div class="cart_content">
 										
 										<div class="cart_text"><a id="disabled_cart" style="display:none;" href="cart.php">Cart</a></div>
-										<div class="cart_price"><?php echo $total_price ?></div>
+										<div class="cart_price"><?php echo $total_price." DH" ?></div>
 									</div>
 								</div>
 							</div>
