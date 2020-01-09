@@ -141,7 +141,7 @@
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a id="disabled_cart" style="display:none;" href="cart.php">Cart</a></div>
-										<div class="cart_price"><?php echo $total_price ?></div>
+										<div class="cart_price"><?php echo $total_price." DH" ?></div>
 									</div>
 								</div>
 							</div>
