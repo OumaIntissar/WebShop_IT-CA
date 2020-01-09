@@ -305,7 +305,7 @@
 						</div>
 						  
 						<div class="cart_buttons">
-							<a href="command.php?id_product=<?php echo "Abdelali" ?>" class="btn btn-info btn-lg">
+							<a href="#?id_product=<?php echo "Abdelali" ?>" class="btn btn-info btn-lg">
           					<span class="glyphicon glyphicon-shopping-cart"></span> Order
        						 </a>
 							
