@@ -1,7 +1,48 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <?php
+    session_start();
     include_once("connection/db_connection.php");
     $sql_category    = "SELECT * FROM category WHERE status='1'";
     $result_category = $conn->query($sql_category);
+    $number_product_in_cart = 0;
+
+
+	if(isset($_SESSION["connected"])){
+		$id_costumer = $_SESSION['id_costumer'];
+	    $sql_cart_2 	 = "SELECT  * FROM cart WHERE id_customer=$id_costumer";
+		$result_cart_number_product_total_price = $conn->query($sql_cart_2);
+
+		$number_product_in_cart = 0;
+		$total_price = 0;
+	    while($row2 = $result_cart_number_product_total_price->fetch_assoc()) { 
+			$number_product_in_cart +=1;
+			$total_price += $row2["price_product"]*$row2["quantite_product"];
+		}
+		$connected = $_SESSION["connected"];
+		if($connected == "connected"){
+			echo
+				"<script>
+					$(document).ready(function(){
+					    $('#log_out_btn').css({'display': 'block'});
+					});
+					$(document).ready(function(){
+				    $('#home').css({'margin-top': '18px'});
+					}); 				
+					$(document).ready(function(){
+					    $('#sign_in').css({'display': 'none'});
+					});
+					$(document).ready(function(){
+					$('#registre').css({'display': 'none'});
+					});
+					$(document).ready(function(){
+					$('#disabled_cart').css({'display': 'block'});
+					});					
+				</script>
+
+				";
+		}
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +67,11 @@
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
+	<style type="text/css">
+		.product_price{margin-left:-160px; color:#FFD700!important;font-size:25px;}
+	</style>
 </head>
 
 <body>
@@ -36,11 +81,14 @@
 	<!-- Header -->
 	
 	<header class="header">
+
+		<!-- Top Bar -->
+
 		<!-- Header Main -->
+
 		<div class="header_main">
 			<div class="container">
 				<div class="row">
-
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
@@ -49,33 +97,34 @@
 					</div>
 
 					<!-- Search -->
-                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                        <div class="header_search">
-                            <div class="header_search_content">
-                                <div class="header_search_form_container">
-                                    <form action="product_list.php" method="GET" class="header_search_form clearfix">
-                                        <input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
-                                        <button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+						<div class="header_search">
+							<div class="header_search_content">
+								<div class="header_search_form_container">
+									<form action="product_list.php" method="GET" class="header_search_form clearfix">
+										<input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search" id="id_search">
+										<button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!-- Wishlist -->
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+							
 							<!-- Cart -->
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span><?php echo $number_product_in_cart ?></span></div>
 									</div>
-									<div class="cart_content">
-										<div class="cart_text"><a href="cart.php">Cart</a></div>
-										<div class="cart_price">$85</div>
+									<div class="cart_content"> 										
+										<div class="cart_text"><a id="disabled_cart" style="display:none;" href="cart.php">Cart</a></div>
+										<div class="cart_price"><?php echo $total_price ?></div>
 									</div>
 								</div>
 							</div>
@@ -102,25 +151,35 @@
 									<div class="cat_menu_text">categories</div>
 								</div>
 
+
+
 								<ul class="cat_menu">
-									<?php
-		                            // output data of each row
-		                            while($row = $result_category->fetch_assoc()) { 
-		                            	$id_cat  = $row["id_cat"];   
-		                            	$label_cat = $row["label_cat"];     
-		                            ?>
-										<li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
-									<?php } ?>
-									</ul>
+								<?php
+	                            // output data of each row
+	                            while($row = $result_category->fetch_assoc()) { 
+	                            	$id_cat  = $row["id_cat"];   
+	                            	$label_cat = $row["label_cat"];     
+	                            ?>
+									<li><a href="product_list.php?id_categorie=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
+								<?php } ?>
+								</ul>
 							</div>
 
 							<!-- Main Nav Menu -->
 
 							<div class="main_nav_menu ml-auto">
-								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
+								<ul class="standard_dropdown main_nav_dropdown" style="margin-top: -18px;" id="ul_menu_log_out">
+									<li><a href="index.php" id="home">Home
+											<i class="fas fa-chevron-down"></i>
+										</a>
+									</li>
+									<li><a href="sign_in.php" id="sign_in">Sign In<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_up.php" id="registre">Registre<i class="fas fa-chevron-down"></i></a></li>
+									<li>
+										<a href="log_out.php" id="log_out_btn" style="display:none">
+											<img src="images/log_out6.png" style="height: 33px;width: 33px;"><i class="fas fa-chevron-down"></i>
+										</a>
+									</li>
 								</ul>
 							</div>
 
@@ -134,90 +193,11 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
-		
-		<!-- Menu -->
-
-		<div class="page_menu">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						
-						<div class="page_menu_content">
-							
-							<div class="page_menu_search">
-								<form action="#">
-									<input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
-								</form>
-							</div>
-							<ul class="page_menu_nav">
-								<li class="page_menu_item has-children">
-									<a href="#">Language<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Currency<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item">
-									<a href="#">Home<i class="fa fa-angle-down"></i></a>
-								</li>
-								<li class="page_menu_item has-children">
-									<a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-										<li class="page_menu_item has-children">
-											<a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-											<ul class="page_menu_selection">
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-												<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-											</ul>
-										</li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								
-								<li class="page_menu_item has-children">
-									<a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-									<ul class="page_menu_selection">
-										<li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-										<li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-									</ul>
-								</li>
-								<li class="page_menu_item"><a href="blog.php">blog<i class="fa fa-angle-down"></i></a></li>
-								<li class="page_menu_item"><a href="contact.php">contact<i class="fa fa-angle-down"></i></a></li>
-							</ul>
-							
-							<div class="menu_contact">
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</header>
 
@@ -254,7 +234,6 @@
 						<div class="product_name">'.$row_prod["label_prod"].'</div>
 						<div class="product_text"><p>'.$row_prod["desc_prod"].'</p></div>
 						<div class="order_info d-flex flex-row">
-							<form action="#">
 								<div class="clearfix" style="z-index: 1000;">
 
 									<!-- Product Quantity -->
@@ -269,12 +248,26 @@
 
 								</div>
 
-								<div class="product_price">'.$row_prod["price_prod"].' MAD</div>
-								<div class="button_container">
-									<a href="cart.php"><button type="button" class="button cart_button">Add to Cart</button></a>
-								</div>
+								<div class="product_price">
+									
+									'.$row_prod["price_prod"].' MAD</div> <br><br>														
+
+								<div class="button_container">' ?>
+									<!-- Tahiri Start -->
+									<form method="GET" action="check_add_to_cart_if_connecter.php">
+										<input type="hidden" name="id_product" value="<?php echo $id_prod ?>">
+										<input type="hidden" name="number_product_in_cart" value="" >										
+			                            <button type="submit" name="btn_add_to_cart" value="click" style="border: none;color:white; border-radius: 40px!important;margin-top: 200px;margin-left: -230px;">
+				                            <a class="btn btn-info btn-lg"  >
+				                                <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart  
+				                            </a>
+				                        </button>
+			                        </form>	
+			                        <!-- Tahiri End -->
+
+								<?php echo 
+								'</div>
 								
-							</form>
 						</div>';
 					}
 						?>
@@ -365,8 +358,10 @@
 	</div>
 	<!-- Copyright End -->
 </div>
-
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="js/jquery.min"></script>
+<script src="jquery-ui.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/greensock/TweenMax.min.js"></script>
@@ -375,8 +370,15 @@
 <script src="plugins/greensock/animation.gsap.min.js"></script>
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
-<script src="js/product_custom.js"></script>
-</body>
+<script src="js/custom.js"></script>
+<script>
+$(function(){
+	$('#id_search').autocomplete({
+		source: "search_suggession.php",
+	});
+});
+</script>
 
 </html>
