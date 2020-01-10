@@ -1,14 +1,13 @@
 <?php
-    include_once("../../actions/db_connection.php");
-    $id_order = $_GET['id'];
 include('../menu/menu.php');
 ?>
-    echo 'kjhjkkjhkjh'.$id_order;
+<?php
+    include_once("../../actions/db_connection.php");
+    $id_order = $_POST['id'];
+    //echo $id_order;
     $sql = "SELECT * FROM `order` WHERE id_order = '$id_order'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-
-
 ?>
 
             <!-- partial -->
