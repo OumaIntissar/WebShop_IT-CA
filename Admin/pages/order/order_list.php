@@ -65,8 +65,8 @@ include('../menu/menu.php');
                                                     <button class='btn btn-outline-primary' type='submit'>View</button>
                                                   </form>";
                                             
-                                            //Approuve action is only possilble if the order status = 0
-                                            if($row["status"] == '0'):
+                                            //Approuve action is only possilble if the order status = 0 and user = seller or super admin
+                                            if($_SESSION['role'] != 'M' && $row["status"] == '0'):
                                                 echo "<form action='actions/approve_order.php' method='post'>
                                                         <input type='hidden' name='id' value='".$row["id_order"]."'>
                                                         <button class='btn btn-outline-primary' type='submit'>Approve</button>

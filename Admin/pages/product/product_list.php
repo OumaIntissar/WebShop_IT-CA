@@ -67,16 +67,19 @@ include('../menu/menu.php');
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <form action="modify_product.php?id=<?php echo $id_prod;?>" method="POST"> 
-                                                            <button class='btn btn-outline-primary' type="submit">Modify</button> 
-                                                        </form>
-                                                             <?php 
-                                                                 if($row["active"] == 1){
-                                                                    echo "<form action='actions/hide_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Hide</button></form>";
+                                                       <?php 
+                                                                // only the super admin and manager can execute these actions
+                                                                 if($_SESSION['role'] != 'S'){
+                                                                     echo "<form action='modify_product.php?id='".$id_prod."' method='POST'> 
+                                                                            <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                                        </form>";
+                                                                    if($row["active"] == 1){
+                                                                        echo "<form action='actions/hide_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Hide</button></form>";
+                                                                    }
+                                                                      else{
+                                                                        echo "<form action='actions/show_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Show</button></form>";
+                                                                      }
                                                                  }
-                                                                  else{
-                                                                    echo "<form action='actions/show_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Show</button></form>";
-                                                                  } 
                                                             ?>
                                                     </td>                                                  
                                                 </tr>
