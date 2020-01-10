@@ -67,11 +67,18 @@ include('../menu/menu.php');
                                             
                                             //Approuve action is only possilble if the order status = 0
                                             if($row["status"] == '0'):
-                                            echo "<form action='approuve_order.php' method='post'>
-                                                    <input type='hidden' name='id' value='".$row["id_order"]."'>
-                                                    <button class='btn btn-outline-primary' type='submit'>Approuve</button>
-                                                  </form>";
+                                                echo "<form action='actions/approve_order.php' method='post'>
+                                                        <input type='hidden' name='id' value='".$row["id_order"]."'>
+                                                        <button class='btn btn-outline-primary' type='submit'>Approve</button>
+                                                      </form>";
                                             endif;
+                                            if($_SESSION['role'] == 'A' && $row["status"] == '1'):
+                                                echo "<form action='actions/disapprove_order.php' method='post'>
+                                                        <input type='hidden' name='id' value='".$row["id_order"]."'>
+                                                        <button class='btn btn-outline-primary' type='submit'>Disapprove</button>
+                                                      </form>";
+                                            endif;
+                                            
                                             
                                             echo "</td>";
                                             //End of Action section
