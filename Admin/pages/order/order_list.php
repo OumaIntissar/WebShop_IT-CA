@@ -43,6 +43,7 @@ include('../menu/menu.php');
                                             
                                             echo "<tr>";
                                             echo "<td>".$counter."</td>"; $counter++;
+                                            
                                             echo "<td>".$row["code"]."</td>";
                                             echo "<td>".$row["date"]."</td>";
                                             
@@ -54,10 +55,9 @@ include('../menu/menu.php');
                                             //Determine order status 
                                             if($row["status"] == '0'){
                                                 echo "<td><label class='badge badge-warning'>Pending</label></td>";
-                                            }else 
-                                                echo "<td>
-                                                        <label class='badge badge-    success'>Delivered</label>
-                                                    </td>";
+                                            }else{
+                                                echo "<td><label class='badge badge-success'>Delivered</label></td>";
+                                            } 
                                             //Action section
                                             echo "<td>";
                                             echo "<form action='view_order.php' method='post'>
