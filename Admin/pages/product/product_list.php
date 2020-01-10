@@ -45,8 +45,11 @@ include('../menu/menu.php');
                                                     <td><?php echo $row["quantity_prod"]; ?></td>
                                                     <td>
                                                         <?php
-                                                            if($row["quantity_prod"] <= 0){
+                                                            if($row["quantity_prod"] == 0){
                                                                 echo "<label class='badge badge-danger'>Out Stock</label>";
+                                                            }
+                                                            else if($row["quantity_prod"] > 0  && $row["quantity_prod"] <= 10){
+                                                                echo "<label class='badge badge-secondary'>In Stock</label>";
                                                             }
                                                             else{
                                                                 echo "<label class='badge badge-success'>In Stock</label>";
