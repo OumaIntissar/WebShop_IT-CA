@@ -1,13 +1,23 @@
 <?php
     include_once("../../actions/db_connection.php");
     $id_order = $_GET['id'];
+<<<<<<< HEAD
 include('../menu/menu.php');
 ?>
+=======
+>>>>>>> origin/DEV_JAOUHARA
     echo 'kjhjkkjhkjh'.$id_order;
     $sql = "SELECT * FROM `order` WHERE id_order = '$id_order'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
+<<<<<<< HEAD
+=======
 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+>>>>>>> origin/DEV_JAOUHARA
 
 ?>
 
@@ -37,6 +47,7 @@ include('../menu/menu.php');
                                     <p class="mb-0 mt-5">Order Date : 17/07/2019</p>
                                     <p>Delivery Date : <span style="color: red">no delivered yet!</span></p>
                                 </div>
+<<<<<<< HEAD
                             </div>
                             <div class="container-fluid mt-5 d-flex justify-content-center w-100">
                                 <div class="table-responsive w-100">
@@ -65,6 +76,36 @@ include('../menu/menu.php');
                                     </table>
                                 </div>
                             </div>
+=======
+                            </div>
+                            <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                                <div class="table-responsive w-100">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>#</th>
+                                                <th>Label</th>
+                                                <th class="">Category</th>
+                                                <th class="text-right">Price</th>
+                                                <th class="text-right">Quantity</th>
+                                                <th class="text-right">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-right">
+                                                <td class="text-left">1</td>
+                                                <td class="text-left">Dell inspiron 15 5578</td>
+                                                <td class="text-left">Computers & laptops</td>
+                                                <td>2099 MAD</td>
+                                                <td>1</td>
+                                                <td>2099 MAD</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+>>>>>>> origin/DEV_JAOUHARA
                             <div class="container-fluid mt-5 w-100">
                                 <h4 class="text-right mb-5">Total : 2099 MAD</h4>
                                 <hr>
