@@ -13,11 +13,13 @@
         $label = str_replace(" ","-",$cat_name);
         $date = date("Y-m-d h:i:sa");
         $id_adm = $_SESSION['id'];
+        echo $id_adm."<br>".$label."<br>".$date;
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
                         VALUES (6,$id_adm,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
+            header("Location: ../category_list.php?success=true");
         }
-        header("Location: ../category_list.php?success=true"); 
+         
     }
 ?>

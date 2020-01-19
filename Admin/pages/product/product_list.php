@@ -70,7 +70,7 @@ include('../menu/menu.php');
                                                        <?php 
                                                                 // only the super admin and manager can execute these actions
                                                                  if($_SESSION['role'] != 'S'){
-                                                                     echo "<form action='modify_product.php?id='".$id_prod."' method='POST'> 
+                                                                     echo "<form action=modify_product.php?id=".$id_prod." method=POST> 
                                                                             <button class='btn btn-outline-primary' type='submit'>Modify</button> 
                                                                         </form>";
                                                                     if($row["active"] == 1){
