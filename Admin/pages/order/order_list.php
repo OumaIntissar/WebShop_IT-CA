@@ -44,7 +44,7 @@ include('../menu/menu.php');
                                             echo "<tr>";
                                             echo "<td>".$counter."</td>"; $counter++;
                                             
-                                            echo "<td>".$row["code"]."</td>";
+                                            echo "<td> #".$row["id_order"]."</td>";
                                             echo "<td>".$row["date"]."</td>";
                                             
                                             echo "<td>".$cost_row["full_name"]."</td>";

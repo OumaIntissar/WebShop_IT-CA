@@ -14,36 +14,43 @@
     }
     
 
-    $product_label = $_POST["label"];
+    $product_label = $conn -> real_escape_string($_POST["label"]);
     $product_price = $_POST["price"];
     $product_weight = $_POST["weight"];
-    $product_desc = $_POST["description"];
+    $product_desc = $conn -> real_escape_string($_POST["description"]);
     $product_image = $_FILES['image']['name'];
     $product_quantity = $_POST["quantity"];
 
     // the path to store the uploaded image
     $target = "../images/".basename($product_image);
 
-    $sql = "INSERT INTO product (label_prod, id_cat, price_prod, weight_prod, desc_prod, image_prod, quantity_prod)
-     VALUES ('$product_label', '$product_id_cat', '$product_price', '$product_weight', '$product_desc', '$product_image', '$product_quantity')";
+    $duplicat_sql = "SELECT * FROM `product` WHERE label_prod = '$product_label' AND id_cat = '$product_id_cat'"; 
+    $duplicat = mysqli_query($conn, $duplicat_sql) or die(mysqli_error($conn));
 
-    //move uploaded image to images folder
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $msg = "Image uploaded successfully";
-    }else{
-        $msg = "Failed to upload image";
-    }
+    if(mysqli_num_rows($duplicat) == 0){
 
-    if ($conn->query($sql)) {
-        // add activity 
-        $label = str_replace(" ","-",$product_label);
-        $date = date("Y-m-d h:i:sa");
-        $id_adm = $_SESSION['id'];
-        $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (1,$id_adm,'$label','$date')";
-        if ($conn->query($sql_activity)) {
-            echo "thats nice"; 
+        $sql = "INSERT INTO product (label_prod, id_cat, price_prod, weight_prod, desc_prod, image_prod, quantity_prod)
+         VALUES ('$product_label', '$product_id_cat', '$product_price', '$product_weight', '$product_desc', '$product_image', '$product_quantity')";
+
+        //move uploaded image to images folder
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $msg = "Image uploaded successfully";
+        }else{
+            $msg = "Failed to upload image";
         }
-        header("Location: ../new_product.php?success=true"); 
-    }
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        if ($result) {
+            // add activity 
+            $label = str_replace(" ","-",$product_label);
+            $date = date("Y-m-d h:i:sa");
+            $id_adm = $_SESSION['id'];
+            $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
+                            VALUES (1,$id_adm,'$label','$date')";
+            if ($conn->query($sql_activity)) {
+                echo "thats nice"; 
+            }
+            header("Location: ../new_product.php?success=true"); 
+        }else 'Something went wrong! product has not beel added!';
+        
+}else header("Location: ../new_product.php?success=false");
 ?>
