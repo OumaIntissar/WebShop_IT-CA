@@ -1,3 +1,13 @@
+
+<style>
+    .input-sh{
+        border: 1px solid #f6f2f2 !important;
+        font-weight: 400 !important;
+        font-size: 0.875rem !important;
+        height: auto !important;
+        padding: 0.875rem 0.875rem !important;
+    }
+</style>
 <?php
 include('../menu/menu.php');
 ?>
@@ -79,6 +89,25 @@ include('../menu/menu.php');
                                 </div>
                                 
                                 <div class="form-group row">
+                                    <!-- <label class="col-sm-3 col-form-label">Image</label> -->
+                                    <span class="file-upload-info col-sm-3 col-form-label">Choose files</span>    
+                                    <div class="input-group col-sm-9">
+                                        <input class ="btn btn-primary" type="file" name="image" multiple>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Image</label>
+                                    <div class="custom-file  col-sm-9 ">
+                                        <input type="file" name="image" class="custom-file-input  form-control" id="customFileLangHTML">
+                                        <label class="custom-file-label" for="customFileLangHTML" data-browse="Bestand kiezen">
+                                                Upload Imagez
+                                        </label>
+                                    </div>
+                                </div> -->
+                        
+                                
+<!--                                 
+                                <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Image</label>
                                     <input type="file" name="image" class="file-upload-default" required="required">
                                     
@@ -88,7 +117,7 @@ include('../menu/menu.php');
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 								<button class="btn btn-light" type="reset" onclick="location.href='product_list.php';">Cancel</button>
                             </form>

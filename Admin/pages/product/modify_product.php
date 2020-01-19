@@ -11,9 +11,9 @@ include('../menu/menu.php');
     if(mysqli_num_rows($res) > 0){
         $row = mysqli_fetch_assoc($res);
     }
-
+    
     $catId = $row["id_cat"];
-
+    //echo $prod_id;
     
 ?>
             <!-- partial -->
@@ -88,6 +88,13 @@ include('../menu/menu.php');
                                     <label for="description" class="col-sm-3 col-form-label">Description</label>
                                     <div class="col-sm-9">
                                         <textarea type="text" name="text" class="form-control" rows="7" id="description" placeholder="Description"><?php echo $row["desc_prod"]; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!-- <label class="col-sm-3 col-form-label">Image</label> -->
+                                    <span class="file-upload-info col-sm-3 col-form-label">Choose files</span>    
+                                    <div class="input-group col-sm-9">
+                                        <input class ="btn btn-primary" type="file" name="image" multiple>
                                     </div>
                                 </div>
                                 <!--<div class="form-group row">
