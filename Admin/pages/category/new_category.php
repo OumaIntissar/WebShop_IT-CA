@@ -48,6 +48,7 @@
         if(isset($_GET['success']))
             echo "<script>
                     Swal.fire({
+                      title: 'Added',
                       text: 'Add category succeded!',
                       type: 'success',
                       confirmButtonText: 'Ok'    

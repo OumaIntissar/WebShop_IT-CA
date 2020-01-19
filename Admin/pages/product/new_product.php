@@ -143,7 +143,18 @@ include('../menu/menu.php');
     <!-- container-scroller -->
 	<?php
         if(isset($_GET['success']))
-            echo "<script>showSwal('add-product-succeded');</script>";
+            echo "<script>
+                    Swal.fire({
+                      title: 'Added',
+                      text: 'Add product succeded!',
+                      type: 'success',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'product_list.php';
+                        }
+                    })      
+                  </script>";
     ?>
 
 
