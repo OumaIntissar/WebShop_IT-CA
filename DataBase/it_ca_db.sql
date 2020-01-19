@@ -1,27 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+DROP DATABASE IF EXISTS mundiaitca_db;
+
+CREATE DATABASE mundiaitca_db CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE mundiaitca_db;
 --
--- Hôte : 127.0.0.1
--- Généré le :  mar. 07 jan. 2020 à 22:25
--- Version du serveur :  10.1.36-MariaDB
--- Version de PHP :  7.2.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données :  `it_ca_db`
---
-
+  
 -- --------------------------------------------------------
 
 --
@@ -72,9 +55,33 @@ CREATE TABLE `activitylog` (
 --
 
 INSERT INTO `activitylog` (`id_activity`, `id_admin`, `label`, `Date`) VALUES
+(4, 4, 'Cat-98', '2020-01-07 11:51:21'),
+(4, 5, 'HEY', '2020-01-07 11:10:22'),
+(4, 5, 'Lenovo', '2020-01-07 11:18:37'),
+(5, 1, 'Ca1', '2020-01-07 11:22:20'),
+(5, 1, 'Cat1', '2020-01-07 11:38:25'),
+(5, 1, '', '2020-01-07 11:42:21'),
+(5, 1, 'Cat-1', '2020-01-07 11:42:41'),
+(5, 1, 'Cat-1', '2020-01-07 11:46:18'),
+(5, 1, 'Cat-1', '2020-01-07 11:47:44'),
 (6, 1, 'cat-1', '2020-01-07 09:24:55'),
+(7, 1, 'TAHIRI-ABDLALI', '2020-01-19 12:42:35'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 10:55:01'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 11:07:29'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 11:10:10'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 11:10:20'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 11:25:16'),
+(8, 5, 'Modify-name-or-email-or-mobile-for-NOUINOU-Othmane', '2020-01-19 11:25:22'),
+(8, 5, 'Modify-name-or-email-or-mobile-or-password-for-NOUINOU-Othmane', '2020-01-19 11:30:26'),
 (14, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 10:05:16'),
-(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 10:05:18');
+(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 10:05:18'),
+(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 11:07:35'),
+(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 11:07:53'),
+(15, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 11:19:29'),
+(15, 1, 'TAHIRI-ABDLALI', '2020-01-18 10:12:10'),
+(15, 1, 'CHANCHAF-JAouhara', '2020-01-19 12:34:18'),
+(16, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 11:07:46'),
+(16, 1, 'AIT-LECHGAR-Ayoub', '2020-01-07 11:09:24');
 
 -- --------------------------------------------------------
 
@@ -99,8 +106,10 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `full_name`, `email`, `password`, `role`, `status`, `mobile`, `date_C`) VALUES
 (1, 'AMEDDAH Ayoub', 'a.ameddah@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'A', 1, '677864195', '2020-01-06'),
-(2, 'AIT LECHGAR Ayoub', 'a.ait_lechgar@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'M', 1, '654789456', '2020-01-07'),
-(3, 'CHANCHAF JAouhara', 'j.chanchaf@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'S', 0, '688963145', '2020-01-07');
+(3, 'CHANCHAF Jouhara', 'j.chanchaf@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'S', 1, '688963145', '2020-01-07'),
+(4, 'AIT LECHGAR Ayoub', 'a.ait_lechgar@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'M', 1, '688963145', '2020-01-07'),
+(5, 'NOUINOU Othmane', 'ayoub.ameddah@gmail.com', 'a4f62393679a9b89ab351014f6606a3f', 'M', 1, '688963133', '2020-01-07'),
+(9, 'TAHIRI Abdali', 'a.tahiri@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'M', 0, '677864155', '2020-01-19');
 
 -- --------------------------------------------------------
 
@@ -120,14 +129,17 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
-(1, 'cat 1', 'Description of category1 google lictionnaire', 0),
+(1, 'Cat 1', 'GOgg', 0),
 (2, 'cat2', 'description hhh', 1),
 (3, 'cat3', 'descr', 1),
 (4, 'cat4', 'desc 4', 1),
 (5, 'cat 5', 'desc 5', 1),
 (6, 'cat6', 'desc 6', 1),
 (7, 'cat7', 'desc 7', 1),
-(8, 'cat8', 'desc 8', 1);
+(8, 'cat8', 'desc 8', 1),
+(9, 'HEY', 'Cat2', 1),
+(10, 'Lenovo', 'Pc gamer', 1),
+(11, 'Cat 98', 'Desc 98', 1);
 
 -- --------------------------------------------------------
 
@@ -282,19 +294,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `costumer`
@@ -321,6 +333,3 @@ ALTER TABLE `product`
   MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

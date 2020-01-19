@@ -1,3 +1,10 @@
+<?php
+    include '../../actions/db_connection.php';
+    $id = $_SESSION['id'];
+    $sql ="SELECT * FROM admin WHERE id_admin='$id'";
+    $res = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($res);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +73,7 @@
                         </div>
                         <div class="profile-name">
                             <p class="name">
-                                <?php echo $_SESSION['fullname']; ?>
+                                <?php echo $row['full_name']; ?>
                             </p>
                             <p class="designation">
                                 Super Admin
@@ -123,7 +130,7 @@
                     <div class="collapse" id="auth">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="../account/account_list.php">Account List</a></li>
-                            <li class="nav-item"> <a class="nav-link active" href="../account/new_account.php">New Account</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../account/new_account.php">New Account</a></li>
                         </ul>
                     </div>
                 </li>

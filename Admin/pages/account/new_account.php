@@ -55,35 +55,21 @@
                                 <div class="form-group row">
                                     <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
                                     <div class="col-sm-9">
-                                        <div class="row">
-                                            <div class="col-sm-9">
-                                                <input type="password" class="form-control" title="Password must contain at least 8 characters, including UPPER/lowercase and numbers." id="exampleInputPassword2" name="password"
-                                                       placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
-                                                   if(this.checkValidity()) form.repassword.pattern = RegExp.escape(this.value);">
-                                            </div>
-                                            <div class="col-sm-3 d-flex align-items-center">
-                                                <input type="checkbox" onclick="showPassword()"> Show Password
-                                            </div>
-                                        </div>
+                                        <input type="password" class="form-control" title="Password must contain at least 8 characters, including UPPER/lowercase and numbers." id="exampleInputPassword2" name="password"
+                                            placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                                            if(this.checkValidity()) form.repassword.pattern = RegExp.escape(this.value);">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
                                     <div class="col-sm-9">
-                                        <div class="row">
-                                            <div class="col-sm-9">
-                                                <input type="password" class="form-control" title="Please enter the same Password as above." id="exampleInputConfirmPassword2" name="repassword"
-                                                       placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="
-                                                       this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
-                                            </div>
-                                            <div class="col-sm-3 d-flex align-items-center">
-                                                <input type="checkbox" onclick="showPassword2()"> Show Password
-                                            </div>
-                                        </div>
+                                        <input type="password" class="form-control" title="Please enter the same Password as above." id="exampleInputConfirmPassword2" name="repassword"
+                                           placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="
+                                           this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button class="btn btn-light" type="reset" onclick="location.href='account_list.php';">Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -112,35 +98,12 @@
         }
     </script>
     <!-- End polyfill for RegExp.escape -->
-    <!-- Show password -->
-    <script>
-        function showPassword() {
-            var x = document.getElementById("exampleInputPassword2");
-            if (x.type == "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-    <!-- End show password -->
-    <!-- Show password 2 -->
-    <script>
-        function showPassword2() {
-            var x = document.getElementById("exampleInputConfirmPassword2");
-            if (x.type == "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-    <!-- End show password 2 -->
     <?php
     if(isset($_GET['success'])){
         echo "<script>
                     Swal.fire({
-                      text: 'Account has been added succefully!',
+                      title: 'Added!',
+                      text: 'Account has been added succefully',
                       type: 'success',
                       confirmButtonText: 'Ok'    
                     }).then((result) => {
@@ -152,7 +115,8 @@
     }else if (isset($_GET['error'])){
         echo "<script>
                     Swal.fire({
-                      text: 'Email already exists!',
+                      title: 'Added!',
+                      text: 'Email already exists',
                       type: 'warning',
                       confirmButtonText: 'Ok'    
                     }).then((result) => {

@@ -1,7 +1,8 @@
 <?php
+    session_start();
     include_once("../../../actions/db_connection.php");
     $id = $_GET['id'];
-    $id_admin = $_GET['id_admin'];
+    $id_admin = $_SESSION['id'];
     $sql = "UPDATE `admin` SET `status`= '0' WHERE id_admin = '$id' ";
     if ($conn->query($sql)) {
         // add activity
@@ -15,7 +16,6 @@
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
                             VALUES (14,$id_admin,'$label','$date')";
         if ($conn->query($sql_activity)) {
-            echo "thats nice";
         }
         header("Location: ../account_list.php");
     }

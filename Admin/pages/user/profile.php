@@ -1,11 +1,16 @@
 <?php
+    include '../../actions/db_connection.php';
     include('../menu/menu.php');
-    if($_SESSION['status'] == '1'){
+    $id = $_SESSION['id'];
+    $sql ="SELECT * FROM admin WHERE id_admin='$id'";
+    $res = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($res);
+    if($row['status'] == '1'){
         $status = 'Active';
     }else if($_SESSION['status'] == '0'){
         $status = 'Blocked';
     }
-    if ($_SESSION['role'] == 'A'){
+    if ($row['role'] == 'A'){
         $role = "Super Admin";
     } else if($_SESSION['role'] == 'M'){
         $role = "Manager";
@@ -23,7 +28,7 @@
                                     <div class="border-bottom text-center pb-4">
                                         <img src="https://via.placeholder.com/92x92" alt="profile" class="img-lg rounded-circle mb-3" />
                                         <div class="mb-3">
-                                            <h3><?php echo $_SESSION['fullname'] ?></h3>
+                                            <h3><?php echo $row['full_name'] ?></h3>
                                             <div class="d-flex align-items-center justify-content-center">
                                                 <h5 class="mb-0 mr-2 text-muted">Morocco</h5>
                                             </div>
@@ -49,7 +54,7 @@
                                                 Date of creation
                                             </span>
                                             <span class="float-right text-muted">
-                                                <?php echo date("m/d/Y", strtotime( $_SESSION['dateC'])) ?>
+                                                <?php echo date("m/d/Y", strtotime( $row['date_C'])) ?>
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -57,7 +62,7 @@
                                                 Phone
                                             </span>
                                             <span class="float-right text-muted">
-                                                +212<?php echo $_SESSION['mobile'] ?>
+                                                +212 <?php echo $row['mobile'] ?>
                                             </span>
                                         </p>
                                         <p class="clearfix">
@@ -65,12 +70,12 @@
                                                 E-Mail
                                             </span>
                                             <span class="float-right text-muted">
-                                                <?php echo $_SESSION['email'] ?>
+                                                <?php echo $row['email'] ?>
                                             </span>
                                         </p>
 
                                     </div>
-                                    <button class="btn btn-primary btn-block mb-2">Modify</button>
+                                    <button class="btn btn-primary btn-block mb-2" type="reset" onclick="location.href='../account/modify_account.php?id='+'<?php echo $_SESSION['id'] ?>';">Modify</button>
                                 </div>
                             </div>
                         </div>

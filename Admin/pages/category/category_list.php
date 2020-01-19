@@ -45,17 +45,20 @@ include('../menu/menu.php');
                                                             }   
                                                         echo "</td>";
                                                         echo "<td>";
-                                                        echo "<form action='modify_category.php?id=".$row['id_cat']."'              method='post'> <button class='btn btn-outline-primary'                type='submit'>Modify</button> 
-                                                               </form>";
-                                                        if($row["status"] == 1){
-                                                            echo "<form action='actions/hide_category.php?id=".$row['id_cat']."'              method='post'> 
-                                                              <button class='btn btn-outline-primary'>Hide</button> </form>";
-                                                        }
-                                                        else{
-                                                            echo "<form action='actions/show_category.php?id=".$row['id_cat']."'              method='post'> 
-                                                              <button class='btn btn-outline-primary'>Show</button> </form>";
-                                                        } 
-                                                        
+                                                        echo "<div class='row col-sm-10'>";
+                                                            echo "<div class='col-sm-5'>";
+                                                                echo "<form action='modify_category.php?id=".$row['id_cat']."' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                                       </form>";
+                                                            echo "</div>";
+                                                            echo "<div class='col-sm-5'>";
+                                                                    if($row["status"] == 1){
+                                                                    echo "<form action='actions/hide_category.php?id=".$row['id_cat']."' method='post'> 
+                                                                      <button class='btn btn-outline-primary'>Hide</button> </form>";
+                                                                } else{
+                                                                    echo "<form action='actions/show_category.php?id=".$row['id_cat']."' method='post'> 
+                                                                      <button class='btn btn-outline-primary'>Show</button> </form>";
+                                                                }
+                                                            echo "</div>";
                                                         echo "</td>";
                                                         echo "</tr>";
                                                         $counter ++;
@@ -87,7 +90,17 @@ include('../menu/menu.php');
     <!-- container-scroller -->
     <?php
         if(isset($_GET['success']))
-            echo "<script>showSwal('update-category-succeded');</script>";
+            echo "<script>
+                    Swal.fire({
+                      text: 'Update category succeded!',
+                      type: 'success',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'category_list.php';
+                        }
+                    })
+                  </script>";
     ?>
 </body>
 

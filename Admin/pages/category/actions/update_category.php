@@ -1,10 +1,11 @@
-<?php 
+<?php
+    session_start();
 	include_once("../../../actions/db_connection.php");
 	$category_name = $_POST["lab_name"];
     $category_desc = $_POST["text"];
     $category_state = $_POST["taskOption"];
     $category_id = $_POST["cat_id"];
-
+    $id_admin = $_SESSION['id'];
     if($category_state == "Active"){
 		$category_state = 1;
     }elseif ($category_state == "Hidden") {
@@ -18,7 +19,7 @@
         $label = str_replace(" ","-",$category_name);
         $date = date("Y-m-d h:i:sa");
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (5,1,'$label','$date')";
+                        VALUES (5,$id_admin,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
         }

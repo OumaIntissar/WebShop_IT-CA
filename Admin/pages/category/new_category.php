@@ -1,5 +1,6 @@
 <?php
-include('../menu/menu.php');
+    include('../menu/menu.php');
+    $id = $_SESSION['id'];
 ?>
 			<!-- partial -->
 			<div class="main-panel">
@@ -11,13 +12,13 @@ include('../menu/menu.php');
 								<div class="form-group row">
 									<label for="label" class="col-sm-3 col-form-label">Label</label>
 									<div class="col-sm-9">
-										<input type="text" name="label" class="form-control" id="label" placeholder="Label">
+										<input type="text" name="label" class="form-control" id="label" placeholder="Label" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="description" class="col-sm-3 col-form-label">Description</label>
 									<div class="col-sm-9">
-										<textarea type="text" class="form-control" name="text" rows="7" id="description" placeholder="Description"></textarea>
+										<textarea type="text" class="form-control" name="text" rows="7" id="description" placeholder="Description" required></textarea>
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -45,7 +46,17 @@ include('../menu/menu.php');
 	<!-- container-scroller -->
 	<?php
         if(isset($_GET['success']))
-            echo "<script>showSwal('add-category-succeded');</script>";
+            echo "<script>
+                    Swal.fire({
+                      text: 'Add category succeded!',
+                      type: 'success',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'category_list.php';
+                        }
+                    })      
+                  </script>";
     ?>
 	<!-- End custom js for this page-->
 </body>

@@ -62,20 +62,26 @@
                                                         $sql1 = "SELECT * FROM activitylog WHERE id_admin = '$id_ad' ";
                                                         $res1 = mysqli_query($conn, $sql1);
                                                         $row1 = mysqli_num_rows($res1);
-                                                        if($row1 == 0){
-                                                            echo "<form action='actions/block.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
-                                                                    <button class='btn btn-outline-primary' name='id'>Delete</button>
-                                                                  </form>";
-                                                        }
-                                                        if($row['status'] == 1){
-                                                            echo "<form action='actions/block.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
-                                                                    <button class='btn btn-outline-primary' name='id'>Block</button>
-                                                                  </form>";
-                                                        }elseif ($row['status'] == 0){
-                                                            echo "<form action='actions/unblock.php?id=".$row['id_admin']."&id_admin=".$id."'  method='post'>
-                                                                    <button class='btn btn-outline-primary'>unBlock</button>
-                                                                  </form>";
-                                                        }
+                                                        echo "<div class='row'>";
+                                                            echo "<div class='col-sm-5'>";
+                                                            if($row['status'] == 1){
+                                                                echo "<form action='actions/block.php?id=".$row['id_admin']."' method='post'>
+                                                                        <button class='btn btn-outline-primary'>Block</button>
+                                                                      </form>";
+                                                            }elseif ($row['status'] == 0){
+                                                                echo "<form action='actions/unblock.php?id=".$row['id_admin']."' method='post'>
+                                                                        <button class='btn btn-outline-primary'>unBlock</button>
+                                                                      </form>";
+                                                            }
+                                                            echo "</div>";
+                                                            echo "<div class='col-sm-6'>";
+                                                            if($row1 == 0){
+                                                                echo "<form action='actions/delete.php?id=".$row['id_admin']."' method='post'>
+                                                                            <button class='btn btn-outline-primary'>Delete</button>
+                                                                          </form>";
+                                                            }
+                                                            echo "</div>";
+                                                        echo "</div>";
                                                         echo "</td>";
                                                     echo "</tr>";
                                                 }

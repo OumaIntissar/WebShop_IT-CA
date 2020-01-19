@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include('../../../actions/db_connection.php');
+    $id_admin = $_SESSION['id'];
     $fullName = $_POST['fullname'];
     $role = $_POST['role'];
     $email = $_POST['email'];
@@ -20,7 +22,13 @@
         $sql1 = "INSERT INTO admin (`full_name`, `email`, `password`, `role`, `status`, `mobile`, `date_C`) VALUES 
                                                 ('$fullName', '$email', '$password', '$role', '$status', '$phone', '$date')";
         if (mysqli_query($conn, $sql1)){
-            header('location: ../new_account.php?success=true');
+            $label = str_replace(" ","-",$fullName);
+            $date = date("Y-m-d h:i:sa");
+            $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
+                            VALUES (7,$id_admin,'$label','$date')";
+            if ($conn->query($sql_activity)) {
+                header('location: ../new_account.php?success=true');
+            }
         }
     }
 ?>
