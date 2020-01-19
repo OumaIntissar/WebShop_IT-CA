@@ -1,22 +1,35 @@
-
 DROP DATABASE IF EXISTS mundiaitca_db;
 CREATE DATABASE mundiaitca_db CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE mundiaitca_db;
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `mundiaitca_db`
+--
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity`
+-- Structure de la table `activity`
 --
-
 DROP TABLE IF EXISTS `activity`;
-CREATE TABLE IF NOT EXISTS `activity` (
-  `id_activity` int(20) NOT NULL AUTO_INCREMENT,
-  `name_activity` varchar(16) NOT NULL,
-  PRIMARY KEY (`id_activity`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `activity` (
+  `id_activity` int(20) NOT NULL,
+  `name_activity` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `activity`
+-- Déchargement des données de la table `activity`
 --
 
 INSERT INTO `activity` (`id_activity`, `name_activity`) VALUES
@@ -39,20 +52,18 @@ INSERT INTO `activity` (`id_activity`, `name_activity`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activitylog`
+-- Structure de la table `activitylog`
 --
-
 DROP TABLE IF EXISTS `activitylog`;
-CREATE TABLE IF NOT EXISTS `activitylog` (
+CREATE TABLE `activitylog` (
   `id_activity` int(20) NOT NULL,
   `id_admin` int(20) NOT NULL,
   `label` varchar(500) NOT NULL,
-  `Date` datetime NOT NULL,
-  PRIMARY KEY (`id_activity`,`id_admin`,`Date`)
+  `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `activitylog`
+-- Déchargement des données de la table `activitylog`
 --
 
 INSERT INTO `activitylog` (`id_activity`, `id_admin`, `label`, `Date`) VALUES
@@ -87,24 +98,22 @@ INSERT INTO `activitylog` (`id_activity`, `id_admin`, `label`, `Date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
-
 DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
   `full_name` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` varchar(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `mobile` varchar(10) NOT NULL,
-  `date_C` date NOT NULL,
-  PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `date_C` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Déchargement des données de la table `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `full_name`, `email`, `password`, `role`, `status`, `mobile`, `date_C`) VALUES
@@ -114,23 +123,20 @@ INSERT INTO `admin` (`id_admin`, `full_name`, `email`, `password`, `role`, `stat
 (5, 'NOUINOU Othmane', 'ayoub.ameddah@gmail.com', 'a4f62393679a9b89ab351014f6606a3f', 'M', 1, '688963133', '2020-01-07'),
 (9, 'TAHIRI Abdali', 'a.tahiri@mundiapolis.ma', 'ea5ba0edfb4ff7023e53cf105b9d8ace', 'M', 0, '677864155', '2020-01-19');
 
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Structure de la table `cart`
 --
-
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `id_cart` int(20) NOT NULL,
   `id_product` int(20) NOT NULL,
   `name_product` varchar(150) NOT NULL,
   `img_product` varchar(300) NOT NULL,
-  `quantite_product` int(11) NOT NULL DEFAULT 1,
+  `quantite_product` int(11) NOT NULL DEFAULT '1',
   `price_product` double NOT NULL,
-  `id_customer` int(20) NOT NULL,
-    PRIMARY KEY (`id_cart`)
+  `id_customer` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -146,16 +152,14 @@ INSERT INTO `cart` (`id_cart`, `id_product`, `name_product`, `img_product`, `qua
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Structure de la table `category`
 --
-
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id_cat` int(11) NOT NULL,
   `label_cat` varchar(20) NOT NULL,
   `desc_cat` varchar(100) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id_cat`)
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -175,17 +179,15 @@ INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `costumer`
+-- Structure de la table `costumer`
 --
-
 DROP TABLE IF EXISTS `costumer`;
 CREATE TABLE `costumer` (
   `id_cost` int(100) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `phone` int(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  PRIMARY KEY (`id_cost`)
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -203,12 +205,11 @@ INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `password`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Structure de la table `order`
 --
-
 DROP TABLE IF EXISTS `order`;
-CREATE TABLE IF NOT EXISTS `order` (
-  `id_order` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `order` (
+  `id_order` int(20) NOT NULL,
   `code` varchar(100) NOT NULL,
   `date` datetime NOT NULL,
   `id_cost` int(100) NOT NULL,
@@ -217,12 +218,11 @@ CREATE TABLE IF NOT EXISTS `order` (
   `phone` varchar(10) NOT NULL,
   `total_price` decimal(11,2) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `delivery_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `delivery_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order`
+-- Déchargement des données de la table `order`
 --
 
 INSERT INTO `order` (`id_order`, `code`, `date`, `id_cost`, `address`, `id_ville`, `phone`, `total_price`, `status`, `delivery_date`) VALUES
@@ -232,20 +232,18 @@ INSERT INTO `order` (`id_order`, `code`, `date`, `id_cost`, `address`, `id_ville
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_product`
+-- Structure de la table `order_product`
 --
-
 DROP TABLE IF EXISTS `order_product`;
-CREATE TABLE IF NOT EXISTS `order_product` (
+CREATE TABLE `order_product` (
   `quantity` int(10) NOT NULL,
   `id_prod` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
-  `id_order_product` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_order_product`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `id_order_product` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `order_product`
+-- Déchargement des données de la table `order_product`
 --
 
 INSERT INTO `order_product` (`quantity`, `id_prod`, `id_order`, `id_order_product`) VALUES
@@ -258,9 +256,8 @@ INSERT INTO `order_product` (`quantity`, `id_prod`, `id_order`, `id_order_produc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Structure de la table `product`
 --
-
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id_prod` int(100) NOT NULL,
@@ -270,10 +267,9 @@ CREATE TABLE `product` (
   `weight_prod` decimal(11,2) NOT NULL,
   `desc_prod` varchar(100) NOT NULL,
   `image_prod` varchar(100) NOT NULL,
-  `active` tinyint(1) DEFAULT 0,
+  `active` tinyint(1) DEFAULT '0',
   `quantity_prod` int(11) NOT NULL,
-  `viwed` bigint(20) NOT NULL,
-  PRIMARY KEY (`id_prod`)
+  `viwed` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -318,16 +314,16 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Index pour la table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id_cat`);
-
---
 -- Index pour la table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id_cart`);
+
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id_cat`);
 
 --
 -- Index pour la table `costumer`
@@ -361,13 +357,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_activity` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT pour la table `category`
@@ -382,27 +384,24 @@ ALTER TABLE `costumer`
   MODIFY `id_cost` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT pour la table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id_cart` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
-
---
 -- AUTO_INCREMENT pour la table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id_order_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
   MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+COMMIT;
 
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
