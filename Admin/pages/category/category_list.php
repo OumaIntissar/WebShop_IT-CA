@@ -90,7 +90,7 @@ include('../menu/menu.php');
     </div>
     <!-- container-scroller -->
     <?php
-        if(isset($_GET['success']))
+        if(isset($_GET['success'])){
             echo "<script>
                     Swal.fire({
                       text: 'Update category succeded!',
@@ -102,6 +102,8 @@ include('../menu/menu.php');
                         }
                     })
                   </script>";
+        }
+            
     ?>
 </body>
 

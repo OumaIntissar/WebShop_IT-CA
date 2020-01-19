@@ -45,7 +45,7 @@
 	</div>
 	<!-- container-scroller -->
 	<?php
-        if(isset($_GET['success']))
+        if(isset($_GET['success'])&& $_GET['success'] == 'true'){
             echo "<script>
                     Swal.fire({
                       title: 'Added',
@@ -58,6 +58,21 @@
                         }
                     })      
                   </script>";
+        }
+        else if (isset($_GET['success']) && $_GET['success'] == 'false'){
+            echo "<script>
+                    Swal.fire({
+                      title: 'Duplicate',
+                      text: 'Category already exists!',
+                      type: 'warning',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'new_category.php';
+                        }
+                    })     
+                  </script>";
+        }
     ?>
 	<!-- End custom js for this page-->
 </body>
