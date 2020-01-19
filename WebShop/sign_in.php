@@ -3,7 +3,7 @@
     include_once("connection/db_connection.php");
     if(isset($_GET["btn_sing_in"])){
 	    $username = $_GET['username'];
-	    $password = $_GET['password'];
+	    $password = md5($_GET['password']);
 
 	    $sql_costumers = "SELECT * FROM costumer";
 	    $result_costumers = $conn->query($sql_costumers);

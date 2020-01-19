@@ -10,11 +10,15 @@
     
     if($pswd == $confpswd){
 
+        $pswd = md5($pswd);
         $sql = "INSERT INTO costumer (full_name, phone, email, password)
         VALUES ('$name', '$phone', '$email', '$pswd')";
 
         if ($conn->query($sql)) {
             header("Location: ../sign_in.php"); 
+        }else{
+            header("Location: ../sign_up.php"); 
+           
         }
 
     }else{
