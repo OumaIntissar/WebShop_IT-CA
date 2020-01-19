@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/web_logo.jpeg" />
 </head>
 
 <body>
@@ -60,7 +60,8 @@
               </form>
             </div>
           </div>
-          <div class="col-lg-6 login-half-bg d-flex flex-row">
+          <div class="col-lg-6 d-flex flex-row">
+              <img src="../../images/web_logo.jpeg">
             <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2019  All rights reserved.</p>
           </div>
         </div>

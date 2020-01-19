@@ -122,26 +122,26 @@ INSERT INTO `admin` (`id_admin`, `full_name`, `email`, `password`, `role`, `stat
 --
 
 DROP TABLE IF EXISTS `cart`;
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id_cart` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cart` (
+  `id_cart` int(20) NOT NULL,
   `id_product` int(20) NOT NULL,
   `name_product` varchar(150) NOT NULL,
   `img_product` varchar(300) NOT NULL,
-  `quantite_product` int(11) NOT NULL DEFAULT '1',
+  `quantite_product` int(11) NOT NULL DEFAULT 1,
   `price_product` double NOT NULL,
   `id_customer` int(20) NOT NULL,
-  PRIMARY KEY (`id_cart`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
+    PRIMARY KEY (`id_cart`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `cart`
+-- Déchargement des données de la table `cart`
 --
 
 INSERT INTO `cart` (`id_cart`, `id_product`, `name_product`, `img_product`, `quantite_product`, `price_product`, `id_customer`) VALUES
-(118, 16, 'abdelali', 'images/laptop.jpg', 2, 10000, 4),
-(119, 6, 'Casque Bluetooth B&O H7 Sans Fil', 'images/casque.png', 3, 1000, 4),
-(120, 8, 'The Apple Watch Series 5 ', 'images/apple.jpg  ', 2, 500, 4),
-(122, 7, 'sony playstation 4 Pro 1 To', 'images/sony.jpg', 1, 5000, 4);
+(127, 8, 'The Apple Watch Series 5 ', 'images/apple.jpg  ', 10, 500, 4),
+(129, 6, 'Casque Bluetooth B&O H7 Sans Fil', 'images/casque0.png', 2, 1000, 4),
+(135, 7, 'sony playstation 4 Pro 1 To', 'images/sony.jpg', 3, 5000, 4),
+(136, 13, 'BLU Studio Mini -5.5HD Smartphone, 32GB+2GB Ram -Black', 'images/phone9.png', 3, 9999.99, 4);
 
 -- --------------------------------------------------------
 
@@ -150,16 +150,16 @@ INSERT INTO `cart` (`id_cart`, `id_product`, `name_product`, `img_product`, `qua
 --
 
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `id_cat` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `category` (
+  `id_cat` int(11) NOT NULL,
   `label_cat` varchar(20) NOT NULL,
   `desc_cat` varchar(100) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `category`
+-- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
@@ -170,10 +170,7 @@ INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
 (5, 'cat 5', 'desc 5', 1),
 (6, 'cat6', 'desc 6', 1),
 (7, 'cat7', 'desc 7', 1),
-(8, 'cat8', 'desc 8', 1),
-(9, 'HEY', 'Cat2', 1),
-(10, 'Lenovo', 'Pc gamer', 1),
-(11, 'Cat 98', 'Desc 98', 1);
+(8, 'cat8', 'desc 8', 1);
 
 -- --------------------------------------------------------
 
@@ -182,25 +179,26 @@ INSERT INTO `category` (`id_cat`, `label_cat`, `desc_cat`, `status`) VALUES
 --
 
 DROP TABLE IF EXISTS `costumer`;
-CREATE TABLE IF NOT EXISTS `costumer` (
-  `id_cost` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `costumer` (
+  `id_cost` int(100) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `phone` int(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `Date` datetime NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(20) NOT NULL,
   PRIMARY KEY (`id_cost`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `costumer`
+-- Déchargement des données de la table `costumer`
 --
 
-INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `Date`, `password`) VALUES
-(1, 'Oumaiyma', 632512, 'oumaintissar@gmail.com', '0000-00-00 00:00:00', ''),
-(2, 'Ayoub', 632512, 'ayoub@gmail.com', '0000-00-00 00:00:00', '123456'),
-(3, 'Oumaiyma', 632512, 'o.intissar@mundiapolis.ma', '0000-00-00 00:00:00', '123456'),
-(4, 'abdelali Tahiri', 645768909, 'a.tahiri@mundiapolis.ma', '2020-01-09 00:00:00', 'azert');
+INSERT INTO `costumer` (`id_cost`, `full_name`, `phone`, `email`, `password`) VALUES
+(1, 'abdelali', 690897890, 'a.tahiri@mundia.ma', '12345'),
+(2, 'ayoub', 656473898, 'a.ayoub@mundia.ma', 'azert'),
+(3, '', 0, 'a.tahiri@mundiapolis.ma', '12345'),
+(4, '', 0, 'aaaa', 'aaaa'),
+(5, '', 0, 'bbbb', 'bbbb'),
+(6, '', 0, 'cccc', 'cccc');
 
 -- --------------------------------------------------------
 
@@ -264,38 +262,38 @@ INSERT INTO `order_product` (`quantity`, `id_prod`, `id_order`, `id_order_produc
 --
 
 DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `id_prod` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `id_prod` int(100) NOT NULL,
   `label_prod` varchar(100) NOT NULL,
   `id_cat` int(100) NOT NULL,
   `price_prod` decimal(11,2) NOT NULL,
   `weight_prod` decimal(11,2) NOT NULL,
   `desc_prod` varchar(100) NOT NULL,
   `image_prod` varchar(100) NOT NULL,
-  `active` tinyint(1) DEFAULT '0',
+  `active` tinyint(1) DEFAULT 0,
   `quantity_prod` int(11) NOT NULL,
+  `viwed` bigint(20) NOT NULL,
   PRIMARY KEY (`id_prod`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product`
+-- Déchargement des données de la table `product`
 --
 
-INSERT INTO `product` (`id_prod`, `label_prod`, `id_cat`, `price_prod`, `weight_prod`, `desc_prod`, `image_prod`, `active`, `quantity_prod`) VALUES
-(5, 'Huawei Mediapad Téléphone Tablette', 2, '8000.00', '23.30', 'tdesription 2', 'huwawei.jpg', 1, 2),
-(6, 'Casque Bluetooth B&O H7 Sans Fil', 2, '1000.00', '0.00', '', 'casque.png', 1, 1),
-(7, 'sony playstation 4 Pro 1 To', 1, '5000.00', '6.00', 'PC Portable', 'sony.jpg', 1, 5),
-(8, 'The Apple Watch Series 5 ', 2, '500.00', '999.00', 'ffdgdgd', 'apple.jpg  ', 1, 4464),
-(9, 'AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black', 4, '36999.99', '2.00', 'DESC', 'id8.jpg', 1, 2),
-(10, 'P', 3, '2.00', '2.00', 'DESC', 'featured_2.png', 0, 2),
-(11, 'Ifecco Bluetooth Headphones, 4 in 1 Upgrade Bluetooth Over-Ear Headsets', 4, '799.99', '23.80', 'description ', 'id9.jpg', 1, 4),
-(12, 'Ifecco Bluetooth Headphones, 4 in 1 Upgrade Bluetooth Over-Ear Headsets', 5, '799.99', '23.80', 'description ', 'id9.jpg', 1, 4),
-(13, 'BLU Studio Mini -5.5HD Smartphone, 32GB+2GB Ram -Black', 3, '9999.99', '23.45', 'decccccc', 'phone9.png', 1, 23),
-(14, 'MSI P65 Creator-1084 15.6\" 4K UHD Display, Ultra-Thin and Light', 6, '3999.99', '233.89', 'deccccc', 'best_1.png', 1, 23),
-(15, 'MSI P65 Creator-1084 15.6\" 4K, Ultra-Thin and Light,RTX Studio Laptop', 2, '14999.99', '244.90', 'decc', 'laptop.jpg', 1, 11),
-(16, 'abdelali', 4, '10000.00', '200.20', 'desc   vvv', 'laptop.jpg', 1, 3),
-(17, 'tahiri', 4, '12000.00', '23.90', 'gggggg', 'adv_3.png', 1, 2),
-(18, 'Bouteille', 4, '444.00', '4444.00', '444444', 'adv_2.png', 1, 4444);
+INSERT INTO `product` (`id_prod`, `label_prod`, `id_cat`, `price_prod`, `weight_prod`, `desc_prod`, `image_prod`, `active`, `quantity_prod`, `viwed`) VALUES
+(1, 'Whirepool Refrigerator 1.20X0.70 9.99', 0, '8000.00', '20.90', 'bllllllllaaaaa description', 'img is here', 0, 10, 5),
+(5, 'Huawei Mediapad Téléphone Tablette', 2, '8000.00', '23.30', 'tdesription 2', 'images/huwawei.jpg', 1, 2, 3),
+(6, 'Casque Bluetooth B&O H7 Sans Fil', 2, '1000.00', '0.00', '', 'images/casque0.png', 1, 1, 14),
+(7, 'sony playstation 4 Pro 1 To', 0, '5000.00', '6.00', 'PC Portable', 'images/sony.jpg', 1, 5, 3),
+(8, 'The Apple Watch Series 5 ', 2, '500.00', '999.00', 'ffdgdgd', 'images/apple.jpg  ', 1, 4464, 11),
+(9, 'AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black', 4, '36999.99', '2.00', 'DESC', 'images/id8.jpg', 1, 2, 4),
+(10, 'P', 3, '2.00', '2.00', 'DESC', 'forest-3840x2160-4k-5k-wallpaper-trees-sunlight-fog-autumn-5726.jpg', 0, 2, 0),
+(12, 'Ifecco Bluetooth Headphones, 4 in 1 Upgrade Bluetooth Over-Ear Headsets', 5, '799.99', '23.80', 'description ', 'images/id9.jpg', 1, 4, 0),
+(13, 'BLU Studio Mini -5.5HD Smartphone, 32GB+2GB Ram -Black', 3, '9999.99', '23.45', 'decccccc', 'images/phone9.png', 1, 23, 2),
+(14, 'MSI P65 Creator-1084 15.6\" 4K UHD Display, Ultra-Thin and Light', 6, '3999.99', '233.89', 'deccccc', 'images/laptop.jpg', 1, 23, 5),
+(15, 'MSI P65 Creator-1084 15.6\" 4K, Ultra-Thin and Light,RTX Studio Laptop', 2, '14999.99', '244.90', 'decc', 'images/laptop.jpg', 1, 11, 0),
+(16, 'abdelali', 4, '10000.00', '200.20', 'desc   vvv', 'images/laptop.jpg', 1, 3, 2),
+(17, 'tahiri', 4, '12000.00', '23.90', 'gggggg', '', 1, 2, 0);
 
 --
 -- Index pour les tables déchargées
@@ -324,6 +322,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id_cat`);
+
+--
+-- Index pour la table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_cart`);
 
 --
 -- Index pour la table `costumer`
@@ -369,13 +373,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `costumer`
 --
 ALTER TABLE `costumer`
-  MODIFY `id_cost` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cost` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT pour la table `order`
@@ -393,19 +403,6 @@ ALTER TABLE `order_product`
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-(1, 'Whirepool Refrigerator 1.20X0.70 9.99', 2, '8000.00', '20.90', 'bllllllllaaaaa description', 'img is here', 0, 10),
-(2, 'Huawei Mediapad Téléphone Tablette', 2, '8000.00', '23.30', 'tdesription 2', 'images/huwawei.jpg', 1, 2),
-(3, 'Casque Bluetooth B&O H7 Sans Fil', 2, '1000.00', '0.00', '', 'images/casque.png', 1, 1),
-(7, 'sony playstation 4 Pro 1 To', 0, '5000.00', '6.00', 'PC Portable', 'images/sony.jpg', 1, 5),
-(8, 'The Apple Watch Series 5 ', 2, '500.00', '999.00', 'ffdgdgd', 'images/apple.jpg  ', 1, 4464),
-(9, 'AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black', 4, '36999.99', '2.00', 'DESC', 'images/id8.jpg', 1, 2),
-(10, 'P', 3, '2.00', '2.00', 'DESC', 'forest-3840x2160-4k-5k-wallpaper-trees-sunlight-fog-autumn-5726.jpg', 0, 2),
-(12, 'Ifecco Bluetooth Headphones, 4 in 1 Upgrade Bluetooth Over-Ear Headsets', 5, '799.99', '23.80', 'description ', 'images/id9.jpg', 1, 4),
-(13, 'BLU Studio Mini -5.5HD Smartphone, 32GB+2GB Ram -Black', 3, '9999.99', '23.45', 'decccccc', 'images/phone9.png', 1, 23),
-(14, 'MSI P65 Creator-1084 15.6\" 4K UHD Display, Ultra-Thin and Light', 6, '3999.99', '233.89', 'deccccc', 'images/laptop.jpg', 1, 23),
-(15, 'MSI P65 Creator-1084 15.6\" 4K, Ultra-Thin and Light,RTX Studio Laptop', 2, '14999.99', '244.90', 'decc', 'images/laptop.jpg', 1, 11),
-(16, 'abdelali', 4, '10000.00', '200.20', 'desc   vvv', 'images/laptop.jpg', 1, 3),
-(17, 'tahiri', 4, '12000.00', '23.90', 'gggggg', '', 1, 2);
+  MODIFY `id_prod` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 

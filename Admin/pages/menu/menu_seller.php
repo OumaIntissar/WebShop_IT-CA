@@ -23,7 +23,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/web_logo.jpeg" />
 </head>
 
 <body>
@@ -31,8 +31,7 @@
     <!-- partial:../../partials/_navbar.php -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-left navbar-brand-wrapper d-flex align-items-center justify-content-between">
-            <a class="navbar-brand brand-logo" href="index.php"><img src="../../images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../../images/logo-mini.svg" alt="logo" /></a>
+            <h4 style="color:white;">ONE Tech</h4>
             <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="mdi mdi-menu"></span>
             </button>
@@ -69,7 +68,7 @@
                 <li class="nav-item nav-profile">
                     <a class="nav-link d-flex" href="../user/profile.php">
                         <div class="profile-image">
-                            <img src="https://via.placeholder.com/37x37" alt="image">
+                            <img src="../../images/web_logo.jpeg" alt="image">
                         </div>
                         <div class="profile-name">
                             <p class="name">

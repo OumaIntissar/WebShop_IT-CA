@@ -26,7 +26,7 @@
                             <div class="row">
                                 <div class="col-sm-6 text-center mx-auto">
                                     <div class="border-bottom text-center pb-4">
-                                        <img src="https://via.placeholder.com/92x92" alt="profile" class="img-lg rounded-circle mb-3" />
+                                        <img src="../../images/web_logo.jpeg" alt="profile" class="img-lg rounded-circle mb-3" />
                                         <div class="mb-3">
                                             <h3><?php echo $row['full_name'] ?></h3>
                                             <div class="d-flex align-items-center justify-content-center">
