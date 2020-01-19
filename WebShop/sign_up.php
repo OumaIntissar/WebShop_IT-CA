@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sing in</title>
+<title>Sing up</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -45,7 +45,7 @@
 						</span>
 					</div>
 
-                    <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+                    <div class="wrap-input100 validate-input m-b-10" data-validate = "tel is required in this format 632145698 or 798654123">
 						<input class="input100" type="tel" name="phone" pattern="[6,7]{1}[0-9]{8}" placeholder="Phone number" required="required">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="container-login100-form-btn p-t-10">
-						<button class="login100-form-btn">
+						<button type ="submit" class="login100-form-btn">
                         Register
 						</button>
 					</div>
