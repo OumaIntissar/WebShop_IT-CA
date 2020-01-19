@@ -142,7 +142,7 @@ include('../menu/menu.php');
     </div>
     <!-- container-scroller -->
 	<?php
-        if(isset($_GET['success']))
+        if(isset($_GET['success']) && $_GET['success'] == 'true'){
             echo "<script>
                     Swal.fire({
                       title: 'Added',
@@ -155,6 +155,21 @@ include('../menu/menu.php');
                         }
                     })      
                   </script>";
+        }else if(isset($_GET['success']) && $_GET['success'] == 'false'){
+            echo "<script>
+                    Swal.fire({
+                      title: 'Duplicate',
+                      text: 'Product already exists!',
+                      type: 'warning',
+                      confirmButtonText: 'Ok'    
+                    }).then((result) => {
+                        if (result.value) {
+                          window.location = 'new_product.php';
+                        }
+                    })      
+                  </script>";
+        }
+            
     ?>
 
 
