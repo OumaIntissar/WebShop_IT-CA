@@ -269,7 +269,7 @@ CREATE TABLE `product` (
   `image_prod` varchar(100) NOT NULL,
   `active` tinyint(1) DEFAULT '0',
   `quantity_prod` int(11) NOT NULL,
-  `viwed` bigint(20) NOT NULL
+  `viwed` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
