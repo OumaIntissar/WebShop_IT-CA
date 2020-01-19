@@ -2,6 +2,7 @@
     $msg ="";
 
     include_once("../../../actions/db_connection.php");
+    session_start();
     
     $product_label_cat = $_POST["category"];
     $res_cat =  mysqli_query($conn, "SELECT * FROM category WHERE label_cat='$product_label_cat'");
@@ -37,8 +38,9 @@
         // add activity 
         $label = str_replace(" ","-",$product_label);
         $date = date("Y-m-d h:i:sa");
+        $id_adm = $_SESSION['id'];
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (1,1,'$label','$date')";
+                        VALUES (1,$id_adm,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
         }

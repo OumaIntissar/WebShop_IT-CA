@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once("../../../actions/db_connection.php");
+    session_start();
     $category_name = $_POST["label"];
     $category_description = $_POST["text"];
     $id_admin = $_SESSION['id'];

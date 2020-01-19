@@ -38,15 +38,18 @@ include('../menu/menu.php');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $id_prod ?></td>
-                                                    <td><?php echo $row["image_prod"]; ?></td>
+                                                    <td><img src="<?php echo "images/".$row["image_prod"]; ?>" alt="Smiley face" height="60" width="55"></td>
                                                     <td><?php echo $row["label_prod"]; ?></td>
                                                     <td><?php echo $row["label_cat"]; ?></td>  
                                                     <td><?php echo $row["price_prod"]; ?></td>
                                                     <td><?php echo $row["quantity_prod"]; ?></td>
                                                     <td>
                                                         <?php
-                                                            if($row["quantity_prod"] <= 0){
+                                                            if($row["quantity_prod"] == 0){
                                                                 echo "<label class='badge badge-danger'>Out Stock</label>";
+                                                            }
+                                                            else if($row["quantity_prod"] > 0  && $row["quantity_prod"] <= 10){
+                                                                echo "<label class='badge badge-secondary'>In Stock</label>";
                                                             }
                                                             else{
                                                                 echo "<label class='badge badge-success'>In Stock</label>";
@@ -64,16 +67,19 @@ include('../menu/menu.php');
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <form action="modify_product.php?id=<?php echo $id_prod;?>" method="POST"> 
-                                                            <button class='btn btn-outline-primary' type="submit">Modify</button> 
-                                                        </form>
-                                                             <?php 
-                                                                 if($row["active"] == 1){
-                                                                    echo "<form action='actions/hide_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Hide</button></form>";
+                                                       <?php 
+                                                                // only the super admin and manager can execute these actions
+                                                                 if($_SESSION['role'] != 'S'){
+                                                                     echo "<form action='modify_product.php?id='".$id_prod."' method='POST'> 
+                                                                            <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                                        </form>";
+                                                                    if($row["active"] == 1){
+                                                                        echo "<form action='actions/hide_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Hide</button></form>";
+                                                                    }
+                                                                      else{
+                                                                        echo "<form action='actions/show_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Show</button></form>";
+                                                                      }
                                                                  }
-                                                                  else{
-                                                                    echo "<form action='actions/show_product.php?id=$id_prod' method='POST'> <button class='btn btn-outline-primary' type='submit'>Show</button></form>";
-                                                                  } 
                                                             ?>
                                                     </td>                                                  
                                                 </tr>

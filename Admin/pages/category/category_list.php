@@ -46,19 +46,20 @@ include('../menu/menu.php');
                                                         echo "</td>";
                                                         echo "<td>";
                                                         echo "<div class='row col-sm-10'>";
-                                                            echo "<div class='col-sm-5'>";
-                                                                echo "<form action='modify_category.php?id=".$row['id_cat']."' method='post'> <button class='btn btn-outline-primary' type='submit'>Modify</button> 
+                                                         // only the super admin and manager can execute these actions
+                                                        if($_SESSION['role'] != 'S'):
+                                                                echo "<form action='modify_category.php?id=".$row['id_cat']."'              method='post'> <button class='btn btn-outline-primary'                type='submit'>Modify</button> 
                                                                        </form>";
-                                                            echo "</div>";
-                                                            echo "<div class='col-sm-5'>";
-                                                                    if($row["status"] == 1){
-                                                                    echo "<form action='actions/hide_category.php?id=".$row['id_cat']."' method='post'> 
-                                                                      <button class='btn btn-outline-primary'>Hide</button> </form>";
-                                                                } else{
-                                                                    echo "<form action='actions/show_category.php?id=".$row['id_cat']."' method='post'> 
-                                                                      <button class='btn btn-outline-primary'>Show</button> </form>";
-                                                                }
-                                                            echo "</div>";
+                                                        
+                                                            if($row["status"] == 1){
+                                                                echo "<form action='actions/hide_category.php?id=".$row['id_cat']."'              method='post'> 
+                                                                  <button class='btn btn-outline-primary'>Hide</button> </form>";
+                                                            }
+                                                            else{
+                                                                echo "<form action='actions/show_category.php?id=".$row['id_cat']."'              method='post'> 
+                                                                  <button class='btn btn-outline-primary'>Show</button> </form>";
+                                                            } 
+                                                        endif;
                                                         echo "</td>";
                                                         echo "</tr>";
                                                         $counter ++;

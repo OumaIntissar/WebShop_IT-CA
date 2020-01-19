@@ -1,3 +1,35 @@
+<?php
+	session_start();
+    include_once("connection/db_connection.php");
+    if(isset($_GET["btn_sing_in"])){
+	    $username = $_GET['username'];
+	    $password = $_GET['password'];
+
+	    $sql_costumers = "SELECT * FROM costumer";
+	    $result_costumers = $conn->query($sql_costumers);
+
+		while($row = $result_costumers->fetch_assoc()) { 
+		    $id_costumer       = $row["id_cost"];
+		    $email_costumer    = $row["email"];      
+		    $password_customer = $row["password"];     
+
+		    if($email_costumer == $username && $password_customer == $password){
+		    	header('Location: index.php');
+		    	// Set session variables
+				$_SESSION["id_costumer"] = $id_costumer;
+				$_SESSION["connected"] = "connected";
+			}
+		    else{
+		    	$message = "wrong Email or Password";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+		    }
+		}
+    }
+    else{
+    	$username = "";
+	    $password = "";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +56,13 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-100 p-b-30">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="GET" action="sign_in.php">
 					<span class="login100-form-title p-t-20 p-b-45" style="font-size: xx-large;">
-						Name Webshop
+						SIGN IN
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" value="<?php echo $username ?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
@@ -38,7 +70,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password" value="<?php echo $password ?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
@@ -46,7 +78,7 @@
 					</div>
 
 					<div class="container-login100-form-btn p-t-10">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="btn_sing_in" type="submit">
 							Login
 						</button>
 					</div>

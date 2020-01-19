@@ -2,7 +2,8 @@
 
 $msg ="";
 
-	include_once("../../../actions/db_connection.php");
+    include_once("../../../actions/db_connection.php");
+    session_start();
 	$prd_name = $_POST["prd_label"];
     $prd_price = $_POST["prd_price"];
     $prd_weight = $_POST["prd_quantite"];
@@ -62,8 +63,9 @@ $msg ="";
         // add activity 
         $label = str_replace(" ","-",$prd_name);
         $date = date("Y-m-d h:i:sa");
+        $id_adm = $_SESSION['id'];
         $sql_activity = "INSERT INTO activitylog (id_activity,id_admin,label,date)
-                        VALUES (2,1,'$label','$date')";
+                        VALUES (2,$id_adm,'$label','$date')";
         if ($conn->query($sql_activity)) {
             echo "thats nice"; 
         }

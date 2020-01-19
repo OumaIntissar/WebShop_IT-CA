@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <?php
     session_start();
 	include_once("../../../actions/db_connection.php");
+=======
+<?php 
+    include_once("../../../actions/db_connection.php");
+    session_start();
 	$category_name = $_POST["lab_name"];
     $category_desc = $_POST["text"];
     $category_state = $_POST["taskOption"];

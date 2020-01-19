@@ -1,13 +1,19 @@
 <?php
     include '../../actions/db_connection.php';
     include('../menu/menu.php');
+
+    $sql = "SELECT atvl.id_activity , atvl.id_admin , atv.name_activity , atv.name_activity , atvl.date , atvl.label , adm.full_name , adm.role FROM activitylog atvl 
+    INNER JOIN activity atv ON atvl.id_activity=atv.id_activity 
+    INNER JOIN admin adm ON atvl.id_admin=adm.id_admin
+    ORDER BY atvl.date DESC";
+    $result = $conn->query($sql);
 ?>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-sm-6 mb-4 mb-xl-0">
-                            <h3>Welcome Otman!</h3>
+                            <h3>Welcome <?php echo $_SESSION['fullname'] ; ?></h3>
                             <h6 class="font-weight-normal mb-0 text-muted">You have done more sales today.</h6>
                         </div>
                         <div class="col-sm-6">
@@ -368,6 +374,10 @@
                             Tab Item
                         </div>
                     </div>
+                    <?php 
+                    if($_SESSION['role'] == "A")
+                    { 
+                    ?>
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Administration Activities</h4>
@@ -406,11 +416,11 @@
                                                     <td><?php echo $date; ?></td>
                                                     <td>
                                                         <label class="<?php 
-                                                        if($id_act === "1" || $id_act === "4" || $id_act === "7" ){
+                                                        if($id_act === "1" || $id_act === "4" || $id_act === "7" || $id_act === "10" ){
                                                             echo "badge badge-success";
-                                                        }elseif($id_act === "2" || $id_act === "5" || $id_act === "8" ){
+                                                        }elseif($id_act === "2" || $id_act === "5" || $id_act === "8" || $id_act === "15" ){
                                                             echo "badge badge-info";
-                                                        }elseif($id_act === "3" || $id_act === "6" || $id_act === "9" ){
+                                                        }elseif($id_act === "3" || $id_act === "6" || $id_act === "9" || $id_act === "14" ){
                                                             echo "badge badge-danger";
                                                         }else{
                                                             echo "badge badge-warning";
@@ -444,6 +454,9 @@
                             </div>
                         </div>
                     </div>
+                    <?php 
+                    }
+                    ?>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:../../partials/_footer.php -->

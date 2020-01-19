@@ -1,10 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <?php
     include_once("connection/db_connection.php");
+    session_start();
+
     $sql_products_best_selling = "SELECT * FROM product  WHERE active='1' AND quantity_prod>0 limit 5";
     $result_products_best_selling = $conn->query($sql_products_best_selling);
 
     $sql_category 	 = "SELECT * FROM category WHERE status='1'";
     $result_category = $conn->query($sql_category);
+
+    $number_product_in_cart = 0;
+	$total_price = 0;
+
+	if(isset($_SESSION["connected"])){
+		$id_costumer = $_SESSION['id_costumer'];
+
+    $sql_cart_2 	 = "SELECT  * FROM cart WHERE id_customer=$id_costumer";
+	$result_cart_number_product_total_price = $conn->query($sql_cart_2);
+
+    while($row2 = $result_cart_number_product_total_price->fetch_assoc()) { 
+		$number_product_in_cart +=1;
+		$total_price += $row2["price_product"]*$row2["quantite_product"];
+	}
+
+		$connected = $_SESSION["connected"];
+		if($connected == "connected"){
+			echo
+				"<script>
+					$(document).ready(function(){
+					    $('#log_out_btn').css({'display': 'block'});
+					});
+					$(document).ready(function(){
+				    $('#home').css({'margin-top': '18px'});
+					}); 				
+					$(document).ready(function(){
+					    $('#sign_in').css({'display': 'none'});
+					});
+					$(document).ready(function(){
+					$('#registre').css({'display': 'none'});
+					});
+					$(document).ready(function(){
+					$('#disabled_cart').css({'display': 'block'});
+					});					
+				</script>
+
+				";
+		}
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +70,17 @@
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">	
+
+
+
+
 
 	<style>
 		.price-text-color{color:#FFD700; font-size: 25px;}
 		.img-responsive {
 	    width: 240px; /* You can set the dimensions to whatever you want */
 	    height: 180px!important;
-		}
 
 	</style>
 </head>
@@ -65,7 +112,7 @@
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="product_list.php" method="GET" class="header_search_form clearfix">
-										<input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search">
+										<input type="text" required="required" class="header_search_input" placeholder="Search for products..." name="search" id="id_search">
 										<button type="submit" name="btn_search" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt="">
 										</button>
 									</form>
@@ -83,11 +130,12 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span><?php echo $number_product_in_cart ?></span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="cart.php">Cart</a></div>
-										<div class="cart_price">$85</div>
+
+										<div class="cart_text"><a id="disabled_cart" style="display:none;" href="cart.php">Cart</a></div>
+										<div class="cart_price"><?php echo $total_price." DH"  ?></div>
 									</div>
 								</div>
 							</div>
@@ -123,7 +171,7 @@
 	                            	$id_cat  = $row["id_cat"];   
 	                            	$label_cat = $row["label_cat"];     
 	                            ?>
-									<li><a href="product_list.php?id=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
+									<li><a href="product_list.php?id_categorie=<?php echo $id_cat ?>"><?php echo $label_cat ?><i class="fas fa-chevron-right"></i></a></li>								
 								<?php } ?>
 								</ul>
 							</div>
@@ -131,10 +179,18 @@
 							<!-- Main Nav Menu -->
 
 							<div class="main_nav_menu ml-auto">
-								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_in.php">Sign In<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="sign_up.php">Registre<i class="fas fa-chevron-down"></i></a></li>
+								<ul class="standard_dropdown main_nav_dropdown" style="margin-top: -18px;" id="ul_menu_log_out">
+									<li><a href="index.php" id="home">Home
+											<i class="fas fa-chevron-down"></i>
+										</a>
+									</li>
+									<li><a href="sign_in.php" id="sign_in">Sign In<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="sign_up.php" id="registre">Registre<i class="fas fa-chevron-down"></i></a></li>
+									<li>
+										<a href="log_out.php" id="log_out_btn" style="display:none">
+											<img src="images/log_out6.png" style="height: 33px;width: 33px;"><i class="fas fa-chevron-down"></i>
+										</a>
+									</li>
 								</ul>
 							</div>
 
@@ -349,15 +405,24 @@
 		                                    </div>
 		                                </div>
 		                                <div class="photo">
-		                                	<a href="product.php?id=<?php echo $id_prod ?>" style="margin-right: -100px!important;">
+		                                	<a href="product.php?id_product=<?php echo $id_prod ?>" 
+		                                		style="margin-right: -100px!important;">
 		                                		<img src="<?php echo $row['image_prod'] ?>"  class="img-responsive" alt="image of product">
 		                                	</a>
 		                                </div>
 		                                <div class="col-sm-2 col-ofsset-sm-1 info">
 		                                    <div class="separator clear-left btn_cart_detail">
-			                                    <a class="btn btn-info btn-lg" href="cart.php?id=<?php echo $id_prod ?>">
-			                                    <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart  
-			                                    </a>
+												<form method="GET" action="check_add_to_cart_if_connecter.php">
+													<input type="hidden" name="id_product" value="<?php echo $id_prod ?>">
+													<input type="hidden" name="number_product_in_cart" value="" >
+			                                    	<button type="submit" name="btn_add_to_cart" value="click" 
+			                                    	 style="border: none;color:white; border-radius: 40px!important;">
+				                                    <a class="btn btn-info btn-lg"  
+				                                    	>
+				                                    <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart  
+				                                    </a>
+				                                    </button>
+			                                	</form>	
 		                                    </div>
 		                                    <div class="clearfix">
 		                                    </div>
@@ -444,7 +509,13 @@
 	<!-- Copyright End -->
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
+
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="js/jquery.min"></script>
+<script src="jquery-ui.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/greensock/TweenMax.min.js"></script>
@@ -456,6 +527,14 @@
 <script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
+
+<script>
+$(function(){
+	$('#id_search').autocomplete({
+		source: "search_suggession.php",
+	});
+});
+</script>	
 
 </body>
 </html>
